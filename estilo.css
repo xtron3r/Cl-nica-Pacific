@@ -9,6 +9,7 @@ nav{
 
     display: inline-block;
     background: white;
+    border-radius: 20px;
     padding: 15px;
     color: #00ACC1;
     text-decoration: none;
