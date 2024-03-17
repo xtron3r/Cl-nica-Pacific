@@ -1,22 +1,17 @@
 nav{
-    background: #00ACC1;
+    background: #00ACC1  ;
     padding: 15px;
     display: flex;
     justify-content: flex-end;
-    
      
 }
 .nav-contacto{
 
     display: inline-block;
     background: white;
-    border-radius: 100px;
     padding: 15px;
     color: #00ACC1;
     text-decoration: none;
-    margin-left: 10px;
+    margin-left: 15px;
     
-}
-.nav-contacto:hover{
-    background: gray;
 }
