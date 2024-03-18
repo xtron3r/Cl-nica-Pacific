@@ -3,9 +3,9 @@ Pagina Web [PROYECTO]
 
 Integrantes:
 
-Aron
-Daryen
-Esteban
-Andy
+- Aron
+- Daryen
+- Esteban
+- Andy
  
  - Programacion Web
