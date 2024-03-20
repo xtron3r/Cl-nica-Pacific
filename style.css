@@ -1,7 +1,27 @@
-/*html{
-    font-family:"Montserrat Alternates", sans-serif;;
+html{
+    font-family: "Concert One", sans-serif;
 }
+
 body{
     margin: 0;
-    background-color: #efefef;
-}*/
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding: 1px 5%;
+}
+.menu img{
+    height: 90px;
+    margin-right: 100px;
+    margin-left: -65px;
+}
+.menu-inicio{
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    margin-right: 10px;
+    
+}
