@@ -25,27 +25,3 @@ body{
     margin-right: -105px;
     
 }
-.banner-foto{
-    background-image: url(img/banner-nav.png);
-    height: 20rem;
-}
-.menu-buscado{
-    padding: 50px;
-    text-align: center;
-}
-.box-img{
-    background-image: url(img/banner-nav.png);
-    height: 18rem;
-    
-}
-.txt-box {
-    text-align: right;
-    position: relative;
-    right: 10rem;
-    top: 2rem;
-    font-size: 30px;
-
-}
-.txt-img{
-
-}
