@@ -1,11 +1,6 @@
 html{
     font-family: "Concert One", sans-serif;
 }
-
-body{
-    margin: 0;
-}
-
 .menu{
     display: flex;
     align-items: center;
@@ -24,4 +19,15 @@ body{
     margin-top: 30px;
     margin-right: -105px;
     
+}
+.img_01{
+    width:1500px;
+    margin-left: 150px;
+    margin-top: 90px;
+}
+.texto h1{
+    position: absolute;
+    top: 150px;
+    left: 1185px;
+    font-size: 250%;
 }
