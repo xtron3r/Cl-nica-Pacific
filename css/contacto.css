@@ -1,12 +1,14 @@
-*{
+body{
     margin: 0;
-    font-family: Thaoma;
+    font-family: "Montserrat", sans-serif;
 }
 
 /* CSS HEADER Y NAV*/
 .txt-nav{
     text-decoration: none;
     color: black;
+    margin: auto;
+    
     
 }
 .img-nav{
@@ -21,10 +23,62 @@
     color: white;
     text-align: center;
     font-size: 20px;
-    width: 25rem;
-    height: 11rem;
+    width: 26rem;
+    height: 10rem;
 }
 .card-title{
     font-size: 30px;
     text-align: center;
+    padding-top: 15px;
+    padding-bottom: 10px;
 }
+
+/*CONTENEDOR FORM*/
+.container{
+    margin-top: 50px;
+}
+
+.form-control{
+    width: 30rem;
+    border-color: black;
+}
+
+#txt-form{
+    font-size: 40px;
+}
+
+.card.col-md-6{
+    background-color: #018E97;
+    margin-top: 13rem;
+    font-size: 30px;
+    text-align: center;
+    margin-left: 100px;
+    color: white;
+
+
+}
+
+.btn.btn-primary{
+    background-color: #018E97;
+    border-color: #018E97;
+}
+
+#textarea{
+    width: 50rem;
+}
+
+/*FOOTER PIE DE PAFINA*/
+
+
+.fooc .container-fluid .row .col {
+    background-color: #018E97;
+    margin-top: 100px;
+    color: white;
+    padding: 50px;
+}
+
+.txtfo{
+    color: white;
+}
+
+
