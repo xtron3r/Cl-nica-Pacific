@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    font-family: Thaoma;
+}
+
+/* CSS HEADER Y NAV*/
+.txt-nav{
+    text-decoration: none;
+    color: black;
+    
+}
+.img-nav{
+    background-image: url(../img/doctor-computador-batafreepik.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 150px;
+    width: 100%;
+}
+.card-body{
+    background-color: #018E97;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    width: 25rem;
+    height: 11rem;
+}
+.card-title{
+    font-size: 30px;
+    text-align: center;
+}
