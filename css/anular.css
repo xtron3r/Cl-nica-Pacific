@@ -1,0 +1,88 @@
+
+body{
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+}
+.enc{
+    margin-left: 250px;
+    color: black;
+}
+.mens{
+    color: black;
+    padding-top: 20px;
+}
+.lbl_rut{
+    color: #018E97;
+    left: 5%;
+}
+.parra{
+    color: #018E97;
+    width: 800px;
+}
+.paciente{
+    background-color: #018E97;
+    color: white;
+    width: 500px;
+}
+.fondo{
+    margin-top: 50px;
+    background-color: #018E97;
+}
+.fot{
+    margin-top: 100px;
+    width: 1475px;
+}
+section {
+    background-color: white; 
+    width: 60%;
+    margin-top: 400px; 
+    margin-left: 10%;
+    margin-right: 50%;
+    position: absolute;
+    top: 0;
+    left: 200px;
+    right: 200px;
+  }
+.fond{
+    background-position: center;
+    background-size: cover;
+    font-size: 30px;
+    background-color: #FFFFFF;
+    margin-left: 150px;
+    margin-right: 500px;
+}
+.bot{
+    margin-left: 250px;
+    border-radius: 30px;
+    padding: 20px 100px;
+    color: white;
+    background-color:#018E97;
+}
+.btn_buscar{
+    position: relative;
+    top: -50px;
+    background-color: #018E97;
+    color: #FFFFFF;
+    margin-left: 300px;
+}
+.bot_anular{
+    position: relative;
+    top: -47px;
+    margin-top: -40px;
+    margin-left: 500px;
+    background-color: red;
+    color: #FFFFFF;
+    
+}
+
+
+.foott .container-fluid .row .col {
+    background-color: #018E97;
+    margin-top: 100px;
+    color: white;
+    padding: 50px;
+}
+
+.txtfot{
+    color: white;
+}
