@@ -1,0 +1,18 @@
+.img-fondo{
+    background-image: url(../img/fondo.png);
+    background-position: center;
+    background-size: cover;
+    padding: 150px;
+    width: 100%;
+}
+
+.seleccion{
+    background-color: #018E97;
+    position: relative;
+    top: 125px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    width: 26rem;
+    height: 10rem;
+}
