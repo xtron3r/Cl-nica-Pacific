@@ -1,0 +1,91 @@
+body{
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+}
+.navbar{
+    margin: 0;
+    margin-bottom: -8px;
+    margin-top: 30px;
+    padding: -1px;
+}
+#anular-hora{
+    text-decoration: none;
+    color: black;
+    background-color: #DD9999;
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+    border: 2px solid black;
+    font-weight: bold;
+    width: 466px;
+}
+#contacto{
+    text-decoration: none;
+    color: black;
+    background-color: #99D9DD;
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+    border: 2px solid black;
+    font-weight: bold;
+    width: 466px;
+}
+#agendar-hora{
+    text-decoration: none;
+    color: black;
+    background-color: #018E97;
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+    border: 2px solid black;
+    font-weight: bold;
+    width: 466px;
+}
+#buscar-hora{
+    text-decoration: none;
+    color: black;
+    background-color: #99C4DD;
+    font-size: 30px;
+    text-align: center;
+    padding: 20px;
+    border: 2px solid black;
+    font-weight: bold;
+    width: 466px;
+}
+
+
+
+/* CSS HEADER Y PAGINA PRINCILPA*/
+.txt-nav{
+    text-decoration: none;
+    color: black;
+    margin: auto;
+    
+    
+}
+.img-nav{
+    background-image: url(../img/banner-nav.png);
+    background-position: center;
+    background-size: cover;
+    padding: 200px;
+    width: 100%;
+}
+.card-title{
+    font-size: 40px;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+.card-body{
+
+    color: black;
+    text-align: center;
+    font-size: 30px;
+    width: 26rem;
+    height: 10rem;
+    float: inline-end;
+    margin-top: -100px;
+    margin-right: -100px;
+
+}
