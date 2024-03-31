@@ -4,41 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva Hora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/datospac.css">
 </head>
 <body>
-    
-    <header>
-        <a href="index.html"><img src="img/logoC.png" alt="FOTO LOGO"></a>
-        <a href="index.html">Inicio</a>
-        <a href="index.html" >Especialidades</a>
-        <a href="index.html" >¿Quienes Somos?</a>
-        <a href="index.html" >Contacto</a>
+    <header class="header">
+        <a href="index.html"><img src="img/logoC.png" alt="FOTO LOGO"></a>   
     </header>
-
-    <main>
+    
+    <nav>
+        <a class="txt" href="index.html">Inicio</a>
+        <a class="txt" href="index.html" >Especialidades</a>
+        <a class="txt" href="index.html" >¿Quienes Somos?</a>
+        <a class="txt" href="index.html" >Contacto</a>
+    </nav>
+    <main class="main">
+        <img class="img-main" src="img/Medicina-.jpg" alt="">
         <section>
+            <div class="fond">
+                <p class="lbl_p">ingrese los datos del paciente para Anular hora</p>
             <div>
                 <div>
-                    <h4>Ingrese los datos del paciente para reservar hora</h4>
                     <form action="">
-                        <label for="Rut">Rut</label><br>
-                        <input type="text" name="" id=""><br>
-                        <label for="Nombre">Nombre Completo</label> <br>
-                        <input type="text" name="" id=""><br>
-                        <label for="Prevision">Prevision</label> <br>
-                        <input type="text" name="" id=""><br>
-                        <button>Aceptar</button><br>
-                        <button>¿Quieres Anular tu hora?</button>
-    
+                        <h4 class="lbl_rut" for="rut">Rut:</h4>
+                        <input class="input1" type="text" name="" id="txt-area" placeholder="ingrese rut del paciente">
+                        <h5 class="mensaje"> *Ej 12.123.123-2*</h5>
+                        <h4 class="lbl_rut" for="rut">Nombre completo:</h4>
+                        <input class="input1" type="text" name="" id="txt-area" placeholder="ingrese nombre completo">
+                        <h4 class="lbl_rut" for="rut">previcion:</h4>
+                        <input class="input1" type="text" name="" id="txt-area" placeholder="ingrese previcion">
+                        <button class="btn_aceptar">Aceptar</button><br>    
                     </form>
                 </div>
             </div>
         </section>
+        <a href="anular_hora.html">
+            <button class="btn_anular">¿Quieres Anular tu hora?</button>
+        </a>
     </main>
 
-    <footer>
-        <p>Copyright ©℗®™</p>
-    </footer>
+
+
+    <footer class="foott">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <h3>Enlaces</h3>
+              <ul>                   
+                <li><a class="txtfot" href="index.html">Inicio</a></li>
+                <li><a class="txtfot"  href="index.html">¿Quienes somos?</a></li>  
+                <li><a class="txtfot" href="contacto.html">Contacto</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <h3>Contacto</h3>
+              <p>Correo electronico: ClinicaPa@pacifico.cl</p>
+              <p>Telefono: 5566778899</p>
+            </div>
+            <div class="col">
+              <h3>Derechos de autor</h3>
+              <p>Copyright ©℗®™ 2024 Sitio Web <br> Esteban</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     
     
     

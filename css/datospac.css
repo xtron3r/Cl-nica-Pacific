@@ -1,0 +1,80 @@
+body{
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+}
+.main{
+    margin-top: 25px;
+    background-color: #018E97;
+}
+
+.txt{
+    margin-left: 250px;
+    color: black;
+}
+.img-main{
+    margin-top: 100px;
+    width: 1475px;
+}
+
+section {
+    height: 500px;
+    background-color: white; 
+    width: 60%;
+    margin-top: 400px; 
+    margin-left: 10%;
+    position: absolute;
+    top: 0;
+    left: 200px;
+    right: 200px;
+  }
+.lbl_p{
+    size: 40%;
+    color: #018E97;
+    margin-left: 30%;
+}
+.lbl_rut{
+    margin-left: 10%;
+    color: #018E97;
+    left: 5%;
+}
+.input1{
+    margin-left:15%;
+}
+.mensaje{
+    margin-left: 15%;
+    position:relative;
+    top: -20px;
+    color: black;
+    padding-top: 20px;
+}
+
+.btn_aceptar{
+    border-radius: 40px;
+    width: 200px;
+    top:100px;
+    right: 3%;
+    position: relative;
+    background-color: #018E97;
+    color: #FFFFFF;
+    padding: 20px;
+}
+.btn_anular{
+    padding: 20px;
+    border-radius: 40px;
+    position: relative;
+    top: -200px;
+    background-color: #970101;
+    color: #FFFFFF;
+    margin-left: 43%;
+}
+
+.foott .container-fluid .row .col {
+    background-color: #018E97;
+    margin-top: 100px;
+    color: white;
+    padding: 50px;
+}
+
+.txtfot{
+    color: white;
+}
