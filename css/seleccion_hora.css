@@ -9,10 +9,12 @@
 .seleccion{
     background-color: #018E97;
     color: white;
+    position: relative;
+    top: 8rem;
     text-align: center;
     font-size: 20px;
     width: 26rem;
-    height: 10rem;
+    height: 20rem;
     margin-left: 20rem;    
 }
 .cora{
