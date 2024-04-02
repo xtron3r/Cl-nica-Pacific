@@ -16,6 +16,8 @@
     width: 26rem;
     height: 20rem;
     margin-left: 20rem;    
+    display: flexbox;
+    margin: auto;
 }
 .cora{
     position: relative;
@@ -25,3 +27,4 @@
     position: relative;
     top: -40px;
 }
+
