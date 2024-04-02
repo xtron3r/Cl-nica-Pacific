@@ -7,24 +7,62 @@
 }
 
 .seleccion{
-    background-color: #018E97;
-    color: white;
+    background-color: white ;
+    color: #018E97;
+    border: #018E97 2px solid;
     position: relative;
     top: 8rem;
     text-align: center;
     font-size: 20px;
-    width: 26rem;
-    height: 20rem;
+    width: 35rem;
+    height: 40rem;
     margin-left: 20rem;    
+    display: flexbox;
+    margin: auto;
+}
+.txt{
+    border: #018E97 1px solid;
+}
+.zon{
+    background-color: #018E97;
+    color: white;
+    border: white 2px solid;
+    position: relative;
+    top: 1rem;
+    width: 75%;
+    height: 30%;
     display: flexbox;
     margin: auto;
 }
 .cora{
     position: relative;
     right: 175px;
+    top: 5px;
 }
 .cli{
     position: relative;
     top: -40px;
+    right: 20px;
+}
+.profile{
+    position: relative;
+    top: -2rem;
+    right: 11rem;
+}
+.doc{
+    position: relative;
+    top: -75px;
+    right: 20px;
+}
+.btn {
+    background-color: #03676D;
+    position: relative;
+    top: -66px;
+    right: 5rem;
+}
+.hora{
+    position: relative;
+    top: -4rem;
+    right: 5rem;
 }
 
