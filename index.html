@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinica Pacifico</title>
+    <link rel="shortcut icon" href="img/logore.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -13,7 +14,7 @@
 <body>
 
     <!-- ENCABEZADO DE PAGUNA -->
-    <header class="navbar">
+    <header class="navbar navbar-expand-md ">
         <a href="index.html"><img src="img/logoC.png" alt="FOTO LOGO" width="250px"></a>
         <a href="index.html" class="txt-nav">Inicio</a>
         <a href="especialidades.html" class="txt-nav">Especialidades</a>
@@ -21,7 +22,7 @@
         <a href="contacto.html" class="txt-nav">Contacto</a>
     </header>
     
-    <nav class="navbar">
+    <nav class="navbar navbar-expand-md">
         <a href="anular_hora.html" id="anular-hora"><img src="img/cancel.ico.png" alt="FOTO CALENDARIO ANULADO" >ANULAR HORA</a>
         <a href="#" id="contacto"><img src="img/tel.ico.png " alt="FOTO CELULAR">CONTACTANOS</a>
         <a href="#" id="agendar-hora"><img src="img/calendar.ico.png" alt="FOTO AGENDAR HORA"> AGENDAR HORA</a>
@@ -30,7 +31,7 @@
     </nav>
     
     <section>
-            <div class="img-nav">
+            <div class="img-nav navbar-expand-md ">
                     <div class="card-body">
                     <h5 class="card-title">CLINICA PACIFICO</h5>
                       <p class="card-text">"Tu salud, nuestro<br> horizonte: Bienestar en<br> Clínica Pacífico."</p>
@@ -41,28 +42,117 @@
     
     
 
-    <main>
-    
-        <section>
-            <div>
-                <h1> SERVICIOS MEDICOS MÁS BUSCADOS </h1>
-               <a href="especialidades.html"><input type="button" value="VER TODAS LAS ESPECIALIDADES"></a>
+    <main class="container-fluid">
+        <div class="row ">
+            <div class="col">
+                <h2 id="masbuscado"> LO MAS BUSCADO</h2>
+                <button type="button" class="btn btn-info" id="btn-ver">VER TODAS LAS ESPECIALIDADES</button>
             </div>
+        </div>
+        <div class="row row-cols-4" id="fondo-back" >
+            <div class="col">
+                <img src="img/telemedicina.ico" alt="MEDICINA ICON" class="img-centro">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-light" type="button" style="font-weight: bold;">TELEMEDICINA</button>
+                </div>
+            </div>
+            <div class="col">
+                <img src="img/medicina-gen.png" alt="MEDICINA ICON" class="img-centro">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-light" type="button" style="font-weight: bold;">MEDICINA GENERAL</button>
+                </div>
+                
+            </div>
+            <div class="col">
+                <img src="img/mamografia.png" alt="MEDICINA ICON" class="img-centro">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-light" type="button" style="font-weight: bold;">MAMOGRAFIA</button>
+                </div>
+            </div>
+            <div class="col">
+                <img src="img/odonto.png" alt="MEDICINA ICON" class="img-centro">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-light" type="button" style="font-weight: bold;">ODONTOLOGIA</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <di class="col text-center">
+                <h2 class="color-texto">CUIDAMOS TU SALUD EN TIEMPOS DIFICILES</h2>
+                <p  class="card-text color-texto  space">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam sunt laudantium molestiae omnis mollitia praesentium quasi vero nostrum vel repellendus similique porro, velit possimus laborum, dolorum adipisci necessitatibus quia aspernatur?
+                Earum, magni debitis aliquam sapiente nam eius eaque repudiandae unde ex placeat ratione dignissimos quidem, dolorum temporibus velit expedita, necessitatibus saepe nulla quam vel tenetur qui? Saepe consequatur dolor iusto.</p>
+            </div>
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="1000">
+                    <img src="img/clinicas-comunitarias.jpg" class="d-block w-50" alt="...">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="img/caja-fonasa-cx@2x.png" class="d-block w-50" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/abuelita.jpg" class="d-block w-50" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev w-50" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev" style="margin-left: 20px;">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next w-50" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next" style="margin-right: 20px;">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Siguiente</span>
+                </button>
+              </div>
+            
+        </div>
+        <div class="row row-cols-2">
+            <div class="col">
+                <section class="quien-somo">
+                    <h3>QUIENES SOMOS?</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt placeat corrupti officiis distinctio fuga omnis repellendus illo necessitatibus quae pariatur mollitia laudantium incidunt soluta ratione id perferendis, ipsam iste. Quisquam?
+                    Beatae hic praesentium accusamus dolorum! Necessitatibus corrupti, veniam dignissimos rerum harum ex accusantium suscipit? Voluptatum asperiores earum in veritatis non, velit accusamus molestias itaque vero, possimus id nostrum dignissimos vel.
+                    Quidem accusamus eius repellendus architecto dolorem unde. Animi corrupti eveniet eius, ratione dicta mollitia quas tenetur provident omnis, dignissimos iste repellat reiciendis repudiandae, nobis iure! Eius numquam minima ex repudiandae.
+                    In fugiat libero quam perferendis, blanditiis modi, quos quia doloremque id ratione assumenda perspiciatis laboriosam voluptate neque. Nostrum, eaque natus? Reprehenderit, cumque dicta. Architecto recusandae corrupti a quae, labore quaerat.
+                    Ratione perferendis dolorem architecto, optio animi eum quam veniam dolores enim, omnis est velit id. Repellendus repellat sapiente eveniet quibusdam dolore, dolor maxime, reprehenderit vitae iste omnis sint sunt illo.</p>
+                </section>        
+            </div>
+                
+            <div class="col">
+                <section class="imagen-quien">
+                    <div class="card-img"> <img src="img/Group-3-Copy-4.png" alt="FOTO MEDICOS" width="600px" height="450px"></div>
+                </section>
+                
+            </div>
+        </div>
         
-            <div >
-                <h1>CUIDAMOS TU SALUD EN TIEMPOS DIFICILES</h1> 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem quam provident eligendi, repellendus vitae commodi exercitationem consequatur quod, ipsa voluptas recusandae earum ab consectetur ullam explicabo nobis sed ipsum laborum!</p>   
-            </div>
-        
-            <div>
-                <h1>QUIENES SOMOS?</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni, provident. Corrupti reprehenderit obcaecati illum esse, ex molestias ipsum eaque numquam officia optio. Recusandae voluptas saepe sequi at beatae eveniet eum.</p>
-            </div>
-        </section>
+
     </main>
     
-    <footer>
-        <p>Copyright ©℗®™</p>
+      <!-- PIE DE LA PAGINA-->
+    <footer class="fooc">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <h3>Enlaces</h3>
+              <ul>                   <!-- que no se te olvide el ul es lista desordenbada-->
+                <li><a class="txtfo" href="index.html">Inicio</a></li>
+                <li><a class="txtfo"  href="index.html">¿Quienes somos?</a></li>  <!-- li es elemento de lista-->
+                <li><a class="txtfo" href="contacto.html">Contacto</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <h3>Contacto</h3>
+              <p>Correo electronico: ClinicaPa@pacifico.cl</p>
+              <p>Telefono: 5566778899</p>
+            </div>
+            <div class="col">
+              <h3>Derechos de autor</h3>
+              <p>Copyright ©℗®™ 2024 Sitio Web <br> Aron </p>
+            </div>
+          </div>
+        </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -3,10 +3,7 @@ body{
     font-family: "Montserrat", sans-serif;
 }
 .navbar{
-    margin: 0;
     margin-bottom: -8px;
-    margin-top: 30px;
-    padding: -1px;
 }
 #anular-hora{
     text-decoration: none;
@@ -17,7 +14,7 @@ body{
     padding: 20px;
     border: 2px solid black;
     font-weight: bold;
-    width: 466px;
+    width: 470px;
 }
 #contacto{
     text-decoration: none;
@@ -28,7 +25,7 @@ body{
     padding: 20px;
     border: 2px solid black;
     font-weight: bold;
-    width: 466px;
+    width: 470px;
 }
 #agendar-hora{
     text-decoration: none;
@@ -39,7 +36,7 @@ body{
     padding: 20px;
     border: 2px solid black;
     font-weight: bold;
-    width: 466px;
+    width: 470px;
 }
 #buscar-hora{
     text-decoration: none;
@@ -50,7 +47,7 @@ body{
     padding: 20px;
     border: 2px solid black;
     font-weight: bold;
-    width: 466px;
+    width: 470px;
 }
 
 
@@ -66,7 +63,7 @@ body{
 .img-nav{
     background-image: url(../img/banner-nav.png);
     background-position: center;
-    background-size: cover;
+    background-size: cover; /*ajusta el tamaño de la imagen al cuadrado*/
     padding: 200px;
     width: 100%;
 }
@@ -84,8 +81,70 @@ body{
     font-size: 30px;
     width: 26rem;
     height: 10rem;
-    float: inline-end;
+    float: inline-end; /*tirarlo para la derecha */
     margin-top: -100px;
     margin-right: -100px;
 
+}
+
+
+/*MAIN MAS BUSCADO*/
+
+#masbuscado{
+    text-align: center;
+    margin-top: 30px;
+    color: #006A71;
+}
+#btn-ver{
+    background-color: #99D9DD;
+    font-weight: bold;
+    margin-top: 5rem;
+    
+}
+#fondo-back{
+    background-color: #006A71;
+    margin-top: 20px;
+    height: 13rem;
+    margin-bottom: 30px;
+}
+
+.img-centro{
+    display: flex;       /*CENTRA LA IMAGEN SIEMPRE USA DISPLAY FLEX Y MARGIN AUTO*/
+    margin: auto;
+    margin-bottom: 20px;
+}
+.color-texto,.space.card-text{
+    color: #018E97;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.d-block{   /*IMAGEN Q SE MUEVE*/
+    display: flex;
+    margin: auto;
+    margin-bottom: 150px;
+}
+
+.quien-somo{
+    background-color: #006A71;
+    text-align: center;
+    color: white;
+    padding: 50px;
+    width: 30rem;
+    margin-left: 100px;
+}
+
+.imagen-quien{
+    margin-top: 30%;
+}
+
+.fooc .container-fluid .row .col {
+    background-color: #018E97;
+    margin-top: 100px;
+    color: white;
+    padding: 50px;
+}
+
+.txtfo{
+    color: white;
 }
