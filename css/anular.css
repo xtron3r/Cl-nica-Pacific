@@ -4,6 +4,8 @@ body{
     font-family: "Montserrat", sans-serif;
 }
 .enc{
+    height: auto    ;
+    text-decoration: none;
     margin-left: 250px;
     color: black;
 }
@@ -25,14 +27,20 @@ body{
     width: 500px;
 }
 .fondo{
+    height: auto;
+    width: 100%;
+    padding: 50px;
     margin-top: 50px;
     background-color: #018E97;
 }
 .fot{
+    max-width: 100%;
+    height: auto;
     margin-top: 100px;
-    width: 1475px;
+    width: 100%;
 }
 section {
+    height: auto;
     background-color: white; 
     width: 60%;
     margin-top: 400px; 
@@ -51,13 +59,7 @@ section {
     margin-left: 150px;
     margin-right: 500px;
 }
-.bot{
-    margin-left: 250px;
-    border-radius: 30px;
-    padding: 20px 100px;
-    color: white;
-    background-color:#018E97;
-}
+
 .btn_buscar{
     border-radius: 40px;
     position: relative;
@@ -66,18 +68,15 @@ section {
     color: #FFFFFF;
     margin-left: 300px;
 }
-.bot_anular{
-    border-radius: 40px;
+.btn{
     position: relative;
-    top: -47px;
+    top: -25px;
     margin-top: -40px;
     margin-left: 500px;
     background-color: red;
     color: #FFFFFF;
     
 }
-
-
 .foott .container-fluid .row .col {
     background-color: #018E97;
     margin-top: 100px;
