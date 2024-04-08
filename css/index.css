@@ -2,9 +2,6 @@ body{
     margin: 0;
     font-family: "Montserrat", sans-serif;
 }
-.navbar{
-    margin-bottom: -8px;
-}
 #anular-hora{
     text-decoration: none;
     color: black;
@@ -14,7 +11,6 @@ body{
     padding: 20px;
     border: 2px solid black;
     font-weight: bold;
-    width: 470px;
 }
 #contacto{
     text-decoration: none;
@@ -25,7 +21,6 @@ body{
     padding: 20px;
     border: 2px solid black;
     font-weight: bold;
-    width: 470px;
 }
 #agendar-hora{
     text-decoration: none;
@@ -36,7 +31,6 @@ body{
     padding: 20px;
     border: 2px solid black;
     font-weight: bold;
-    width: 470px;
 }
 #buscar-hora{
     text-decoration: none;
@@ -47,7 +41,6 @@ body{
     padding: 20px;
     border: 2px solid black;
     font-weight: bold;
-    width: 470px;
 }
 
 
@@ -67,14 +60,14 @@ body{
     padding: 200px;
     width: 100%;
 }
-.card-title{
+.card-title.slogan{
     font-size: 40px;
     text-align: center;
     padding-top: 15px;
     padding-bottom: 10px;
     font-weight: bold;
 }
-.card-body{
+.card-body.slogan{
 
     color: black;
     text-align: center;
@@ -125,6 +118,11 @@ body{
 }
 .color-text{
     color: #018E97;
+}
+
+.btn.buttoncard{
+    background-color: #018E97;
+    border-color: #018E97;
 }
 .d-block{   /*IMAGEN Q SE MUEVE*/
     display: flex;

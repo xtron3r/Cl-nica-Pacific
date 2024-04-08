@@ -22,26 +22,31 @@
         <a href="contacto.html" class="txt-nav">Contacto</a>
     </header>
     
-    <nav class="navbar navbar-expand-md">
-        <a href="anular_hora.html" id="anular-hora"><img src="img/cancel.ico.png" alt="FOTO CALENDARIO ANULADO" >ANULAR HORA</a>
-        <a href="#" id="contacto"><img src="img/tel.ico.png " alt="FOTO CELULAR">CONTACTANOS</a>
-        <a href="#" id="agendar-hora"><img src="img/calendar.ico.png" alt="FOTO AGENDAR HORA"> AGENDAR HORA</a>
-        <a href="#" id="buscar-hora"><img src="img/hora.ico.png" alt="FOTO BUSCAR HORA">BUSCAR HORA</a>
-
+    <nav class="row nave">
+      <div class="col-3 p-0">
+        <a href="anular_hora.html" id="anular-hora" class=" d-block w-100 m-0"><img src="img/cancel.ico.png" alt="FOTO CALENDARIO ANULADO">ANULAR HORA</a>
+      </div>
+      <div class="col-3 p-0">
+        <a href="contacto.html" id="contacto" class="d-block w-100 m-0"><img src="img/tel.ico.png " alt="FOTO CELULAR">CONTACTANOS</a>
+      </div>
+      <div class="col-3 p-0">
+        <a href="seleccion_hora.html" id="agendar-hora" class="d-block w-100 m-0"><img src="img/calendar.ico.png" alt="FOTO AGENDAR HORA"> AGENDAR HORA</a>
+      </div>
+       <div class="col-3 p-0">
+        <a href="anular_hora.html" id="buscar-hora" class="d-block w-100 m-0"><img src="img/hora.ico.png" alt="FOTO BUSCAR HORA">BUSCAR HORA</a>
+       </div>
     </nav>
     
     <section>
             <div class="img-nav navbar-expand-md ">
-                    <div class="card-body">
-                    <h5 class="card-title">CLINICA PACIFICO</h5>
-                      <p class="card-text">"Tu salud, nuestro<br> horizonte: Bienestar en<br> Clínica Pacífico."</p>
+                    <div class="card-body slogan">
+                    <h5 class="card-title slogan">CLINICA PACIFICO</h5>
+                      <p class="card-text slogan">"Tu salud, nuestro<br> horizonte: Bienestar en<br> Clínica Pacífico."</p>
                     </div>
             </div>
     </section>
     
     
-    
-
     <main class="container-fluid">
         <div class="row ">
             <div class="col">
@@ -103,8 +108,7 @@
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Siguiente</span>
                 </button>
-              </div>
-            
+            </div>    
         </div>
 
         <div class="row">
@@ -113,41 +117,43 @@
               <p  class="card-text color-tex space">Queremos compartir toda la información de salud necesaria para ayudarte a mantener una vida más saludable y feliz</p>
           </div>
         </div>
-        
-       <div class="row pack">
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-
-       </div>
     </main>
+
+
+    <div class="container">
+      <div class="row pack ">
+        <div class="col-4">
+          <div class="card" style="width: 20rem; height: 30rem">
+            <img src="img/mujermamo.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title fw-bold">MAMOGRAFIA</h4>
+              <p class="card-text " style="font-size: 20px;">hazte una mamografía regularmente. Conoce tu cuerpo y busca cambios. ¡Tu bienestar es lo primero.</p>
+              <a href="especialidades.html" class="btn btn-primary buttoncard">Mas Informacion</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem; height: 30rem;">
+            <img src="img/hombreserio.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title fw-bold">ODONTOLOGIA</h4>
+              <p class="card-text" style="font-size: 20px;">Programa tus revisiones regularmente para una salud bucal óptima. una sonrisa sana es tu mejor presentación.</p>
+              <a href="especialidades.html" class="btn btn-primary buttoncard">Mas Informacion</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem; height: 30rem">
+            <img src="img/gineco.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title fw-bold">GINECOLOGIA</h4>
+              <p class="card-text" style="font-size: 20px;">Cuida tu salud: programa exámenes ginecológicos. Reconoce tu cuerpo y alerta ante cambios. protégelo siempre.</p>
+              <a href="especialidades.html" class="btn btn-primary buttoncard">Mas Informacion</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
       <!-- PIE DE LA PAGINA-->
     <footer class="fooc">
