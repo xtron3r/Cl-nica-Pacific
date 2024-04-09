@@ -63,6 +63,7 @@
 }
 .btn {
     background-color: #03676D;
+    border: none;
     position: relative;
     top: -66px;
     right: 5rem;
