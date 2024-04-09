@@ -18,6 +18,25 @@ body{
     color: white;
 }
 .col-8.img{
-    background-image: url();
-
+    background-image: url(/img/15062867-cologne-city-bokeh-noche.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 100px;
+}
+.slogan {
+    font-size: 30px;
+}
+.slogan p{
+    color: rgb(0, 0, 0);
+}
+.btn{
+    background-color: white;
+    color: black;
+    border-color: black;
+    width: 30%;
+}
+.btn:hover{
+    background-color:rgb(151, 148, 148);
+    color: white;
+    border-color: black;
 }
