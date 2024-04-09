@@ -12,45 +12,52 @@
     <link rel="stylesheet" href="css/datospac.css">
 </head>
 <body>
-    <header class="header">
-        <a href="index.html"><img src="img/logoC.png" alt="FOTO LOGO"></a>   
+
+    <header class="navbar navbar-expand-md bg-white">
+      <a href="index.html"><img src="img/logoC.png" alt="FOTO LOGO" width="250px"></a>
+      <a href="index.html" class="txt-nav">Inicio</a>
+      <a href="especialidades.html" class="txt-nav">Especialidades</a>
+      <a href="quienes_somos.html" class="txt-nav">¿Quienes Somos?</a>
+      <a href="contacto.html" class="txt-nav">Contacto</a>
     </header>
-    
-    <nav>
-        <a class="txt" href="index.html">Inicio</a>
-        <a class="txt" href="index.html" >Especialidades</a>
-        <a class="txt" href="index.html" >¿Quienes Somos?</a>
-        <a class="txt" href="index.html" >Contacto</a>
-    </nav>
-    <main class="main">
-        <img class="img-main" src="img/Medicina-.jpg" alt="">
-        <section>
-            <div class="fond">
-                <p class="lbl_p">ingrese los datos del paciente para reservar hora</p>
-            <div>
-                <div>
-                    <form action="">
-                        <h4 class="lbl_rut" for="rut">Rut:</h4>
-                        <input class="input1" type="text" name="" id="txt-area" placeholder="ingrese rut del paciente">
-                        <h5 class="mensaje"> *Ej 12.123.123-2*</h5>
-                        <h4 class="lbl_rut" for="rut">Nombre completo:</h4>
-                        <input class="input1" type="text" name="" id="txt-area" placeholder="ingrese nombre completo"><br> 
-                        <br>
-                        <h4 class="lbl_rut" for="rut">prevision:</h4>
-                        <input class="input1" type="text" name="" id="txt-area" placeholder="ingrese prevision">
-                        <button class="btn_aceptar">Aceptar</button>  
-                    </form>
-                </div>
-            </div>
-        </section>
-        <a href="anular_hora.html">
-            <button class="btn_anular">¿Quieres Anular tu hora?</button>
-        </a>
+
+    <main class="container-fluid">
+      <section class="fondo">
+        <div class="fondoimg">
+          <div class="row bg-white p-5 m-5 w-50 mx-auto">     <!-- padding interior -  margin interior-->
+            <form action="registro">
+              <div class="mb-3">
+                <label for="rut" class="form-label color-lbl">RUT</label>
+                <input type="text" class="form-control" id="rutinput" aria-describedby="ruthelp">
+                <div id="ruthelp" class="form-text fw-bold">EJ: 12.123.421-K</div>
+              </div>
+              <div class="mb-3">
+                <label for="nombre" class="form-label color-lbl">NOMBRE COMPLETO</label>
+                <input type="text" class="form-control" id="nombrecom" aria-describedby="nomhelp">
+                <div id="nomhelp" class="form-text fw-bold">INGRESE NOMBRE COMPLETO DEL PACIENTE</div>
+              </div>
+              <div class="mb-3">
+                <label for="prevision" class="form-label color-lbl">PREVISION</label>
+                <input type="text" class="form-control" id="prevision" aria-describedby="previhelp">
+                <div id="previhelp" class="form-text fw-bold">INGRESE PREVISION</div>
+              </div>
+              <div class="mb-3">
+                <button type="submit" class="btn btn-danger fw-bold" style="background-color: #018E97 ; border-color: #018E97; font-size: 20px;">ACEPTAR</button>
+              </div>
+              <div class="mb-3">
+                <button type="button" class="btn btn-danger fw-bold" style="font-size: 20px;">ANULAR HORA</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+
     </main>
 
 
 
-    <footer class="foott">
+    <footer class="fooc">
         <div class="container-fluid">
           <div class="row">
             <div class="col">

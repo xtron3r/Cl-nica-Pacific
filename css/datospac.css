@@ -1,93 +1,40 @@
 body{
     margin: 0;
     font-family: "Montserrat", sans-serif;
-}
-.main{
-    margin-top: 25px;
     background-color: #018E97;
 }
 
-.txt{
-    font-size: 20px;
-    height: auto    ;
+/* CSS HEADER Y PAGINA PRINCILPA*/
+.txt-nav{
     text-decoration: none;
-    margin-left: 190px;
-    margin-right: 40px;
     color: black;
+    margin: auto;   
 }
-.txt:hover{
-    color: #018E97;
-}
-.img-main{
-    max-width: 100%;
-    height: auto;
-    margin-top: 100px;
+.fondoimg{
+    background-image: url(../img/Medicina-.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 150px;
     width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
-section {
-    height: 500px;
-    background-color: white; 
-    width: 60%;
-    margin-top: 400px; 
-    margin-left: 10%;
-    position: absolute;
-    top: 0;
-    left: 200px;
-    right: 200px;
-  }
-.lbl_p{
-    text-align: center;
-    font-size: 30px;
+
+/* MAIN*/
+
+.color-lbl{
     color: #018E97;
-    width: 800px;
-}
-.lbl_rut{
     font-size: 30px;
-    margin-left: 10%;
-    color: #018E97;
-    left: 5%;
-}
-.input1{
-    margin-left:15%;
-}
-.mensaje{
-    margin-left: 15%;
-    position:relative;
-    top: -20px;
-    color: black;
-    padding-top: 20px;
+    font-weight: bold;
 }
 
-.btn_aceptar{
-    text-align: center;
-    border-radius: 10px;
-    position: relative;
-    top: 100px;
-    background-color: #018E97;
-    color: #FFFFFF;
-    right: 20px;
-    padding: 15px 100px;
-}
-.btn_aceptar:hover{
-    background-color:blue;
-}
-.btn_anular{
-    font-size: 40px;
-    padding: 20px 80px;
-    border-radius: 40px;
-    position: relative;
-    top: -200px;
-    background-color: #970101;
-    color: #FFFFFF;
-    margin-left: 30%;
-}
-.btn_anular:hover{
-    background-color: blue;
-    color: wheat;
-}
 
-.foott .container-fluid .row .col {
+
+/*FOOTER PIE DE PAFINA*/
+
+
+.fooc .container-fluid .row .col {
     background-color: #018E97;
     margin-top: 100px;
     color: white;
