@@ -6,11 +6,10 @@
     
 }
 .img-fondo{
-    background-image: url(../img/fondo.png);
+    background-image: url(../img/mision-y-vision-web-1400x400.jpg);
     background-position: center;
     background-size: cover;
-    padding: 150px;
-    width: 100%;
+   
 }
 
 .seleccion{
@@ -69,6 +68,7 @@
     right: 5rem;
 }
 .hora{
+
     position: relative;
     top: -4rem;
     right: 5rem;
@@ -84,3 +84,8 @@
     color: white;
 }
 
+.dt{
+
+position: relative;
+left: 11rem;
+}
