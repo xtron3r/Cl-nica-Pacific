@@ -5,7 +5,19 @@ body{
 .txt-nav{
     text-decoration: none;
     color: black;
-    margin: auto;
-    
-    
+    margin: auto; 
+}
+.fooc .container-fluid .row .col {
+    background-color: #018E97;
+    margin-top: 100px;
+    color: white;
+    padding: 50px;
+}
+
+.txtfo{
+    color: white;
+}
+.col-8.img{
+    background-image: url();
+
 }
