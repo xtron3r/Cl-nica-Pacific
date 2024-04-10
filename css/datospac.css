@@ -10,6 +10,9 @@ body{
     color: black;
     margin: auto;   
 }
+.txt-nav:hover{
+    color:#018E97
+}
 .fondoimg{
     background-image: url(../img/Medicina-.jpg);
     background-position: center;

@@ -28,18 +28,23 @@
       <img class="fot" src="img/medicina_humana.jpg" alt="">
         <section>
             <div class="fond">
-              <p class="parra">ingrese los datos del paciente para Anular hora</p>
+              <p class="parra text-xl-end">ingrese los datos del paciente para Anular hora</p>
               <form>
-                  <label class="lbl_rut" for="rut">Rut</label><br>
+                  <label class="lbl_rut text-start" for="rut">Rut</label><br>
                   <input type="text" name="" id="txt-area" placeholder="ingrese rut del paciente">
                   <h3 class="mens"> *Ej 12.123.123-2*</h3>
-                  <button class="btn_buscar" type="">Buscar</button>
+                  <button type="button" class="btn btn-outline-warning">BUSCAR</button>
               </form>
-              <div class="contenedor">
-                  <label class="paciente">Nombre paciente</label><br>
-                  <input class="paciente" type="date" name="" id="">
-                  <button type="submit" class="btn btn-primary">Anular</button>
-
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                    <form class="form-container">
+                      <label class="form-label" for="">Nombre paciente</label><br>
+                      <input type="date" class="form-control" id="" name="">
+                      <button type="button" class="btn btn-danger btn_anular text-center">ANULAR</button>
+                    </form>
+                  </div>
+                </div>
               </div>
 
             </div><br>        
