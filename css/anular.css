@@ -1,111 +1,87 @@
-
-body{
+body {
     margin: 0;
     font-family: "Montserrat", sans-serif;
+    background-color: #018E97;
 }
-.enc{
+
+.enc {
     font-size: 20px;
-    height: auto    ;
+    height: auto;
     text-decoration: none;
-    margin-left: 190px;
-    margin-right: 40px;
+    margin-left: 10rem;
     color: black;
 }
-.enc:hover{
-    color:#018E97;
+.fondo{
+    position: relative;
+    background-image: url(../img/medicina_humana.jpg);
+    background-position: center;
+    background-size: cover;
+    top: 40px;
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
-.mens{
-    color: black;
-    padding-top: 20px;
+.enc:hover {
+    color: #018E97;
 }
-.lbl_rut{
+
+.lbl_rut {
     color: #018E97;
     left: 5%;
 }
-.parra{
+
+.parra {
     font-size: 30px;
     color: #018E97;
     width: 800px;
 }
-.paciente{
-    background-color: #018E97;
-    color: white;
-    width: 500px;
-}
-.fondo{
-    height: auto;
-    width: 100%;
-    padding: 50px;
-    margin-top: 50px;
+
+.ws{
     background-color: #018E97;
 }
-.fot{
-    background-image: url(../img/medicina_humana.jpg);
-    max-width: 100%;
-    width: 100%;
-}
-section {
-    height: auto;
-    background-color: white; 
-    width: 70%;
-    margin-top: 400px; 
-    margin-left: 10%;
-    margin-right: 10%; 
-    position: absolute;
-    top: 0;
-    left: 10%; 
-    right: 10%;
-  }
-.fond{
-    background-position: center;
-    background-size: cover;
+
+.fond {
     font-size: 40px;
-    background-color: #FFFFFF;
     margin-left: 5%;
     margin-right: 10%;
 }
-.form-control{
+
+.form-control {
     border-color: black;
     width: 55%;
 }
-.btn{
+
+.btn {
     padding: 8px 20px 10px;
     border: #018E97;
-    position: relative;
-    top: -94px;
-    margin-top: -40px;
-    margin-left: 500px;
     background-color: #018E97;
     color: #FFFFFF;
 }
-.btn:hover{
-    background-color:yellow;
-    color:black;
+.container{
+    border-radius: 10px;
+    padding: 40px 10px;
+}
+
+.btn:hover {
+    background-color: yellow;
+    color: black;
     border-color: black;
 }
-.btn_anular{
+
+.btn_anular {
     font-size: 20px;
     padding: 8px 20px 10px;
-    position: relative;
     background-color: red;
     color: black;
     border-radius: 10px;
-    top:-30px;
+
+}
+.btn_anular:hover{
+    background-color: yellow;
 }
 
-.container {
-    position: relative;
-    background-color:#018E97;
-    padding-top: 3%;
-    color: #FFFFFF;
-  }
-.container-fluid{
-    position: relative;
-    background-color:#018E97;
-    padding: 20px; 
-    display: inline-block;
-}
 
+/*FOOTER */
 .foott .container-fluid .row .col {
     background-color: #018E97;
     margin-top: 100px;
@@ -113,6 +89,6 @@ section {
     padding: 50px;
 }
 
-.txtfot{
+.txtfot {
     color: white;
 }
