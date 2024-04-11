@@ -42,8 +42,6 @@ body{
 .fot{
     background-image: url(../img/medicina_humana.jpg);
     max-width: 100%;
-    height: auto;
-    margin-top: 100px;
     width: 100%;
 }
 section {
@@ -66,11 +64,15 @@ section {
     margin-left: 5%;
     margin-right: 10%;
 }
+.form-control{
+    border-color: black;
+    width: 55%;
+}
 .btn{
     padding: 8px 20px 10px;
     border: #018E97;
     position: relative;
-    top: -40px;
+    top: -94px;
     margin-top: -40px;
     margin-left: 500px;
     background-color: #018E97;
@@ -87,7 +89,6 @@ section {
     position: relative;
     background-color: red;
     color: black;
-    right: 20px;
     border-radius: 10px;
     top:-30px;
 }
