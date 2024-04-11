@@ -67,9 +67,10 @@ section {
     margin-right: 10%;
 }
 .btn{
+    padding: 8px 20px 10px;
     border: #018E97;
     position: relative;
-    top: -100px;
+    top: -40px;
     margin-top: -40px;
     margin-left: 500px;
     background-color: #018E97;
@@ -86,7 +87,7 @@ section {
     position: relative;
     background-color: red;
     color: black;
-    right: 10px;
+    right: 20px;
     border-radius: 10px;
     top:-30px;
 }
