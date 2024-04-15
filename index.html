@@ -14,73 +14,94 @@
 <body>
 
     <!-- ENCABEZADO DE PAGUNA -->
-    <header class="navbar navbar-expand-md ">
-        <a href="index.html"><img src="img/logoC.png" alt="FOTO LOGO" width="250px"></a>
-        <a href="index.html" class="txt-nav">Inicio</a>
-        <a href="especialidades.html" class="txt-nav">Especialidades</a>
-        <a href="quienes_somos.html" class="txt-nav">¿Quienes Somos?</a>
-        <a href="contacto.html" class="txt-nav">Contacto</a>
-    </header>
-    
-    <nav class="row nave">
-      <div class="col-3 p-0">
-        <a href="anular_hora.html" id="anular-hora" class=" d-block w-100 m-0"><img src="img/cancel.ico.png" alt="FOTO CALENDARIO ANULADO">ANULAR HORA</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="img/logoC.png" width="250px" alt=""></a>
+        <button class="navbar-toggler" style="background-color: #018E97;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto gap-md-2 gap-sm-2 gap-lg-5">
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" aria-current="page" href="index.html">INICIO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" href="especialidades.html">ESPECIALIDADES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" href="quienes_somos.html">¿QUIENES SOMOS?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" href="quienes_somos.html">CONTACTO</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="col-3 p-0">
-        <a href="contacto.html" id="contacto" class="d-block w-100 m-0"><img src="img/tel.ico.png " alt="FOTO CELULAR">CONTACTANOS</a>
-      </div>
-      <div class="col-3 p-0">
-        <a href="especialidades.html" id="agendar-hora" class="d-block w-100 m-0"><img src="img/calendar.ico.png" alt="FOTO AGENDAR HORA"> AGENDAR HORA</a>
-      </div>
-       <div class="col-3 p-0">
-        <a href="anular_hora.html" id="buscar-hora" class="d-block w-100 m-0"><img src="img/hora.ico.png" alt="FOTO BUSCAR HORA">BUSCAR HORA</a>
-       </div>
     </nav>
     
+    <nav class="row nave">
+      <div class="col-md-3 col-sm-6    p-0">
+        <a href="anular_hora.html" id="anular-hora" class="d-block w-100 m-0"><img src="img/cancel.ico.png" alt="FOTO CALENDARIO ANULADO">ANULAR HORA</a>
+      </div>
+      <div class="col-md-3 col-sm-6  p-0">
+        <a href="contacto.html" id="contacto" class="d-block w-100 m-0"><img src="img/tel.ico.png" alt="FOTO CELULAR">CONTACTANOS</a>
+      </div>
+      <div class="col-md-3 col-sm-6   p-0">
+        <a href="especialidades.html" id="agendar-hora" class="d-block w-100 m-0"><img src="img/calendar.ico.png" alt="FOTO AGENDAR HORA"> AGENDAR HORA</a>
+      </div>
+      <div class="col-md-3 col-sm-6  p-0">
+        <a href="anular_hora.html" id="buscar-hora" class="d-block w-100 m-0"><img src="img/hora.ico.png" alt="FOTO BUSCAR HORA">BUSCAR HORA</a>
+      </div>
+    </nav>
+    
+    
     <section>
-            <div class="img-nav navbar-expand-md ">
-                    <div class="card-body slogan">
-                    <h5 class="card-title slogan">CLINICA PACIFICO</h5>
-                      <p class="card-text slogan">"Tu salud, nuestro<br> horizonte: Bienestar en<br> Clínica Pacífico."</p>
-                    </div>
-            </div>
+      <div class="img-nav d-none d-sm-block">
+        <div class="card-body slogan">
+          <h5 class="card-title slogan">CLINICA PACIFICO</h5>
+          <p class="card-text slogan">"Tu salud, nuestro<br> horizonte: Bienestar en<br> Clínica Pacífico."</p>
+        </div>
+      </div>
     </section>
     
     
+    
     <main class="container-fluid">
-        <div class="row ">
-            <div class="col">
-                <h2 id="masbuscado"> LO MAS BUSCADO</h2>
+        <div class="row">
+            <div class="col col-sm-12 text-center">
+                <h2 id="masbuscado" class="fw-bold"> LO MAS BUSCADO</h2>
                 <a href="especialidades.html"><button type="button" class="btn btn-info" id="btn-ver">VER TODAS LAS ESPECIALIDADES</button></a>
             </div>
         </div>
-        <div class="row row-cols-4" id="fondo-back" >
-            <div class="col">
-                <img src="img/telemedicina.ico" alt="MEDICINA ICON" class="img-centro">
-                <div class="d-grid gap-2">
-                    <button class="btn btn-light" type="button" style="font-weight: bold;">TELEMEDICINA</button>
-                </div>
-            </div>
-            <div class="col">
-                <img src="img/medicina-gen.png" alt="MEDICINA ICON" class="img-centro">
-                <div class="d-grid gap-2">
-                    <button class="btn btn-light" type="button" style="font-weight: bold;">MEDICINA GENERAL</button>
-                </div>
-                
-            </div>
-            <div class="col">
-                <img src="img/mamografia.png" alt="MEDICINA ICON" class="img-centro">
-                <div class="d-grid gap-2">
-                    <button class="btn btn-light" type="button" style="font-weight: bold;">MAMOGRAFIA</button>
-                </div>
-            </div>
-            <div class="col">
-                <img src="img/odonto.png" alt="MEDICINA ICON" class="img-centro">
-                <div class="d-grid gap-2">
-                    <button class="btn btn-light" type="button" style="font-weight: bold;">ODONTOLOGIA</button>
-                </div>
-            </div>
+        <div class="row mt-4 p-3" id="fondo-back">
+          <div class="col">
+              <img src="img/telemedicina.ico" alt="MEDICINA ICON" class="img-centro">
+              <div class="d-grid gap-2">
+                  <button class="btn btn-light fs-6 text-nowrap" type="button" style="font-weight: bold;">TELEMEDICINA</button>
+              </div>
+          </div>
+          <div class="col">
+              <img src="img/medicina-gen.png" alt="MEDICINA ICON" class="img-centro">
+              <div class="d-grid gap-2">
+                  <button class="btn btn-light fs-6 text-nowrap" type="button" style="font-weight: bold;">MEDICINA GENERAL</button>
+              </div>
+          </div>
+          <div class="col">
+              <img src="img/mamografia.png" alt="MEDICINA ICON" class="img-centro">
+              <div class="d-grid gap-2">
+                  <button class="btn btn-light fs-6 text-nowrap" type="button" style="font-weight: bold;">MAMOGRAFIA</button>
+              </div>
+          </div>
+          <div class="col">
+              <img src="img/odonto.png" alt="MEDICINA ICON" class="img-centro">
+              <div class="d-grid gap-2">
+                  <button class="btn btn-light fs-6 text-nowrap" type="button" style="font-weight: bold;">ODONTOLOGIA</button>
+              </div>
+          </div>
         </div>
+      
+      
+      
 
         <div class="row">
             <div class="col text-center">
