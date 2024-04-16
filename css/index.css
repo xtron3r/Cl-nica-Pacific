@@ -121,23 +121,12 @@ body{
     background-color: #018E97;
     border-color: #018E97;
 }
-.d-block{   /*IMAGEN Q SE MUEVE*/
-    display: flex;
-    margin: auto;
-    margin-top: 100px;
-    margin-bottom: 150px;
-}
 
-.row.pack{
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
+/* footer*/
 
-.fooc .container-fluid .row .col {
+.fooc .colfoter {
     background-color: #018E97;
-    margin-top: 100px;
     color: white;
-    padding: 50px;
 }
 
 .txtfo{
