@@ -1,94 +1,22 @@
 
-.txt-nav{
-    text-decoration: none;
-    color: black;
-    margin: auto;
-    
-    
-}
-.img-fondo{
+
+.fondo-img{
     background-image: url(../img/mision-y-vision-web-1400x400.jpg);
     background-position: center;
-    background-size: cover;
-    display: flexbox;
-    margin: auto;
-   
+    background-size: cover; /*ajusta el tamaño de la imagen al cuadrado*/
+    width: 100%;
 }
 
-.seleccion{
-    background-color: white ;
-    color: #018E97;
-    border: #018E97 2px solid;
-    position: relative;
-    top: 8rem;
-    text-align: center;
-    font-size: 20px;
-    width: 35rem;
-    height: 40rem;
-    margin-left: 20rem;    
-    display: flexbox;
-    margin: auto;
-}
-.txt{
-    border: #018E97 1px solid;
-}
-.zon{
+.fondo-color{
     background-color: #018E97;
-    color: white;
-    border: white 2px solid;
-    position: relative;
-    top: 1rem;
-    width: 75%;
-    height: 30%;
-    display: flexbox;
-    margin: auto;
 }
-.cora{
-    position: relative;
-    right: 175px;
-    top: 5px;
-}
-.cli{
-    position: relative;
-    top: -40px;
-    right: 20px;
-}
-.profile{
-    position: relative;
-    top: -2rem;
-    right: 11rem;
-}
-.doc{
-    position: relative;
-    top: -75px;
-    right: 20px;
-}
-.btn {
-    background-color: #03676D;
-    border: none;
-    position: relative;
-    top: -66px;
-    right: 5rem;
-}
-.hora{
 
-    position: relative;
-    top: -4rem;
-    right: 5rem;
-}
-.fooc .container-fluid .row .col {
+
+.fooc .colfoter {
     background-color: #018E97;
-    margin-top: 100px;
     color: white;
-    padding: 50px;
 }
 
 .txtfo{
     color: white;
-}
-
-.dt{
-
-position: relative;
-left: 11rem;
 }
