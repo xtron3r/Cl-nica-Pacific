@@ -1,3 +1,4 @@
+
 .txt-nav{
     text-decoration: none;
     color: black;
@@ -9,6 +10,8 @@
     background-image: url(../img/mision-y-vision-web-1400x400.jpg);
     background-position: center;
     background-size: cover;
+    display: flexbox;
+    margin: auto;
    
 }
 
