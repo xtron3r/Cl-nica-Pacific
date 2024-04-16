@@ -15,17 +15,34 @@
 <body>
     
     <!-- ENCABEZADO DE PAGUNA -->
-        <header class="navbar">
-            <a href="index.html"><img src="img/logoC.png" alt="FOTO LOGO" width="250px"></a>
-            <a href="index.html" class="txt-nav">Inicio</a>
-            <a href="especialidades.html" class="txt-nav">Especialidades</a>
-            <a href="index.html" class="txt-nav">¿Quienes Somos?</a>
-            <a href="contacto.html" class="txt-nav">Contacto</a>
-        </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="img/logoC.png" width="250px" alt=""></a>
+        <button class="navbar-toggler" style="background-color: #018E97;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto gap-md-2 gap-sm-2 gap-lg-5">
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" aria-current="page" href="index.html">INICIO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" href="especialidades.html">ESPECIALIDADES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" href="quienes_somos.html">¿QUIENES SOMOS?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" href="quienes_somos.html">CONTACTO</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
         
         
         <section>
-                <div class="img-nav">
+                <div class="img-nav img-fluid d-none d-sm-block">
                         <div class="card-body">
                           <h5 class="card-title">Contacto</h5>
                           <p class="card-text">Te proporcionamos la asistencia  necesaria para aclarar tus  preguntas y atender tus necesidades.</p>
@@ -34,77 +51,76 @@
         </section>
     
     <!-- CUERPO DE LA PAGINA-->
-    <main class="container">
+    <main class="container mt-5">
+        <section class="row align-items-center">
+          <div class="col-sm-12 col-md-6 col-lg-6 fondo-bg">
+            <form>
+              <p class="fw-bold fs-1 m-3">FORMULARIO DE CONTACTO</p>
+              <div class="mb-3">
+                  <label for="Motivo" class="form-label fw-bold">Motivo</label>
+                  <input type="text" class="form-control w-75" id="txt-area" placeholder="Escribe un motivo breve">
+              </div>
+  
+              <div class="mb-3">
+                  <label for="" class="form-label fw-bold">Nombre</label>
+                  <input type="text" class="form-control w-75" id="txt-area" placeholder="Ingresa tu nombre">
+              </div>
+  
+              <div class="mb-3">
+                  <label for="Apellido" class="form-label fw-bold">Apellido</label>
+                  <input type="email" class="form-control w-75" id="txt-area" placeholder="Ingresa tu apellido">
+              </div>
+  
+              <div class="mb-3">
+                  <label for="Email" class="form-label fw-bold">Correo Electronico</label>
+                  <input type="email" class="form-control w-75" id="txt-area" placeholder="nombre@ejemplo.com">
+              </div>
+                  
+              <div class="mb-3">
+                  <label for="Telefono" class="form-label fw-bold">Telefono</label>
+                  <input type="text" class="form-control w-75" id="txt-area" placeholder="+56911223344">
+              </div>
 
-        <section class="row">
-            <form class="col-md-6">
-                <p id="txt-form">FORMULARIO DE CONTACTO</p>
-                <div class="mb-3">
-                    <label for="Motivo" class="form-label">Motivo</label>
-                    <input type="text" class="form-control" id="txt-area" placeholder="Escribe un motivo breve">
-                </div>
-    
-                <div class="mb-3">
-                    <label for="" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="txt-area" placeholder="Ingresa tu nombre">
-                </div>
-    
-                <div class="mb-3">
-                    <label for="Apellido" class="form-label">Apellido</label>
-                    <input type="email" class="form-control" id="txt-area" placeholder="Ingresa tu apellido">
-                </div>
-    
-                <div class="mb-3">
-                    <label for="Email" class="form-label">Correo Electronico</label>
-                    <input type="email" class="form-control" id="txt-area" placeholder="nombre@ejemplo.com">
-                </div>
-                    
-                <div class="mb-3">
-                    <label for="Telefono" class="form-label">Telefono</label>
-                    <input type="text" class="form-control" id="txt-area" placeholder="+56911223344">
-                </div>
-
-                <div class="mb-3">
-                    <label for="textarea" class="form-label">Mensaje (¿Cual es su problema?)</label>
-                    <textarea class="form-control" id="textarea" rows="8" placeholder="Escribe aqui"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">ENVIAR</button>
+              <div class="mb-3">
+                  <label for="textarea" class="form-label fw-bold">Mensaje (¿Cual es su problema?)</label>
+                  <textarea class="form-control w-100" id="textarea" rows="8" placeholder="Escribe aqui"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary mb-5 fw-bold">ENVIAR</button>
             </form>
-
-            <div class="card col-md-6" style="height: 16rem; width: 25rem;">
-                    <p style="margin-top: 20px;">Complete el formulario adjunto o comuníquese al número <span style="color: black;">+5622654213 </span>para recibir asistencia adicional.</p>
-            </div>
-        </section>
-    </main>
-
-    <br>
-    <!-- PIE DE LA PAGINA-->
-    <footer class="fooc">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col">
-              <h3>Enlaces</h3>
-              <ul>                   <!-- que no se te olvide el ul es lista desordenbada-->
-                <li><a class="txtfo" href="index.html">Inicio</a></li>
-                <li><a class="txtfo"  href="index.html">¿Quienes somos?</a></li>  <!-- li es elemento de lista-->
-                <li><a class="txtfo" href="contacto.html">Contacto</a></li>
-              </ul>
-            </div>
-            <div class="col">
-              <h3>Contacto</h3>
-              <p>Correo electronico: ClinicaPa@pacifico.cl</p>
-              <p>Telefono: 5566778899</p>
-            </div>
-            <div class="col">
-              <h3>Derechos de autor</h3>
-              <p>Copyright ©℗®™ 2024 Sitio Web <br> Aron </p>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 ">
+            <div class="card fondo-bg text-white w-75 h-50 text-center d-flex align-items-center justify-content-center fs-4 p-2 mt-5 mx-auto">
+              <p>Complete el formulario adjunto o comuníquese al número <span style="color: black;">+5622654213 </span>para recibir asistencia adicional.</p>
             </div>
           </div>
-        </div>
-      </footer>
-    
-    
+        </section>        
+    </main>
 
+    
+   <!-- PIE DE LA PAGINA-->
+   <footer class="fooc mt-5">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4 col-sm-12 colfoter p-5">
+            <h3>Enlaces</h3>
+            <ul>                   <!-- que no se te olvide el ul es lista desordenbada-->
+              <li><a class="txtfo" href="index.html">Inicio</a></li>
+              <li><a class="txtfo"  href="index.html">¿Quienes somos?</a></li>  <!-- li es elemento de lista-->
+              <li><a class="txtfo" href="contacto.html">Contacto</a></li>
+            </ul>
+          </div> 
+          <div class="col-md-4 col-sm-12 colfoter p-5">
+            <h3>Contacto</h3>
+            <p>Correo electronico: ClinicaPa@pacifico.cl</p>
+            <p>Telefono: 5566778899</p>
+          </div>
+          <div class="col-md-4 col-sm-12 colfoter p-5">
+            <h3>Derechos de autor</h3>
+            <p>Copyright ©℗®™ 2024 Sitio Web <br> Aron </p>
+          </div>
+        </div>
+      </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

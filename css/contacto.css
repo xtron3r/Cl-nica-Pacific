@@ -4,13 +4,6 @@ body{
 }
 
 /* CSS HEADER Y NAV*/
-.txt-nav{
-    text-decoration: none;
-    color: black;
-    margin: auto;
-    
-    
-}
 .img-nav{
     background-image: url(../img/doctor-computador-batafreepik.jpg);
     background-position: center;
@@ -34,51 +27,27 @@ body{
 }
 
 /*CONTENEDOR FORM*/
-.container{
-    margin-top: 50px;
-}
 
-.form-control{
-    width: 30rem;
-    border-color: black;
-}
-
-#txt-form{
-    font-size: 40px;
-}
-
-.card.col-md-6{
+.fondo-bg{
     background-color: #018E97;
-    margin-top: 13rem;
-    font-size: 30px;
-    text-align: center;
-    margin-left: 100px;
-    color: white;
-
-
 }
 
 .btn.btn-primary{
-    background-color: #018E97;
-    border-color: #018E97;
+    background-color: white;
+    color: #018E97;
+    border-color: white;
 }
 
-#textarea{
-    width: 50rem;
-}
 
 /*FOOTER PIE DE PAFINA*/
 
 
-.fooc .container-fluid .row .col {
+.fooc .colfoter {
     background-color: #018E97;
-    margin-top: 100px;
     color: white;
-    padding: 50px;
 }
 
 .txtfo{
     color: white;
 }
-
 
