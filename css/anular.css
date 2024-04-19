@@ -3,28 +3,12 @@ body {
     font-family: "Montserrat", sans-serif;
     background-color: #018E97;
 }
-
-.enc {
-    font-size: 20px;
-    height: auto;
-    text-decoration: none;
-    margin-left: 10rem;
-    color: black;
-}
 .fondo{
-    position: relative;
     background-image: url(../img/medicina_humana.jpg);
     background-position: center;
     background-size: cover;
-    top: 40px;
     width: 100%;
-    margin-top: 100px;
-    margin-bottom: 100px;
 }
-.enc:hover {
-    color: #018E97;
-}
-
 .lbl_rut {
     color: #018E97;
     left: 5%;
@@ -41,6 +25,7 @@ body {
 }
 
 .fond {
+    background-size: cover;
     font-size: 40px;
     margin-left: 5%;
     margin-right: 10%;
@@ -57,7 +42,8 @@ body {
     background-color: #018E97;
     color: #FFFFFF;
 }
-.container{
+.container1{
+    background-color: #018E97;
     border-radius: 10px;
     padding: 40px 10px;
 }
@@ -68,7 +54,7 @@ body {
     border-color: black;
 }
 
-.btn_anular {
+.btn-anular {
     font-size: 20px;
     padding: 8px 20px 10px;
     background-color: red;
@@ -76,19 +62,17 @@ body {
     border-radius: 10px;
 
 }
-.btn_anular:hover{
+.btn-anular:hover{
     background-color: yellow;
 }
 
 
 /*FOOTER */
-.foott .container-fluid .row .col {
+.fooc .colfoter {
     background-color: #018E97;
-    margin-top: 100px;
     color: white;
-    padding: 50px;
 }
 
-.txtfot {
+.txtfo{
     color: white;
 }
