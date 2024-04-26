@@ -20,7 +20,7 @@ body{
     color: white;
 }
 .col-8.img{
-    background-image: url(/img/home.png);
+    background-image: url(../img/home.png);
     background-position: center;
     background-size: cover;
     padding: 100px;

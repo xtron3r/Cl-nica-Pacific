@@ -2,11 +2,6 @@ body{
     margin: 0;
     font-family: "Montserrat", sans-serif;
 }
-.txt-nav{
-    color: black;
-    text-decoration: none;
-    margin: auto;
-}
 .img-nav{
     background-image: url(../img/bgClinicaMedica.jpg);
     background-position: center;
@@ -30,21 +25,18 @@ body{
     color: white;
     border-color: black;
 }
-.fooc .container-fluid .row  {
-    background-color: #018E97;
-    margin-top: 100px;
-    color: white;
-    padding: 50px;
-}
-.txtfo{
-    color: white;
-}
-.col{
-    margin: 50px;
-    width: 25%;
-    position: relative;
-    left:6%;
-}
+
 .txt-white{
     color:white;
+}
+
+/* footer*/
+
+.fooc .colfoter {
+    background-color: #018E97;
+    color: white;
+}
+
+.txtfo{
+    color: white;
 }
