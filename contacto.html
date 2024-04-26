@@ -16,10 +16,9 @@
     <link rel="stylesheet" href="css/contacto.css">
     <!-- JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script> <!-- Validate -->
     <!-- JAVASCRIPT-->
     <script src="js/contacto.js"></script>
-    
-  </head>
 </head>
 <body>
     
@@ -63,31 +62,31 @@
     <main class="container mt-5">
         <section class="row align-items-center">
           <div class="col-sm-12 col-md-6 col-lg-6 fondo-bg">
-            <form>
+            <form id="contactform">
               <p class="fw-bold fs-1 m-3">FORMULARIO DE CONTACTO</p>
               <div class="mb-3">
-                  <label for="Motivo" class="form-label fw-bold">Motivo</label>
-                  <input type="text" class="form-control w-75" id="motivo" placeholder="Escribe un motivo breve">
+                  <label for="formMotivo" class="form-label fw-bold">Motivo</label>
+                  <input type="text" class="form-control w-75" id="formMotivo" name="formMotivo"  required>
               </div>
   
               <div class="mb-3">
-                  <label for="" class="form-label fw-bold">Nombre Y Apellido</label>
-                  <input type="text" class="form-control w-75" id="nombreap" placeholder="Ingresa tu nombre">
+                  <label for="formNombre" class="form-label fw-bold">Nombre Y Apellido</label>
+                  <input type="text" class="form-control w-75" id="formNombre" name="formNombre" required>
               </div>
 
               <div class="mb-3">
-                  <label for="Email" class="form-label fw-bold">Correo Electronico</label>
-                  <input type="email" class="form-control w-75" id="correo" placeholder="nombre@ejemplo.com">
+                  <label for="formEmail" class="form-label fw-bold">Correo Electronico</label>
+                  <input type="email" class="form-control w-75" id="formEmail" name="formEmail"  required>
               </div>
                   
               <div class="mb-3">
-                  <label for="Telefono" class="form-label fw-bold">Telefono</label>
-                  <input type="text" class="form-control w-75" id="telefono" placeholder="+56911223344">
+                  <label for="formTelefono" class="form-label fw-bold">Telefono</label>
+                  <input type="text" class="form-control w-75" id="formTelefono" name="formTelefono" required>
               </div>
 
               <div class="mb-3">
-                  <label for="textarea" class="form-label fw-bold">Mensaje (¿Cual es su problema?)</label>
-                  <textarea class="form-control w-100" id="mensaje" rows="8" placeholder="Escribe aqui"></textarea>
+                  <label for="formTextarea" class="form-label fw-bold">Mensaje (¿Cual es su problema?)</label>
+                  <textarea class="form-control w-100" id="formTextarea" rows="8" name="formTextarea"  required></textarea>
               </div>
               <button type="submit" class="btn btn-primary mb-5 fw-bold" id="enviarb">ENVIAR</button>
             </form>
