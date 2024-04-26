@@ -1,7 +1,6 @@
-body {
+.body {
     margin: 0;
     font-family: "Montserrat", sans-serif;
-    background-color: #018E97;
 }
 .fondo{
     background-image: url(../img/medicina_humana.jpg);
