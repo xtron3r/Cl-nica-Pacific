@@ -37,13 +37,11 @@ body{
 /*FOOTER PIE DE PAFINA*/
 
 
-.fooc .container-fluid .row .col {
+.fooc .colfoter {
     background-color: #018E97;
-    margin-top: 100px;
     color: white;
-    padding: 50px;
 }
 
-.txtfot{
+.txtfo{
     color: white;
 }
