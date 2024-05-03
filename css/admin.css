@@ -1,0 +1,37 @@
+body{
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.fondo:hover{
+    background-color: #018E97;
+    border-radius: 10px;
+}
+
+.background-f{
+    background-image: url(../img/background-f.jpg);
+    background-position: center;
+    background-size: cover; /*ajusta el tamaño de la imagen al cuadrado*/
+    height: 100vh;
+}
+
+.form-rut{
+    width: 20rem;
+}
+
+.btn-buscar{
+    background-color: #018E97;
+    border-color: #018E97;
+}
+
+.btn-buscar:hover{
+    background-color: #018E97;
+    border-color: #018E97;
+}
+
+.back{
+    background-color: #018E97;
+    padding: 10px;
+}
+
