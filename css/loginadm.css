@@ -27,7 +27,12 @@ h1{
 }
 
 .btn-ini{
-    background-color: #018E97;
-    border-color: #018E97;
+    background-color: #02676e;
+    border-color: #02676e;
     color: white;
+}
+.btn-ini:hover{
+    background-color: white;
+    border-color: white;
+    color: #02676e;
 }

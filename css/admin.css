@@ -26,12 +26,24 @@ body{
 }
 
 .btn-buscar:hover{
-    background-color: #018E97;
-    border-color: #018E97;
+    background-color: #025157;
+    border-color: #025157;
 }
 
 .back{
     background-color: #018E97;
     padding: 10px;
+}
+
+.btn-dark{
+    background-color: white;
+    color: #018E97;
+}
+
+.btn-danger{
+    background-color: rgb(145, 2, 2);
+}
+.btn-danger:hover{
+    background-color: rgb(90, 2, 2);
 }
 
