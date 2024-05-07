@@ -41,7 +41,7 @@
        
         <div class="col-sm-12 col-md-12 col-lg-12 mt-3">
            <h3 class="mb-3">Selecciona tu hora</h3> 
-            <input type="date" class="form-control mx-auto w-50">      
+            <input id="fecha" type="date" class="form-control mx-auto w-50">      
         </div>
       </div>
       <div class="row">
@@ -49,40 +49,81 @@
             <p class="fs-5 fw-bold text-white"><i class="bi bi-heart-pulse ms-3 "></i> Clinica Pacifico Huechuraba</p>
             
             <p class="fs-5 fw-bold text-white"><i class="bi bi-person-circle ms-3"></i> Daryen Fernandez Quezada</p>
-            <input class="hora" type="time" name="" id="">
-            <input class="btn btn-primary" type="button" value="Solicitar" >
+            <input id="hora" class="hora" type="time" name="" id="">
+            <input id="guardar" class="btn btn-primary" type="button" value="Solicitar" >
           </div>
       </div> 
      
   </section>
 
+  <section id="horaSeleccionada" class="fondo-color w-50 mx-auto mt-5 p-3 d-none">
+    <h3 class="mb-3">Hora Seleccionada</h3>
+    <p id="horaMostrada"></p>
+    <button id="editarHora" class="btn btn-primary">Editar Hora</button>
+  </section>
+
 </main>    
 
    
-    <footer class="fooc">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-4 col-sm-12 colfoter p-5">
-            <h3>Enlaces</h3>
-            <ul>                   <!-- que no se te olvide el ul es lista desordenbada-->
-              <li><a class="txtfo" href="index.html">Inicio</a></li>
-              <li><a class="txtfo"  href="index.html">¿Quienes somos?</a></li>  <!-- li es elemento de lista-->
-              <li><a class="txtfo" href="contacto.html">Contacto</a></li>
-            </ul>
-          </div> 
-          <div class="col-md-4 col-sm-12 colfoter p-5">
-            <h3>Contacto</h3>
-            <p>Correo electronico: ClinicaPa@pacifico.cl</p>
-            <p>Telefono: 5566778899</p>
-          </div>
-          <div class="col-md-4 col-sm-12 colfoter p-5">
-            <h3>Derechos de autor</h3>
-            <p>Copyright ©℗®™ 2024 Sitio Web <br> Andy </p>
-          </div>
-        </div>
+<footer class="fooc">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-sm-12 colfoter p-5">
+        <h3>Enlaces</h3>
+        <ul>                   <!-- que no se te olvide el ul es lista desordenbada-->
+          <li><a class="txtfo" href="index.html">Inicio</a></li>
+          <li><a class="txtfo"  href="index.html">¿Quienes somos?</a></li>  <!-- li es elemento de lista-->
+          <li><a class="txtfo" href="contacto.html">Contacto</a></li>
+        </ul>
+      </div> 
+      <div class="col-md-4 col-sm-12 colfoter p-5">
+        <h3>Contacto</h3>
+        <p>Correo electronico: ClinicaPa@pacifico.cl</p>
+        <p>Telefono: 5566778899</p>
       </div>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <div class="col-md-4 col-sm-12 colfoter p-5">
+        <h3>Derechos de autor</h3>
+        <p>Copyright ©℗®™ 2024 Sitio Web <br> Andy </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById("guardar").addEventListener("click", function() {
+    var fecha = document.getElementById("fecha").value;
+    var hora = document.getElementById("hora").value;
+    localStorage.setItem("fecha", fecha);
+    localStorage.setItem("hora", hora);
+    mostrarHoraSeleccionada();
+    alert("Fecha y hora guardadas correctamente en el LocalStorage.");
+  });
+
+  function mostrarHoraSeleccionada() {
+    var fechaGuardada = localStorage.getItem("fecha");
+    var horaGuardada = localStorage.getItem("hora");
+    var horaMostrada = document.getElementById("horaMostrada");
+    horaMostrada.textContent = "Fecha: " + fechaGuardada + ", Hora: " + horaGuardada;
+    document.getElementById("horaSeleccionada").classList.remove("d-none");
+  }
+
+  document.getElementById("editarHora").addEventListener("click", function() {
+    var horaMostrada = document.getElementById("horaMostrada");
+    var horaActual = horaMostrada.textContent.split(", Hora: ")[1];
+    var nuevaHora = prompt("Ingrese la nueva hora:", horaActual);
+    if (nuevaHora !== null) {
+      horaMostrada.textContent = "Fecha: " + localStorage.getItem("fecha") + ", Hora: " + nuevaHora;
+      localStorage.setItem("hora", nuevaHora);
+      alert("Hora modificada correctamente.");
+    }
+  });
+
+  // Mostrar la hora seleccionada si existe en el localStorage al cargar la página
+  if (localStorage.getItem("fecha") && localStorage.getItem("hora")) {
+    mostrarHoraSeleccionada();
+  }
+  console.log(localStorage)
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 </html>
