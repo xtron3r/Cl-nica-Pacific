@@ -98,3 +98,50 @@ $(document).ready(function(){
         }
     });
 });
+
+function addcontacto(){
+    var nombre = $('#formNombre').val();
+    var motivo = $('#formMotivo').val();
+    var email = $('#formEmail').val();
+    var telefono = $('#formTelefono').val();
+    var textarea = $('#formTextarea').val();
+    var contacto = { nombre,motivo,email,telefono,textarea }
+
+    tablaContacto(nombre,motivo,email,telefono,textarea);
+    guardarLocalStorages(contacto);
+}
+
+function updateContacto(index, newName, newPrice){
+    var products = JSON.parse(localStorage.getItem('contacto'));
+    products[index].ProductName = newName;
+    products[index].ProductPrice = newPrice;    
+    localStorage.setItem('contacto', JSON.stringify(contacto));
+}
+
+function cargarContactos() {
+    if(localStorage.getItem('products')){
+        var products = JSON.parse(localStorage.getItem('products'));
+        products.forEach(function(product){
+            appendProductToTable(product.ProductName, product.ProductPrice);
+        });
+    }
+}
+
+function tablaContacto(nombre,motivo,email,telefono,textarea) {
+    $('#productsTable tbody').append(`
+        <tr>
+            <td>${name}</td>
+            <td>${price}</td>
+            <td>
+                <button class="btn btn-info" onclick="editProduct(this)">Editar</button>
+                <button class="btn btn-danger" onclick="deleteProduct(this)">Eliminar</button>
+            </td>
+        </tr>
+    `);
+}
+
+function guardarLocalStorages(product){
+    var products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+    products.push(product);
+    localStorage.setItem('products', JSON.stringify(products));
+}
