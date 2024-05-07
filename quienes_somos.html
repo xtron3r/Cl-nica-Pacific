@@ -12,13 +12,30 @@
     <link rel="stylesheet" href="css/quienes_somos.css">
 </head>
 <body>
-    <header class="navbar navbar-expand-md ">
-        <a href="index.html"><img src="img/logoC.png" alt="FOTO LOGO" width="250px"></a>
-        <a href="index.html" class="txt-nav">Inicio</a>
-        <a href="especialidades.html" class="txt-nav">Especialidades</a>
-        <a href="quienes_somos.html" class="txt-nav">¿Quienes Somos?</a>
-        <a href="contacto.html" class="txt-nav">Contacto</a> 
-    </header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="img/logoC.png" width="250px" alt=""></a>
+      <button class="navbar-toggler" style="background-color: #018E97;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto gap-md-2 gap-sm-2 gap-lg-5">
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" aria-current="page" href="index.html">INICIO</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" href="especialidades.html">ESPECIALIDADES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" href="quienes_somos.html">¿QUIENES SOMOS?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" href="contacto.html">CONTACTO</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
      
     <main class="container"> 
 
@@ -33,47 +50,85 @@
                    </div>
               </div>
             </div>
-            <div class="col-4 bg fw-bold text-white">
-                <p>Conoce neustros horarios</p>
-                <h3>HORARIOS</h3>
-                <h4>Consultas</h4>
-                <h6>ESTORIL</h6>
-                <p>Lunes a viernes 16:40 20:40</p>
-                <p>Sabados 8:30 a 13:00</p>
-                <h6>PEÑALOLEN</h6>
-                <p>Lunes a viernes 16:40 20:40</p>
-                <p>Sabados 8:30 a 13:00</p>
-                <h6>ESTORIL</h6>
-                <p>Lunes a viernes 16:40 20:40</p>
-                <p>Sabados 8:30 a 13:00</p>
+            <div class="col-lg-4">
+              <div class="card bg-primary text-white bg fw-bold ">
+                  <div class="card-body">
+                      <h3 class="card-title">Horarios</h3>
+                      <h4>Consultas</h4>
+                      <h6>ESTORIL</h6>
+                      <p>Lunes a viernes 16:40 - 20:40</p>
+                      <p>Sábados 8:30 - 13:00</p>
+                      <h6>PEÑALOLEN</h6>
+                      <p>Lunes a viernes 16:40 - 20:40</p>
+                      <p>Sábados 8:30 - 13:00</p>
+                      <h6>VITACURA</h6>
+                      <p>Lunes a viernes 16:40 - 20:40</p>
+                      <p>Sábados 8:30 - 13:00</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+            <div class="row mt-5">
+              <div class="col">
+                  <h2 class="fw-bold">Nuestra Historia</h2>
+                  <p>En la hermosa ciudad costera de Pacifico, la Clínica Pacífico destaca como un faro de salud y bienestar. Con un equipo de profesionales dedicados y servicios médicos de primera calidad, la clínica ofrece atención integral y personalizada para todos sus pacientes. Desde consultas de rutina hasta tratamientos especializados, la prioridad es brindar cuidado compasivo en un ambiente cálido y acogedor.
+
+                    Además de la medicina convencional, la Clínica Pacífico también abraza enfoques holísticos para el bienestar, promoviendo la salud del cuerpo, la mente y el espíritu. Ya sea para residentes locales o visitantes, esta clínica costera se compromete a proporcionar cuidado médico excepcional y atención compasiva para todos los que buscan su ayuda en Pacifico..</p>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 mb-4">
+                <img src="img/galeria1.jpg" class="img-fluid" alt="Imagen de la galería">
             </div>
+            <div class="col-lg-4 mb-4">
+                <img src="img/galeria2.jpg" class="img-fluid" alt="Imagen de la galería">
+            </div>
+            <div class="col-lg-4 mb-4">
+                <img src="img/galeria3.jpg" class="img-fluid" alt="Imagen de la galería">
+            </div>
+            <div class="col-lg-4 mb-4">
+                <img src="img/galeria4.jpg" class="img-fluid" alt="Imagen de la galería">
+            </div>
+            <div class="col-lg-4 mb-4">
+                <img src="img/galeria5.jpg" class="img-fluid" alt="Imagen de la galería">
+            </div>
+            <div class="col-lg-4 mb-4">
+                <img src="img/galeria6.jpg" class="img-fluid" alt="Imagen de la galería">
+            </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col">
+              <h2 class="fw-bold">Contáctanos</h2>
+              <p>¿Tienes alguna pregunta? ¡No dudes en contactarnos!</p>
+              <a href="/quienes_somos.html" class="btn btn-primary">Ir al formulario de contacto</a>
+          </div>
+      </div>
 
         </div>
     </main>
-    <footer class="fooc">
-        <div class="container-fluid">
+    <footer class="fooc bg-custom text-white py-5">
+      <div class="container">
           <div class="row">
-            <div class="col">
-              <h3>Enlaces</h3>
-              <ul>                   <!-- que no se te olvide el ul es lista desordenbada-->
-                <li><a class="txtfo" href="index.html">Inicio</a></li>
-                <li><a class="txtfo"  href="index.html">¿Quienes somos?</a></li>  <!-- li es elemento de lista-->
-                <li><a class="txtfo" href="contacto.html">Contacto</a></li>
-              </ul>
-            </div>
-            <div class="col">
-              <h3>Contacto</h3>
-              <p>Correo electronico: ClinicaPa@pacifico.cl</p>
-              <p>Telefono: 5566778899</p>
-            </div>
-            <div class="col">
-              <h3>Derechos de autor</h3>
-              <p>Copyright ©℗®™ 2024 Sitio Web <br> Daryen </p>
-            </div>
+              <div class="col-md-4">
+                  <h3>Enlaces</h3>
+                  <ul class="list-unstyled">
+                      <li><a href="index.html" class="text-white">Inicio</a></li>
+                      <li><a href="quienes_somos.html" class="text-white">¿Quiénes Somos?</a></li>
+                      <li><a href="contacto.html" class="text-white">Contacto</a></li>
+                  </ul>
+              </div>
+              <div class="col-md-4">
+                  <h3>Contacto</h3>
+                  <p>Correo electrónico: ClinicaPa@pacifico.cl</p>
+                  <p>Teléfono: 5566778899</p>
+              </div>
+              <div class="col-md-4">
+                  <h3>Derechos de autor</h3>
+                  <p>Copyright © 2024 Clínica Pacífico</p>
+              </div>
           </div>
-        </div>
-      </footer>
-
+      </div>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
