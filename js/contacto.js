@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     // Validación del formulario de contacto
     $('#contactform').validate({
         rules:{
@@ -61,12 +60,18 @@ $(document).ready(function(){
         submitHandler: function(form) {
 
             //API EMAILJS
+             
+            var boton = $('#buttonenvi');
 
             const nombre = $('#formNombre').val();
             const motivo = $('#formMotivo').val();
             const email = $('#formEmail').val();
             const telefono = $('#formTelefono').val();
             const textarea = $('#formTextarea').val();
+            
+            boton.val("ENVIANDO...")
+
+            console.log(boton)
 
             var parametros = {
                 formNombre: nombre,
@@ -78,15 +83,18 @@ $(document).ready(function(){
 
             emailjs.send('service_jthig8r', 'template_4iqdewa', parametros).then(
                 (response) => {
+                    boton.val("ENVIAR")
+                    alert('ENVIADO CORRECTAMENTE!');
                     console.log('SUCCESS!', response.status, response.text);
                     form.reset();
                 },
                 (error) => {
+                    boton.val("ENVIAR")
+                    alert('No se pudo enviar el formulario!');
                     console.log('FAILED...', error);
                 }
-            );
+            );  
             return false; // Previene la recarga de la pagina
         }
     });
-
 });
