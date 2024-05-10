@@ -87,7 +87,7 @@ function mostrarTabla(nombre,motivo,email,telefono,textarea) {
             <td>${telefono}</td>
             <td>${textarea}</td>
             <td>
-                <button class="btn btn-danger m-5" onclick="eliminarContacto(this)">Eliminar</button>
+                <button class="btn btn-danger " onclick="eliminarContacto(this)">Eliminar</button>
             </td>
         </tr>
     `);

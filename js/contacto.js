@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    // Validación del formulario de contacto
+    // Validacion del formulario de contacto
     $('#contactform').validate({
         rules:{
             formMotivo: {
