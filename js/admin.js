@@ -20,7 +20,7 @@ $(document).ready(function() {
             contactosCargados = true; // Marcar los contactos como cargados
         }
         
-       // localStorage.clear();
+        //localStorage.clear();
     });
 
     $('#btn-medico').click(function() {
@@ -57,9 +57,16 @@ $(document).ready(function() {
         $('#contacto').hide();
         $('#AgregMedico').hide();
     });
+
+    $('#actualizarPag').click(function() {
+        cargarContactos();
+    });
 });
 
+
+// CARGA LOS CONTACTOS DEL LOCAL STORAGE
 function cargarContactos() {
+    $('#tablaContacto tbody').empty();
     if(localStorage.getItem('contactos')){
         var contactos = JSON.parse(localStorage.getItem('contactos'));
         contactos.forEach(function(contacto){
@@ -68,18 +75,43 @@ function cargarContactos() {
     }
 }
 
+// MUESTRA EN LA TABLA DEL LOCAL STORAGE
 function mostrarTabla(nombre,motivo,email,telefono,textarea) {
-
-
     console.log(localStorage)
 
     $('#tablaContacto tbody').append(`
-        <tr>
+        <tr class="text-center">
             <td>${motivo}</td>
             <td>${nombre}</td>
             <td>${email}</td>
             <td>${telefono}</td>
             <td>${textarea}</td>
+            <td>
+                <button class="btn btn-danger m-5" onclick="eliminarContacto(this)">Eliminar</button>
+            </td>
         </tr>
     `);
+}
+
+
+// ELIMINA DE LA TABLA
+function eliminarContacto(boton){
+    var row = $(boton).closest('tr');
+    var cols = row.children('td');
+    if(boton.textContent === 'Cancelar'){
+        $(cols[0]).text($cols[0]).find('input').val();
+        $(cols[1]).text($cols[1]).find('input').val();
+        $(boton).prev().text('Editar').removeClass('btn-warning').addClass('btn-info');
+        $(boton).text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
+    } else {
+        eliminaStorage(row.index());
+        row.remove();
+    }
+}
+
+//ELIMINA ELMINAR DEL LOCAL STORAGE
+function eliminaStorage(index){
+    var contactos = JSON.parse(localStorage.getItem('contactos'));
+    contactos.splice(index, 1);
+    localStorage.setItem('contactos', JSON.stringify(contactos));
 }
