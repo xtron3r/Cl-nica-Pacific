@@ -30,14 +30,14 @@
             <form id="FormLogin">
                 <div class="mb-3">
                     <label for="Rut" class="form-label color-lbl">RUT</label>
-                    <input type="text" class="form-control mx-auto inputs" id="FormRut" aria-describedby="rutHelp" placeholder="INGRESE SU RUT">
+                    <input type="text" class="form-control mx-auto inputs" id="FormRut" name="FormRut" placeholder="INGRESE SU RUT" required>
                 </div>
                 <div class="mb-3">
                     <label for="Contrasena" class="form-label color-lbl">CONTRASEÑA</label>
-                    <input type="password" class="form-control mx-auto inputs" id="FromContrasena" aria-describedby="contrasenaHelp" placeholder="INGRESE SU CONTRASEÑA">
+                    <input type="password" class="form-control mx-auto inputs" id="FormContra" name="FormContra" placeholder="INGRESE SU CONTRASEÑA" required>
                 </div>
                 <div class="mb-3">
-                    <a href="admin.html"><button type="button" class="btn btn-ini fw-bold mt-3">INICIAR SESION</button></a>
+                    <button type="submit" class="btn btn-ini fw-bold mt-3">INICIAR SESION</button>
                 </div>
             </form>
         </section>
