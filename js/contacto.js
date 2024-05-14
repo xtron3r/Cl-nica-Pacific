@@ -101,14 +101,14 @@ $(document).ready(function(){
 });
 
 function addcontacto(){
-    var Nombre = $('#formNombre').val();
-    var Motivo = $('#formMotivo').val();
-    var Email = $('#formEmail').val();
-    var Telefono = $('#formTelefono').val();
-    var Textarea = $('#formTextarea').val();
-    var Contacto = { Nombre,Motivo,Email,Telefono,Textarea}
+    var nombre = $('#formNombre').val();
+    var motivo = $('#formMotivo').val();
+    var email = $('#formEmail').val();
+    var telefono = $('#formTelefono').val();
+    var textarea = $('#formTextarea').val();
+    var contacto = { nombre,motivo,email,telefono,textarea}
 
-    guardarLocalStorages(Contacto);
+    guardarLocalStorages(contacto);
 }
 function guardarLocalStorages(contacto){
     var contactos = localStorage.getItem('contactos') ? JSON.parse(localStorage.getItem('contactos')) : [];
