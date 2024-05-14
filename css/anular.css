@@ -19,6 +19,9 @@
     width: 800px;
 }
 
+#tableBody{
+    font-size: 25px;
+}
 .ws{
     background-color: #018E97;
 }
