@@ -51,17 +51,17 @@
         } else {
             aceptarBtn.disabled = true;
             if (rutInput.value.trim() === "" || !validarRut(rutInput.value.trim())) {
-                rutError.textContent = "RUT inválido";
+                rutError.textContent = "RUT invalido";
             } else {
                 rutError.textContent = "";
             }
             if (nombreInput.value.trim() === "") {
-                nombreError.textContent = "El nombre no puede estar vacío";
+                nombreError.textContent = "El nombre no puede estar vacio";
             } else {
                 nombreError.textContent = "";
             }
             if (previsionInput.value.trim() === "") {
-                previsionError.textContent = "La previsión no puede estar vacía";
+                previsionError.textContent = "La prevision no puede estar vacia";
             } else {
                 previsionError.textContent = "";
             }

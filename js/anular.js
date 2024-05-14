@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   // Agregar la fila al tbody
                   tableBody.appendChild(newRow);
               } else {
-                  alert("Rut existente");
+                  alert("El Rut ya existe");
               }
           } else {
               alert("No hay datos guardados");
