@@ -84,35 +84,36 @@
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://apis.google.com/js/api.js"></script>
 <script>
 $(document).ready(function() {
   $('#guardar').click(function() {
     var fecha = $('#fecha').val();
     var hora = $('#hora').val();
-    localStorage.setItem("fecha", fecha);
-    localStorage.setItem("hora", hora);
-    mostrarHoraSeleccionada();
-    alert("Fecha y hora guardadas correctamente en el LocalStorage.");
+    
+    // Aquí debes llamar a la función que crea el evento en Google Calendar
+    // Esta función debe enviar la fecha y hora seleccionadas a Google Calendar API
+    
+    // Muestra la hora seleccionada al usuario
+    mostrarHoraSeleccionada(fecha, hora);
+    alert("Fecha y hora guardadas correctamente.");
   });
 
   $('#editarHora').click(function() {
-    var nuevaHora = prompt("Ingrese la nueva hora:", localStorage.getItem("hora"));
+    var nuevaHora = prompt("Ingrese la nueva hora:", $('#horaMostrada').text());
     if (nuevaHora !== null) {
-      $('#horaMostrada').text("Fecha: " + localStorage.getItem("fecha") + ", Hora: " + nuevaHora);
-      localStorage.setItem("hora", nuevaHora);
+      // Aquí debes actualizar la hora en Google Calendar
+      // Esta función debe enviar la nueva hora a Google Calendar API
+      
+      // Muestra la hora editada al usuario
+      $('#horaMostrada').text(nuevaHora);
       alert("Hora modificada correctamente.");
     }
   });
 
-  function mostrarHoraSeleccionada() {
-    var fechaGuardada = localStorage.getItem("fecha");
-    var horaGuardada = localStorage.getItem("hora");
-    $('#horaMostrada').text("Fecha: " + fechaGuardada + ", Hora: " + horaGuardada);
+  function mostrarHoraSeleccionada(fecha, hora) {
+    $('#horaMostrada').text("Fecha: " + fecha + ", Hora: " + hora);
     $('#horaSeleccionada').removeClass("d-none");
-  }
-
-  if (localStorage.getItem("fecha") && localStorage.getItem("hora")) {
-    mostrarHoraSeleccionada();
   }
 });
 </script>
