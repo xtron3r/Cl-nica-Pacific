@@ -58,45 +58,22 @@
           <label for="rut" class="lbl_rut form-label fw-bold">RUT</label>
           <div class="input-group w-75">
             <input type="text" class="form-control" id="txt_rut" name="txt_rut" placeholder="Rut" aria-label="Buscar" aria-describedby="button-addon2" required>
-            <button class="btn btn-outline-secondary" id="btnvalida" type="button" id="button-addon2" ><i class="bi bi-search"></i></button>
-          </div>
-          
+            <button class="btn btn-outline-secondary" id="btnvalida" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+        </div>
+        <div class="error" id="mensaje-error"></div>
           <h3 class="p-2"> *Ej 12.123.123-2*</h3>
         <div class="table-responsive">
           <table class="table table-success">
             <thead>
-              <tr style="font-size: large;">
+              <tr style="font-size: largue;">
                 <th>Nombre paciente</th> 
                 <th>Fecha</th>
+                <th>Hora</th>
                 <th>Especialidad</th>
                 <th>Acciones</th>
               </tr>
             </thead>
-            <tbody>
-              <tr style="font-size: large;">
-                <td>Alexis Sanchez</td>
-                <td>20-04-2024</td>
-                <td>Odontología</td>
-                <td>
-                  <button type="button" class="btn btn-danger btn-anular fw-bold" onclick="eliminar(this)"><i class="bi bi-trash"></i></button>
-                </td>
-              </tr>
-              <tr style="font-size: large;">
-                <td>Messi</td>
-                <td>24-04-2024</td>
-                <td>Traumatología</td>
-                <td>
-                  <button type="button" class="btn btn-danger btn-anular fw-bold" onclick="eliminar(this)"><i class="bi bi-trash"></i></button>
-                </td>
-              </tr>
-              <tr style="font-size: large;">
-                <td>Basthian</td>
-                <td>29-04-2024</td>
-                <td>Oftalmología</td>
-                <td>
-                  <button type="submit" class="btn btn-danger btn-anular fw-bold" onclick="eliminar(this)"><i class="bi bi-trash"></i></button>
-                </td>
-              </tr>
+            <tbody id="tableBody">
             </tbody>
           </table>
         </div>        
