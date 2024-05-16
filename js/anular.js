@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
                       <td>${nombre}</td>
                       <td>${fecha}</td>
                       <td>${hora}</td>
-                      <td>Especialidad</td>
                       <td>
                           <button type="button" class="btn btn-danger btn-anular fw-bold" onclick="eliminar(this)">
                               <i class="bi bi-trash"></i>

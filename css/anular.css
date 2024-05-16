@@ -10,7 +10,6 @@
 }
 .lbl_rut {
     color: #018E97;
-    left: 5%;
 }
 
 .parra {
@@ -20,11 +19,9 @@
 }
 
 #tableBody{
-    font-size: 25px;
+    font-size: 20px;
 }
-.ws{
-    background-color: #018E97;
-}
+
 
 .fond {
     background-size: cover;
@@ -37,18 +34,33 @@
     border-color: black;
     width: 55%;
 }
+.input-group-text .bi-search {
+    font-size: 1.5rem;
+  }
 
+.table {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem; 
+    margin-bottom: 0;
+  }
+
+.table th {
+    background-color: #018E97;
+    color: #fff;
+    font-size: 1rem;
+  }
+.table td {
+    font-size: 0.9rem;
+  }
 .btn {
     padding: 8px 20px 10px;
     border: #018E97;
     background-color: #018E97;
     color: #FFFFFF;
 }
-.container1{
-    background-color: #018E97;
-    border-radius: 10px;
-    padding: 40px 10px;
-}
+
 .error {
     color: #018E97;
     font-size: 14px;
