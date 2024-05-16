@@ -91,8 +91,9 @@ $(document).ready(function() {
     var fecha = $('#fecha').val();
     var hora = $('#hora').val();
     
-    // Aquí debes llamar a la función que crea el evento en Google Calendar
-    // Esta función debe enviar la fecha y hora seleccionadas a Google Calendar API
+    // Aquí guardamos la fecha y hora en localStorage
+    localStorage.setItem('fecha', fecha);
+    localStorage.setItem('hora', hora);
     
     // Muestra la hora seleccionada al usuario
     mostrarHoraSeleccionada(fecha, hora);
@@ -102,20 +103,28 @@ $(document).ready(function() {
   $('#editarHora').click(function() {
     var nuevaHora = prompt("Ingrese la nueva hora:", $('#horaMostrada').text());
     if (nuevaHora !== null) {
-      // Aquí debes actualizar la hora en Google Calendar
-      // Esta función debe enviar la nueva hora a Google Calendar API
+      // Aquí actualizamos la hora en localStorage
+      localStorage.setItem('hora', nuevaHora);
       
       // Muestra la hora editada al usuario
-      $('#horaMostrada').text(nuevaHora);
+      $('#horaMostrada').text("Fecha: " + localStorage.getItem('fecha') + ", Hora: " + nuevaHora);
       alert("Hora modificada correctamente.");
     }
   });
 
+  // Comprobamos si hay una fecha y hora guardadas en localStorage al cargar la página
+  var fechaGuardada = localStorage.getItem('fecha');
+  var horaGuardada = localStorage.getItem('hora');
+  if (fechaGuardada && horaGuardada) {
+    mostrarHoraSeleccionada(fechaGuardada, horaGuardada);
+  }
+  
   function mostrarHoraSeleccionada(fecha, hora) {
     $('#horaMostrada').text("Fecha: " + fecha + ", Hora: " + hora);
     $('#horaSeleccionada').removeClass("d-none");
   }
 });
+console.log(localStorage);
 </script>
 </body>
 </html>
