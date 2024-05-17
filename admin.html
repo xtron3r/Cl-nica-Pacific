@@ -19,6 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script> <!-- Validate -->
     <!-- JAVASCRIPT-->
+    <script src="js/adminpacientes.js"></script>
     <script src="js/admin.js"></script>
 </head>
 <body>
@@ -85,29 +86,33 @@
                     </div>
                 </section>
 
-                <!-- SECCION PACIENTES-->
+                    <<!-- SECCION PACIENTES -->
                 <section id="pacientes">
-                    <h1 class="text-center fw-bold text-white back"> DATOS PACIENTES</h1>
-                    <div class="input-group m-3 form-rut text-center ">
-                        <input type="text" class="form-control" placeholder="INGRESE RUT" aria-label="Buscar" aria-describedby="buscarRut">
-                        <button class="btn btn-primary btn-buscar" type="button" id="buscarRut">BUSCAR</button>
+                    <h1 class="text-center fw-bold text-white back">DATOS PACIENTES</h1>
+                    <div class="input-group m-3 form-rut text-center">
+                        <input type="text" id="txt_rut" class="form-control" placeholder="INGRESE RUT" aria-label="Buscar" aria-describedby="buscarRut" required>
+                        <button class="btn btn-primary btn-buscar" type="button" id="btnvalida">BUSCAR</button>
                     </div>
+                    <div  id="mensaje-error" class="fw-bold"></div>
                     <div class="table-responsive">
-                        <table class="table" id="tablaPaciente">
-                            <thead class="table-light text-center">
-                                <tr>
-                                  <th>Nombre paciente</th> 
-                                  <th>Fecha</th>
-                                  <th>Especialidad</th>
-                                  <th>Acciones</th>
+                        <table class="table text-center">
+                            <thead class="table-light">
+                                <tr style="font-size: x-large;">
+                                    <th>Paciente</th>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <!-- AQUI IRAN LOS PACIENTES-->
+                            <tbody id="tableBody">
+                                <!-- AQUÍ IRÁN LOS PACIENTES -->
                             </tbody>
                         </table>
                     </div>
                 </section>
+
+
+
 
                 <!-- SECCION MEDICOS-->  
                 <section id="medicos">

@@ -42,21 +42,30 @@
           <input id="fecha" type="date" class="form-control mx-auto w-50">      
       </div>
     </div>
-    <div class="row">
+    <div class="row mx-auto">
       <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
         <p class="fs-5 fw-bold text-white"><i class="bi bi-heart-pulse ms-3"></i> Clinica Pacifico Huechuraba</p>
         <p class="fs-5 fw-bold text-white"><i class="bi bi-person-circle ms-3"></i> Daryen Fernandez Quezada</p>
-        <input id="hora" class="hora form-control mb-2" type="time">
-        <button id="guardar" class="btn btn-primary">Solicitar</button>
+        <input id="hora" class="hora form-control mb-2 w-25 container-fluid" type="time">
+        
       </div>
+      <button id="guardar" class="btn btn-primary w-50 mx-auto ">Solicitar</button>
     </div> 
   </section>
 
-  <section id="horaSeleccionada" class="fondo-color w-50 mx-auto mt-5 p-3 d-none">
-    <h3 class="mb-3">Hora Seleccionada</h3>
-    <div id="horaMostrada"></div>
-    <button id="editarHora" class="btn btn-primary">Editar Hora</button>
-  </section>
+  <div class="table table-responsive" style="width: 90%; margin: auto; margin-top: 20px;">
+    <table class="table table-success">
+      <thead>
+        <tr style="font-size: x-large;">
+          <th>Fecha</th>
+          <th>Hora</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- Aquí se mostrarán la fecha y hora seleccionadas -->
+      </tbody>
+    </table>
+  </div>        
 </main>    
 
 <footer class="fooc">
@@ -91,28 +100,16 @@ $(document).ready(function() {
     var fecha = $('#fecha').val();
     var hora = $('#hora').val();
     
-    // Aquí guardamos la fecha y hora en localStorage
+    // Guardar la fecha y hora en localStorage
     localStorage.setItem('fecha', fecha);
     localStorage.setItem('hora', hora);
     
-    // Muestra la hora seleccionada al usuario
+    // Mostrar la hora seleccionada en la tabla
     mostrarHoraSeleccionada(fecha, hora);
     alert("Fecha y hora guardadas correctamente.");
   });
 
-  $('#editarHora').click(function() {
-    var nuevaHora = prompt("Ingrese la nueva hora:", $('#horaMostrada').text());
-    if (nuevaHora !== null) {
-      // Aquí actualizamos la hora en localStorage
-      localStorage.setItem('hora', nuevaHora);
-      
-      // Muestra la hora editada al usuario
-      $('#horaMostrada').text("Fecha: " + localStorage.getItem('fecha') + ", Hora: " + nuevaHora);
-      alert("Hora modificada correctamente.");
-    }
-  });
-
-  // Comprobamos si hay una fecha y hora guardadas en localStorage al cargar la página
+  // Comprobar si hay una fecha y hora guardadas en localStorage al cargar la página
   var fechaGuardada = localStorage.getItem('fecha');
   var horaGuardada = localStorage.getItem('hora');
   if (fechaGuardada && horaGuardada) {
@@ -120,11 +117,11 @@ $(document).ready(function() {
   }
   
   function mostrarHoraSeleccionada(fecha, hora) {
-    $('#horaMostrada').text("Fecha: " + fecha + ", Hora: " + hora);
-    $('#horaSeleccionada').removeClass("d-none");
+    $('#tableBody').html('<tr><td>' + fecha + '</td><td>' + hora + '</td></tr>');
   }
 });
 console.log(localStorage);
 </script>
 </body>
 </html>
+
