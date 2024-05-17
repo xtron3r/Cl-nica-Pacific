@@ -21,3 +21,11 @@
 .txtfo{
     color: white;
 }
+.table th {
+    background-color: #018E97;
+    color: #fff;
+    font-size: 1rem;
+  }
+.table td {
+    font-size: 0.9rem;
+  }
