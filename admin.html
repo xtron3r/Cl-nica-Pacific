@@ -116,7 +116,8 @@
                         <input type="text" class="form-control" placeholder="BUSCAR POR RUT" aria-label="Buscar" aria-describedby="buscarRut">
                         <button class="btn btn-primary btn-buscar" type="button" id="buscarRut">BUSCAR</button>                        
                     </div>
-                    <button class="btn btn-primary btn-buscar m-3" type="button" id="btn-agregarM">AGREGAR MEDICO</button>
+                    <button class="btn btn-primary btn-buscar fw-bold m-3 p-2" type="button" id="actualizarMed">RECARGAR TABLA <i class="bi bi-arrow-clockwise"></i></button>
+                    <button class="btn btn-primary btn-buscar m-3 fw-bold" type="button" id="btn-agregarM">AGREGAR MEDICO</button>
                     <div class="table-responsive">
                         <table class="table" id="tablaMedico">
                             <thead class="table-light text-center">
@@ -124,8 +125,7 @@
                                   <th>Nombre Medico</th> 
                                   <th>Rut</th>
                                   <th>Especialidad</th>
-                                  <th>Horas Disponibles</th>
-                                  <th>Horas Agendadas</th>
+                                  <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -138,24 +138,24 @@
                 <!-- SECCION AGREGAR MEDICOS-->
                 <section id="AgregMedico">
                     <h1 class="text-center fw-bold text-white back">INFORMACION DEL MEDICO</h1>
-                    <form class="back mt-5">
+                    <form class="back mt-5" id="formMedico">
                         <div class="mb-3 text-center">
                             <label for="rut" class="form-label fw-bold">RUT</label>
-                            <input type="text" class="form-control form-rut mx-auto" id="rutinput" aria-describedby="ruthelp">
+                            <input type="text" class="form-control form-rut mx-auto" id="rutinput" aria-describedby="ruthelp" name="rutinput" required>
                             <div id="ruthelp" class="form-text fw-bold">EJ: 12.123.421-K</div>
                         </div>
                         <div class="mb-3 text-center">
                             <label for="formNombre" class="form-label fw-bold">Nombre Y Apellido</label>
-                            <input type="text" class="form-control form-rut mx-auto" id="formNombre" name="formNombre" required>
+                            <input type="text" class="form-control form-rut mx-auto" id="nombreMedico" name="nombreMedico" required>
                         </div>
                         <div class="mb-3 text-center">
                             <label for="formEspecialidad" class="form-label fw-bold">Especialidad</label>
-                            <input type="text" class="form-control form-rut mx-auto" id="formEspecialidad" name="formEspecialidad" required>
+                            <input type="text" class="form-control form-rut mx-auto" id="nombreEspecialidad" name="nombreEspecialidad" required>
                         </div>
                         <div class="d-flex justify-content-center">
                             <div class="btn-group gap-2">
-                                <button type="button" class="btn btn-danger fw-bold" id="btn-cancelarM">CANCELAR</button>
-                                <button type="button" class="btn btn-dark fw-bold" id="btn-guardarM">GUARDAR</button>
+                                <input type="button" class="btn btn-danger fw-bold" id="btn-cancelarM" value="CANCELAR" name="btn-cancelarM"></input>
+                                <input type="submit" class="btn btn-dark fw-bold" id="btn-guardarM" value="GUARDAR" name="btn-guardarM"></input>
                             </div>
                         </div>
                     </form>
