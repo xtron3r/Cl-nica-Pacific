@@ -1,5 +1,4 @@
-
-  document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     // Función para validar el RUT chileno
     function validarRut(rut) {
         // Eliminar puntos y guión del rut (si los tiene)
@@ -36,32 +35,32 @@
     // Obtener los elementos del formulario
     var rutInput = document.getElementById("rutinput");
     var nombreInput = document.getElementById("nombrecom");
-    var previsionInput = document.getElementById("prevision");
+    var previsionSelect = document.getElementById("prevision");
     var aceptarBtn = document.getElementById("aceptarBtn");
 
     //funcion habilitar boton aceptar
     function actualizarBoton() {
         // habilitar el boton cuando lo demas cumpla con los requisitos
-        if (rutInput.value.trim() !== "" && nombreInput.value.trim() !== "" && previsionInput.value.trim() !== "" && validarRut(rutInput.value.trim())) {
+        if (rutInput.value.trim() !== "" && nombreInput.value.trim() !== "" && previsionSelect.value !== "Seleccione su prevision" && validarRut(rutInput.value.trim())) {
+
             aceptarBtn.disabled = false;
-      
             rutError.textContent = "";
             nombreError.textContent = "";
             previsionError.textContent = "";
         } else {
             aceptarBtn.disabled = true;
             if (rutInput.value.trim() === "" || !validarRut(rutInput.value.trim())) {
-                rutError.textContent = "RUT invalido";
+                rutError.textContent = "RUT inválido";
             } else {
                 rutError.textContent = "";
             }
             if (nombreInput.value.trim() === "") {
-                nombreError.textContent = "El nombre no puede estar vacio";
+                nombreError.textContent = "El nombre no puede estar vacío";
             } else {
                 nombreError.textContent = "";
             }
-            if (previsionInput.value.trim() === "") {
-                previsionError.textContent = "La prevision no puede estar vacia";
+            if (previsionSelect.value.trim() === "") {
+                previsionError.textContent = "Debe seleccionar una prevision";
             } else {
                 previsionError.textContent = "";
             }
@@ -70,19 +69,19 @@
 
     rutInput.addEventListener("input", actualizarBoton);
     nombreInput.addEventListener("input", actualizarBoton);
-    previsionInput.addEventListener("input", actualizarBoton);
+    previsionSelect.addEventListener("change", actualizarBoton);
 
     aceptarBtn.addEventListener("click", function() {
-      if (!validarRut(rutInput.value.trim())) {
-          alert("El RUT ingresado no es válido.");
-      } else {
-          // Guarda en el localStorage
-          localStorage.setItem("rut", rutInput.value.trim());
-          localStorage.setItem("nombre", nombreInput.value.trim());
-          localStorage.setItem("prevision", previsionInput.value.trim());
+        if (!validarRut(rutInput.value.trim())) {
+            alert("El RUT ingresado no es válido.");
+        } else {
+            // Guarda en el localStorage
+            localStorage.setItem("rut", rutInput.value.trim());
+            localStorage.setItem("nombre", nombreInput.value.trim());
+            localStorage.setItem("prevision", previsionSelect.value.trim());
 
-          // dirige a la pagina seleccion hora
-          window.location.href = "seleccion_hora.html";
-      }
-  });
+            // dirige a la página seleccion hora
+            window.location.href = "seleccion_hora.html";
+        }
+    });
 });
