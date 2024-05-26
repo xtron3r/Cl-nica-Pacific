@@ -44,15 +44,16 @@
     </div>
   </nav>
 <main class="container-fluid fondo-img ">
-    <div class="calendario mx-auto w-75"> 
-      <div class="wrapper p-5">
-        <h2 class="mb-3 text-center">Selecciona tu hora</h2>
+  <div class="row justify-content-center"> <!-- Añadida clase justify-content-center -->
+    <div class="col-md-5 mt-4"> <!-- Cambiado a col-md-5 -->
+      <div class="wrapper p-3 h-100">
+        <h2 class="mb-3 text-center">Selecciona el día</h2>
         <header>   
           <p class="current-date">
             <span id="text_month"></span> <span id="text_year"></span>
           </p>
           <div class="icons">
-            <span id="prev" class="material-symbols-rounded text-white" >chevron_left</span>
+            <span id="prev" class="material-symbols-rounded text-white">chevron_left</span>
             <span id="next" class="material-symbols-rounded text-white">chevron_right</span>
           </div>
         </header>
@@ -66,12 +67,19 @@
             <li class="weekday">Sa</li>
             <li class="weekday">Do</li>
           </ul>
-          <div class="days"></div>
+          <div class="days"></div> <!-- AQUI SE ALMACENARAN LOS DIAS-->
         </div>
       </div>
     </div>
+    <div class="col-md-5 mt-4"> <!-- Cambiado a col-md-5 -->
+      <div class="wrapper p-3 h-100">
+        <h2 class="mb-3 text-center">Selecciona la hora</h2>
+        <div class="hours"></div> <!-- AQUI VAN LAS HORAS DISPONIBLES-->
+      </div>
+    </div>
+  </div>
     <div class="row mx-auto">
-      <button id="guardar" class="btn btn-primary w-50 mx-auto mb-3 mt-3 ">Solicitar</button>
+      <button id="guardar" class="btn btn-back fw-bold mx-auto mb-3 mt-3 ">SOLICITAR</button>
     </div> 
   <div class="table table-responsive" style="width: 90%; margin: auto; margin-top: 20px;">
     <table class="table table-success">
@@ -87,7 +95,7 @@
     </table>
   </div>
   <div class="text-center">
-    <a href="index.html"><button id="volver" class="btn btn-primary">VOLVER</button></a>  
+    <a href="index.html"><button id="volver" class="btn btn-back fw-bold mb-5 mt-4">VOLVER</button></a>  
   </div>
         
 </main>    

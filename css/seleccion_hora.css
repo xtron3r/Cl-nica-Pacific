@@ -1,4 +1,3 @@
-/* Estilos para el calendario */
 .calendario {
   display: flex;
   align-items: center;
@@ -75,7 +74,7 @@ header .current-date {
   grid-template-columns: repeat(7, 1fr); /* Esto crea 7 columnas de igual ancho */
   list-style: none;
   padding: 0;
-  gap: 10px; /* Espacio entre los elementos */
+  gap: 5px; /* Espacio entre los elementos */
 }
 
 .calendar .days li {
@@ -90,6 +89,13 @@ header .current-date {
   color: #aaa;
 }
 
+/* Ajuste para el efecto hover en los días del calendario */
+.calendar .days li:not(.inactive):hover {
+  background: #fff; /* Cambia el fondo en hover */
+  color: #018e97; /* Cambia el color del texto en hover */
+  border-radius: 15px;
+}
+
 .calendar .days li.active {
   background-color: #fff; /* Color de fondo para días activos */
   border-radius: 15px;
@@ -100,6 +106,45 @@ header .current-date {
   background: #f2f2f2;
 }
 
+.hours {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns grid */
+  gap: 10px; /* Space between the hour slots */
+  padding: 20px;
+}
+
+.hour-slot {
+  background: #018e97; /* Background color for hour slots */
+  color: #fff; /* White text color */
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  font-size: 1.2rem; /* Larger font size */
+}
+
+.hour-slot.active {
+  background-color: #fff; /* Background color when active */
+  color: #018e97; /* Text color when active */
+}
+
+.hour-slot:hover {
+  background: #fff; /* Background color on hover */
+  color: #018e97; /* Text color on hover */
+}
+
+.btn-back{
+  background-color: #018e97;
+  border-color: #018e97;
+  color: white;
+  width: 15rem;
+}
+.btn-back:hover{
+  background-color: white;
+  border-color: white;
+  color: #018e97;
+}
 .fondo-img {
   background-image: url(../img/mision-y-vision-web-1400x400.jpg);
   background-position: center;
@@ -130,3 +175,4 @@ header .current-date {
 .table td {
   font-size: 0.9rem;
 }
+
