@@ -46,7 +46,7 @@ header .icons span:hover {
 }
 
 header .current-date {
-  font-size: 1.45rem;
+  font-size: 1.80rem;
   font-weight: 500;
 }
 
@@ -71,18 +71,16 @@ header .current-date {
 }
 
 .calendar .days {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* Esto crea 7 columnas de igual ancho */
   list-style: none;
   padding: 0;
   gap: 10px; /* Espacio entre los elementos */
 }
 
 .calendar .days li {
-  flex: 1; /* Distribuir el espacio disponible */
   color: #fff;
-  font-size: 1.07rem;
+  font-size: 1.30rem;
   cursor: pointer;
   padding: 10px;
   text-align: center; /* Centrar el contenido */
