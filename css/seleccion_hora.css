@@ -1,31 +1,134 @@
-
-
-.fondo-img{
-    background-image: url(../img/mision-y-vision-web-1400x400.jpg);
-    background-position: center;
-    background-size: cover; /*ajusta el tamaño de la imagen al cuadrado*/
-    width: 100%;
+/* Estilos para el calendario */
+.calendario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-.fondo-color{
-    background-color: #018E97;
-    
+.wrapper {
+  background: #018e97;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  color: #fff;
 }
 
+.wrapper header {
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+
+header .icons {
+  display: flex;
+}
+
+header .icons span {
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+
+.icons span:last-child {
+  margin-right: -10px;
+}
+
+header .icons span:hover {
+  background: #f2f2f2;
+}
+
+header .current-date {
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.calendar {
+  padding: 20px;
+}
+
+.weeks {
+  display: flex; /* Cambiamos a flex */
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+}
+
+.weekday {
+  flex: 1; /* Distribuir el espacio disponible */
+  color: #fff;
+  font-size: 1.15rem;
+  cursor: default;
+  padding: 10px;
+  text-align: center; /* Centrar el contenido */
+}
+
+.calendar .days {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+  gap: 10px; /* Espacio entre los elementos */
+}
+
+.calendar .days li {
+  flex: 1; /* Distribuir el espacio disponible */
+  color: #fff;
+  font-size: 1.07rem;
+  cursor: pointer;
+  padding: 10px;
+  text-align: center; /* Centrar el contenido */
+}
+
+.calendar .days li.inactive {
+  color: #aaa;
+}
+
+.calendar .days li.active {
+  background-color: #fff; /* Color de fondo para días activos */
+  border-radius: 15px;
+  color: #018e97;
+}
+
+.calendar .days li:not(.inactive):hover::before {
+  background: #f2f2f2;
+}
+
+.fondo-img {
+  background-image: url(../img/mision-y-vision-web-1400x400.jpg);
+  background-position: center;
+  background-size: cover;
+  /*ajusta el tamaño de la imagen al cuadrado*/
+  width: 100%;
+}
+
+.fondo-color {
+  background-color: #018e97;
+}
 
 .fooc .colfoter {
-    background-color: #018E97;
-    color: white;
+  background-color: #018e97;
+  color: white;
 }
 
-.txtfo{
-    color: white;
+.txtfo {
+  color: white;
 }
+
 .table th {
-    background-color: #018E97;
-    color: #fff;
-    font-size: 1rem;
-  }
+  background-color: #018e97;
+  color: #fff;
+  font-size: 1rem;
+}
+
 .table td {
-    font-size: 0.9rem;
-  }
+  font-size: 0.9rem;
+}
