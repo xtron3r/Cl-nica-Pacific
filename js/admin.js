@@ -3,6 +3,7 @@ $(document).ready(function() {
     // Variable para saber si ya han sido cargados y evitar duplicado 
     var contactosCargados = false;
     var medicosCargados = false;
+    var pacientesCargados = false;
 
     
 
@@ -11,13 +12,6 @@ $(document).ready(function() {
     $('#pacientes').hide();
     $('#medicos').hide();
     $('#AgregMedico').hide();
-
-    $('#btn-paciente').click(function() {
-        $('#pacientes').show();
-        $('#contacto').hide();
-        $('#medicos').hide();
-        $('#AgregMedico').hide();
-    });
 
     $('#btn-limpiar').click(function() {
         $('#pacientes').hide();
@@ -130,6 +124,21 @@ $(document).ready(function() {
     });
     $('#actualizarMed').click(function() {
         cargarMedicos();
+    });
+
+
+    //PACIENTE
+
+    $('#btn-paciente').click(function() {
+        $('#pacientes').show();
+        $('#contacto').hide();
+        $('#medicos').hide();
+        $('#AgregMedico').hide();
+
+        if (!pacientesCargados) {
+            cargarPacientes();
+            pacientesCargados = true; // Marcar los medicos como cargados
+        }
     });
 
 });
@@ -291,4 +300,56 @@ function actualizarMedico(index, newNombre, newRut, newEspe) {
     medicos[index].rut = newRut;
     medicos[index].nombreE = newEspe;    
     localStorage.setItem('medicos', JSON.stringify(medicos));
+}
+
+
+//PACIENTES
+
+function cargarPacientes() {
+    $('#tablaPaciente tbody').empty();
+    if(localStorage.getItem('pacientes')){
+        var pacientes = JSON.parse(localStorage.getItem('pacientes'));
+        pacientes.forEach(function(paciente){
+            mostrarTablapa(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
+        });
+    }
+}
+
+// MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL PACIENTE
+function mostrarTablapa(nombre, rut, prevision, especialidad, fecha, hora) {
+    $('#tablaPaciente tbody').append(`
+        <tr class="text-center">
+            <td>${nombre}</td>
+            <td>${rut}</td>
+            <td>${prevision}</td>
+            <td>${especialidad}</td>
+            <td>${fecha}</td>
+            <td>${hora}</td>
+            <td>
+                <button class="btn btn-danger " onclick="eliminarPaciente(this)">Eliminar</button>
+            </td>
+        </tr>
+    `);
+}
+
+// ELIMINA DE LA TABLA DE PACIENTES
+function eliminarPaciente(boton){
+    var row = $(boton).closest('tr');
+    var cols = row.children('td');
+    if(boton.textContent === 'Cancelar'){
+        $(cols[0]).text($cols[0]).find('input').val();
+        $(cols[1]).text($cols[1]).find('input').val();
+        $(boton).prev().text('Editar').removeClass('btn-warning').addClass('btn-info');
+        $(boton).text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
+    } else {
+        eliminaStorageMedico(row.index());
+        row.remove();
+    }
+}
+
+//ELIMINA DEL LOCAL STORAGE DE PACIENTES
+function eliminaStoragepa(index){
+    var pacientes = JSON.parse(localStorage.getItem('pacientes'));
+    pacientes.splice(index, 1);
+    localStorage.setItem('pacientes', JSON.stringify(pacientes));
 }

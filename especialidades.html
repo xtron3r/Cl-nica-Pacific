@@ -14,6 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS-->
     <link rel="stylesheet" href="css/especialidades.css">
+    <!--JAVASCRIPT-->
+    <script src="js/especialidades.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -64,7 +66,7 @@
                       <p class ="txt-white">Consultas online, diagnósticos y tratamientos virtuales, sin visitas presenciales, usando medios electrónicos, innovando la atención médica.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="datos_paciente.html"><button class="btn btn-primary " type="button">RESERVAR</button></a>
+                        <a href="datos_paciente.html"><button class="btn btn-primary " type="button" onclick="reservarEspecialidad('Telemedicina')">RESERVAR</button></a>
                     </div>
                   </div>
                 </div>
@@ -76,7 +78,7 @@
                       <p class ="txt-white">Atención integral a pacientes de todas las edades, cubriendo diagnósticos, tratamientos, salud preventiva y derivaciones a especialistas.</p>
                     </div>
                     <div class="card-footer">
-                      <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>
+                      <a href="datos_paciente.html"><button class="btn btn-primary" type="button" onclick="reservarEspecialidad('Medicina General')">RESERVAR</button></a>
                     </div>
                   </div>
                 </div>
@@ -90,7 +92,7 @@
                       <p class ="txt-white"> Examen radiológico para detectar tempranamente anomalías en el tejido mamario, especialmente útil en la detección precoz del cáncer de mama.</p>
                     </div>
                     <div class="card-footer">
-                      <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>
+                      <a href="datos_paciente.html"><button class="btn btn-primary" type="button" onclick="reservarEspecialidad('Mamografia')">RESERVAR</button></a>
                     </div>
                   </div>
                 </div>
@@ -102,7 +104,7 @@
                       <p class ="txt-white">Especialidad médica enfocada en la salud bucal, abarcando desde limpiezas dentales hasta tratamientos de conducto y extracciones.</p>
                     </div>
                     <div class="card-footer">
-                      <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>
+                      <a href="datos_paciente.html"><button class="btn btn-primary" type="button"onclick="reservarEspecialidad('Odontologia')">RESERVAR</button></a>
                     </div>
                   </div>
                 </div>
@@ -116,7 +118,7 @@
                       <P class ="txt-white">Rehabilitación de lesiones y mejoramiento de la movilidad mediante terapias físicas y ejercicios específicos.</P>
                     </div>
                     <div class="card-footer">
-                      <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>
+                      <a href="datos_paciente.html"><button class="btn btn-primary" type="button" onclick="reservarEspecialidad('Kinesiologia')">RESERVAR</button></a>
                     </div>
                   </div>
                 </div>
@@ -128,7 +130,7 @@
                       <p class ="txt-white">Diagnóstico y tratamiento de condiciones oculares, desde problemas de visión hasta cirugías de cataratas.</p>
                     </div>
                     <div class="card-footer">
-                      <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>
+                      <a href="datos_paciente.html"><button class="btn btn-primary" type="button" onclick="reservarEspecialidad('Oftalmologia')">RESERVAR</button></a>
                     </div>
                   </div>
                 </div>
@@ -142,7 +144,7 @@
                         <p class ="txt-white"> Procedimiento para recolectar muestras biológicas como sangre, orina o tejido para análisis médicos.</p>
                       </div>
                       <div class="card-footer">
-                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>
+                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button" onclick="reservarEspecialidad('Toma de muestras')">RESERVAR</button></a>
                       </div>
                     </div>
                   </div>
@@ -154,7 +156,7 @@
                         <p class ="txt-white">Imágenes médicas que utilizan rayos X para diagnosticar condiciones como fracturas óseas o enfermedades pulmonares.</p>
                       </div>
                       <div class="card-footer">
-                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>
+                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button" onclick="reservarEspecialidad('Radiografias')" >RESERVAR</button></a>
                       </div>
                     </div>
                   </div>
@@ -168,7 +170,7 @@
                         <p class ="txt-white">Atención médica enfocada en la salud reproductiva femenina, incluyendo control prenatal y manejo de condiciones ginecológicas.</p>
                       </div>
                       <div class="card-footer">
-                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>
+                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button" onclick="reservarEspecialidad('Ginecologia y obtreticia')">RESERVAR</button></a>
                       </div>
                     </div>
                   </div>
@@ -180,7 +182,7 @@
                         <p class ="txt-white">Cuidado médico especializado para niños, desde el nacimiento hasta la adolescencia, abordando desarrollo, enfermedades y vacunación.</p>
                       </div>
                       <div class="card-footer">
-                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>
+                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button" onclick="reservarEspecialidad('Pediatria')">RESERVAR</button></a>
                       </div>
                     </div>
                   </div>
@@ -194,7 +196,7 @@
                         <p class ="txt-white">Diagnóstico y tratamiento de lesiones musculoesqueléticas, desde esguinces hasta fracturas complejas.</p>
                       </div>
                       <div class="card-footer">
-                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>
+                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button" onclick="reservarEspecialidad('Traumatologia')">RESERVAR</button></a>
                       </div>
                     </div>
                   </div>
@@ -206,7 +208,7 @@
                         <p class ="txt-white">Especialidad médica centrada en el diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas.</p>
                       </div>
                       <div class="card-footer">
-                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button">RESERVAR</button></a>                   
+                        <a href="datos_paciente.html"><button class="btn btn-primary" type="button" onclick="reservarEspecialidad('Dermatologia')">RESERVAR</button></a>                   
                       </div>
                     </div>
                   </div>
