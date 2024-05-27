@@ -52,12 +52,13 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
   
-    function agregarFila(nombre, fecha, hora) {
+    function agregarFila(nombre, fecha, hora, especialidad) {
         var newRow = document.createElement("tr");
         newRow.innerHTML = `
             <td>${nombre}</td>
             <td>${fecha}</td>
             <td>${hora}</td>
+            <td>${especialidad}</td>
             <td>
                 <button type="button" class="btn btn-danger btn-anular fw-bold" onclick="eliminar(this)">
                     <i class="bi bi-trash"></i>
@@ -81,18 +82,21 @@ document.addEventListener('DOMContentLoaded', function() {
             var fecha = localStorage.getItem("fecha");
             var hora = localStorage.getItem("hora");
             var nombre = localStorage.getItem("nombre");
+            var especialidad = localStorage.getItem("especialidadSeleccionada");
+
+            
   
             if (localStorage.getItem("rut") === rut) {
                 var tableBody = document.getElementById("tableBody");
                 var rutExistente = Array.from(tableBody.rows).some(row => row.cells[0].textContent === nombre);
   
                 if (!rutExistente) {
-                    agregarFila(nombre, fecha, hora);
+                    agregarFila(nombre, fecha, hora, especialidad);
                 } else {
-                    
+                    mensajeError("El paciente ya existe en la tabla.");
                 }
             } else {
-                mensajeError("El rut no existe");
+                mensajeError("El RUT no existe.");
             }
         }
     }
@@ -101,18 +105,19 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         buscarDatos();
     });
-  });
-  
-  function eliminar(button) {
+});
+
+function eliminar(button) {
     var row = button.closest('tr');
     var nombre = row.cells[0].textContent;
 
-    // Eliminar del localStorage si coincide con el RUT
+    // Eliminar del localStorage si coincide con el nombre
     if (localStorage.getItem("nombre") === nombre) {
         localStorage.removeItem("rut");
         localStorage.removeItem("fecha");
         localStorage.removeItem("hora");
         localStorage.removeItem("nombre");
+        localStorage.removeItem("especialidadSeleccionada");
     }
     row.remove();
 }
