@@ -111,6 +111,12 @@ $(document).ready(function () {
     // Mostrar la hora seleccionada en la tabla
     cargarPacientes();
     alert("Fecha y hora guardadas correctamente.");
+
+    // Desactivar todas las horas
+    $('.hour-slot').addClass('inactive').removeClass('active');
+
+    // Desactivar el botón "SOLICITAR"
+    $(this).prop('disabled', true);
 });
 
 // Función para agregar un paciente a la lista de pacientes en localStorage
@@ -146,8 +152,8 @@ function mostrarPaciente(paciente) {
       <tr>
         <td>${paciente.nombre}</td>
         <td>${paciente.rut}</td>
-        <td>${paciente.hora}</td>
         <td>${paciente.fecha}</td>
+        <td>${paciente.hora}</td>
         <td>${paciente.prevision}</td>
         <td>${paciente.especialidadSeleccionada}</td>
       </tr>

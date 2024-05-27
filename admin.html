@@ -90,9 +90,11 @@
                 <section id="pacientes">
                     <h1 class="text-center fw-bold text-white back">DATOS PACIENTES</h1>
                     <div class="input-group m-3 form-rut text-center">
-                        <input type="text" id="txt_rut" class="form-control" placeholder="INGRESE RUT" aria-label="Buscar" aria-describedby="buscarRut" required>
+                        <input type="text" id="txt_rut" class="form-control" placeholder="INGRESE RUT" aria-label="rutpaciente" aria-describedby="rutpaciente" required>
                         <button class="btn btn-primary btn-buscar" type="button" id="btnvalida">BUSCAR</button>
                     </div>
+                    <div id="mensajeError" class="alert alert-danger" style="display: none;">No se encontraron pacientes con el Rut proporcionado.</div>
+                    <button class="btn btn-primary btn-buscar fw-bold m-3 p-2" type="button" id="actualizarPa">RECARGAR TABLA <i class="bi bi-arrow-clockwise"></i></button>
                     <div  id="mensaje-error" class="fw-bold"></div>
                     <div class="table-responsive">
                         <table class="table text-center" id="tablaPaciente">
@@ -107,7 +109,7 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody id="tableBody">
+                            <tbody>
                                 <!-- AQUÍ IRÁN LOS PACIENTES -->
                             </tbody>
                         </table>
@@ -121,9 +123,10 @@
                 <section id="medicos">
                     <h1 class="text-center fw-bold text-white back"> DATOS MEDICOS</h1>
                     <div class="input-group m-3 form-rut text-center ">
-                        <input type="text" class="form-control" placeholder="BUSCAR POR RUT" aria-label="Buscar" aria-describedby="buscarRut">
+                        <input type="text" class="form-control" placeholder="BUSCAR POR RUT" aria-label="Buscar" aria-describedby="rutmedico" id="dondevarut">
                         <button class="btn btn-primary btn-buscar" type="button" id="buscarRut">BUSCAR</button>                        
                     </div>
+                    <div id="mensajeError" class="alert alert-danger" style="display: none;">No se encontraron médicos con el Rut proporcionado.</div>
                     <button class="btn btn-primary btn-buscar fw-bold m-3 p-2" type="button" id="actualizarMed">RECARGAR TABLA <i class="bi bi-arrow-clockwise"></i></button>
                     <button class="btn btn-primary btn-buscar m-3 fw-bold" type="button" id="btn-agregarM">AGREGAR MEDICO</button>
                     <div class="table-responsive">

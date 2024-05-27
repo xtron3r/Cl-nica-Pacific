@@ -49,75 +49,81 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
   
+        cargarPacientesPorRut(rut);
+  
         return true;
     }
   
-    function agregarFila(nombre, fecha, hora, especialidad) {
+    function agregarFila(nombrep, rutpa, prevision, especialidad, fecha, hora) {
         var newRow = document.createElement("tr");
         newRow.innerHTML = `
-            <td>${nombre}</td>
+            <td>${nombrep}</td>
+            <td>${rutpa}</td>
+            <td>${prevision}</td>
+            <td>${especialidad}</td>
             <td>${fecha}</td>
             <td>${hora}</td>
-            <td>${especialidad}</td>
             <td>
-                <button type="button" class="btn btn-danger btn-anular fw-bold" onclick="eliminar(this)">
+                <button type="button" class="btn btn-danger btn-anular fw-bold" onclick="eliminarPaciente(this)">
                     <i class="bi bi-trash"></i>
                 </button>
             </td>
         `;
-  
+    
         var tableBody = document.getElementById("tableBody");
         if (!tableBody) {
             tableBody = document.createElement("tbody");
             tableBody.id = "tableBody";
             document.querySelector("table").appendChild(tableBody);
         }
-  
+    
         tableBody.appendChild(newRow);
     }
-  
-    function buscarDatos() {
-        if (validarFormulario()) {
-            var rut = document.getElementById('txt_rut').value.trim();
-            var fecha = localStorage.getItem("fecha");
-            var hora = localStorage.getItem("hora");
-            var nombre = localStorage.getItem("nombre");
-            var especialidad = localStorage.getItem("especialidadSeleccionada");
+    
 
-            
-  
-            if (localStorage.getItem("rut") === rut) {
-                var tableBody = document.getElementById("tableBody");
-                var rutExistente = Array.from(tableBody.rows).some(row => row.cells[0].textContent === nombre);
-  
-                if (!rutExistente) {
-                    agregarFila(nombre, fecha, hora, especialidad);
-                } else {
-                    mensajeError("El paciente ya existe en la tabla.");
-                }
-            } else {
-                mensajeError("El RUT no existe.");
-            }
+    function limpiarTabla() {
+        var tableBody = document.getElementById("tableBody");
+        if (tableBody) {
+            tableBody.innerHTML = ''; // Elimina todas las filas de la tabla
+        }
+    }
+
+    function cargarPacientesPorRut(rut) {
+        limpiarTabla();
+        var pacientes = JSON.parse(localStorage.getItem('pacientes'));
+        if (pacientes) {
+            var pacientesFiltrados = pacientes.filter(function (paciente) {
+                return paciente.rut === rut;
+            });
+            pacientesFiltrados.forEach(function (paciente) {
+                agregarFila(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
+            });
         }
     }
   
     document.getElementById('btnvalida').addEventListener('click', function(event) {
         event.preventDefault();
-        buscarDatos();
+        validarFormulario();
     });
 });
 
-function eliminar(button) {
-    var row = button.closest('tr');
-    var nombre = row.cells[0].textContent;
-
-    // Eliminar del localStorage si coincide con el nombre
-    if (localStorage.getItem("nombre") === nombre) {
-        localStorage.removeItem("rut");
-        localStorage.removeItem("fecha");
-        localStorage.removeItem("hora");
-        localStorage.removeItem("nombre");
-        localStorage.removeItem("especialidadSeleccionada");
+function eliminarPaciente(boton){
+    var row = $(boton).closest('tr');
+    var cols = row.children('td');
+    if(boton.textContent === 'Cancelar'){
+        $(cols[0]).text($cols[0]).find('input').val();
+        $(cols[1]).text($cols[1]).find('input').val();
+        $(boton).prev().text('Editar').removeClass('btn-warning').addClass('btn-info');
+        $(boton).text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
+    } else {
+        eliminaStoragepa(row.index());
+        row.remove();
     }
-    row.remove();
+}
+
+//ELIMINA DEL LOCAL STORAGE DE PACIENTES
+function eliminaStoragepa(index){
+    var pacientes = JSON.parse(localStorage.getItem('pacientes'));
+    pacientes.splice(index, 1);
+    localStorage.setItem('pacientes', JSON.stringify(pacientes));
 }

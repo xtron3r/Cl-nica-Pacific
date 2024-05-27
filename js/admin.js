@@ -34,11 +34,6 @@ $(document).ready(function() {
         $('#AgregMedico').hide();
     });
 
-    
-
-
-
-
     // CONTACTO
 
     $('#btn-contacto').click(function() {
@@ -111,6 +106,7 @@ $(document).ready(function() {
             }
         }); 
     });
+
     $('#btn-medico').click(function() {
         $('#medicos').show();
         $('#contacto').hide();
@@ -122,6 +118,16 @@ $(document).ready(function() {
             medicosCargados = true; // Marcar los medicos como cargados
         }
     });
+    
+    $('#buscarRut').click(function() {
+        var rut = $('#dondevarut').val(); // Obtener el valor del campo de entrada
+        if (rut.trim() === '') {
+            cargarMedicos(); // Si el campo está vacío, cargar todos los médicos
+        } else {
+            buscarMedicoPorRut(rut);
+        }
+    });
+
     $('#actualizarMed').click(function() {
         cargarMedicos();
     });
@@ -137,8 +143,21 @@ $(document).ready(function() {
 
         if (!pacientesCargados) {
             cargarPacientes();
-            pacientesCargados = true; // Marcar los medicos como cargados
+            pacientesCargados = true; 
         }
+    });
+
+    $('#btnvalida').click(function() {
+        var rut = $('#txt_rut').val(); 
+        if (rut.trim() === '') {
+            cargarPacientes(); 
+        } else {
+            buscarPacientePorRut(rut);
+        }
+    });
+
+    $('#actualizarPa').click(function() {
+        cargarPacientes();
     });
 
 });
@@ -215,6 +234,26 @@ function cargarMedicos() {
         });
     }
 } 
+
+function buscarMedicoPorRut(rut) {
+    $('#tablaMedico tbody').empty();
+    $('#mensajeError').hide(); 
+
+    if (localStorage.getItem('medicos')) {
+        var medicos = JSON.parse(localStorage.getItem('medicos'));
+        var medicosFiltrados = medicos.filter(function(medico) {
+            return medico.rut === rut;
+        });
+
+        if (medicosFiltrados.length === 0) {
+            $('#mensajeError').show();
+        } else {
+            medicosFiltrados.forEach(function(medico) {
+                mostrarTablaMedico(medico.rut, medico.nombre, medico.nombreE);
+            });
+        }
+    }
+}
 
 function addmedico(){
     var rut = $('#rutinput').val();
@@ -310,13 +349,33 @@ function cargarPacientes() {
     if(localStorage.getItem('pacientes')){
         var pacientes = JSON.parse(localStorage.getItem('pacientes'));
         pacientes.forEach(function(paciente){
-            mostrarTablapa(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
+            mostrarTablapaciente(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
         });
     }
 }
 
+function buscarPacientePorRut(rut) {
+    $('#tablaPaciente tbody').empty();
+    $('#mensajeError').hide(); 
+
+    if (localStorage.getItem('pacientes')) {
+        var pacientes = JSON.parse(localStorage.getItem('pacientes'));
+        var pacientesFiltrados = pacientes.filter(function(paciente) {
+            return paciente.rut === rut;
+        });
+
+        if (pacientesFiltrados.length === 0) {
+            $('#mensajeError').show();
+        } else {
+            pacientesFiltrados.forEach(function(paciente) {
+                mostrarTablapaciente(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
+            });
+        }
+    }
+}
+
 // MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL PACIENTE
-function mostrarTablapa(nombre, rut, prevision, especialidad, fecha, hora) {
+function mostrarTablapaciente(nombre, rut, prevision, especialidad, fecha, hora) {
     $('#tablaPaciente tbody').append(`
         <tr class="text-center">
             <td>${nombre}</td>
@@ -342,7 +401,7 @@ function eliminarPaciente(boton){
         $(boton).prev().text('Editar').removeClass('btn-warning').addClass('btn-info');
         $(boton).text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
     } else {
-        eliminaStorageMedico(row.index());
+        eliminaStoragepa(row.index());
         row.remove();
     }
 }
