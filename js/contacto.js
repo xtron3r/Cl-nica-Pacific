@@ -91,11 +91,10 @@ $(document).ready(function(){
                     $.ajax({
                         url: "http://localhost:8000/api/contacto/",
                         type: "POST",
-                        data: data,
-                        dataType: "json",
+                        data: JSON.stringify(data), 
+                        contentType: "application/json",
                         success: function(response) {
                             boton.val("ENVIAR");
-                            alert('Datos enviados a la base de datos correctamente!');
                             console.log('SUCCESS!', response);
                             form.reset();
                         },

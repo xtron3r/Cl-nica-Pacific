@@ -5,6 +5,33 @@ $(document).ready(function () {
   let month = now.getMonth();
   let year = now.getFullYear();
 
+   // Función para cargar los médicos desde la base de datos según la especialidad seleccionada
+   function cargarMedicos() {
+    var especialidadSeleccionada = localStorage.getItem("especialidadSeleccionada");
+    $.ajax({
+        url: 'http://localhost:8000/api/medico/', // URL de tu API para obtener médicos
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            // Limpiar opciones anteriores
+            $('#medicosele').empty();
+
+            // Filtrar médicos por especialidad seleccionada
+            response.forEach(function(medico) {
+                if (medico.especialidad === especialidadSeleccionada) {
+                    $('#medicosele').append(`<option value="${medico.rut_medico}">NOMBRE: ${medico.nombrem} | ESPECIALIDAD: ${medico.especialidad}  </option>`);
+                }
+            });
+        },
+        error: function(error) {
+            console.error('Error al cargar médicos:', error);
+        }
+    });
+  }
+
+  // Llamar a la función para cargar médicos según la especialidad almacenada en localStorage
+  cargarMedicos();
+
   // Función para actualizar el calendario
   function updateCalendar() {
     $("#text_month").text(monthName[month]);
@@ -99,11 +126,58 @@ $(document).ready(function () {
     var paciente = {
         rut: localStorage.getItem("rut"),
         nombre: localStorage.getItem("nombre"),
-        prevision: localStorage.getItem("prevision"),
+        previsionpa: localStorage.getItem("prevision"),
         especialidadSeleccionada: localStorage.getItem("especialidadSeleccionada"),
         fecha: fecha,
         hora: hora
     };
+
+    // Agregar el paciente a la lista de pacientes en bd
+    var data = {
+        rut_paciente: localStorage.getItem("rut"),
+        nombrepa: localStorage.getItem("nombre"),
+        prevision: localStorage.getItem("prevision")
+    }
+
+    $.ajax({
+      url: "http://localhost:8000/api/paciente/",
+      type: "POST",
+      data: JSON.stringify(data), 
+      contentType: "application/json",
+      success: function(response) {
+          console.log('SUCCESS!', response);
+          alert('Paciente guardado correctamente!');
+      },
+      error: function(error) {
+          alert('No se pudo guardar paciente!');
+          console.log('FAILED...', error);
+      }
+    });
+
+    // Creamos la reserva para la base de datos
+
+      // Crear los datos para la reserva
+    var data1 = {
+      fecha: fecha,
+      hora: hora,
+      paciente: localStorage.getItem("rut") // Obtener el rut del paciente del localStorage
+    };
+
+    // Enviar solicitud POST para la reserva
+    $.ajax({
+      url: "http://localhost:8000/api/reserva/",
+      type: "POST",
+      data: JSON.stringify(data1),
+      contentType: "application/json",
+      success: function(response) {
+          console.log('SUCCESS!', response);
+          alert('Reserva guardada correctamente!');
+      },
+      error: function(error) {
+          alert('No se pudo guardar la reserva!');
+          console.log('FAILED...', error);
+      }
+    });
     
     // Agregar el paciente a la lista de pacientes en localStorage
     agregarPaciente(paciente);

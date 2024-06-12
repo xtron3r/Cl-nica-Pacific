@@ -71,12 +71,8 @@ $(document).ready(function() {
                     maxlength: 80
                 },
                 nombreEspecialidad:{
-                    required: true,
-                    minlength: 5,
-                    maxlength: 80
-                }
-                
-                
+                    required:true
+                }            
             },
             messages:{
                 rutinput:{
@@ -91,17 +87,38 @@ $(document).ready(function() {
                     maxlength: "El maximo de caracteres es 80"
                 },
                 nombreEspecialidad:{
-                    required: "Por Favor ingrese nombre de la especialidad ",
-                    minlength: "El minimo de caracteres es 5",
-                    maxlength: "El maximo de caracteres es 80"
+                    required: "Porfavor ingrese especialidad"
                 }
 
             },
             submitHandler: function(form) {
-               addmedico();
-               alert('MEDICO AÑADIDO CORRECTAMENTE');
-               
-              form.reset();
+
+                var data = {
+                    rut_medico : $('#rutinput').val(),
+                    nombrem : $('#nombreMedico').val(),
+                    especialidad : $('#nombreEspecialidad').val()
+
+                };
+
+                $.ajax({
+                    url: "http://localhost:8000/api/medico/",
+                    type: "POST",
+                    data: JSON.stringify(data), 
+                    contentType: "application/json",
+                    success: function(response) {
+                        console.log('SUCCESS!', response);
+                        alert('Medico agregado correctamente')
+                        form.reset();
+                    },
+                    error: function(error) {
+                        alert('No se pudo agregar el medico!');
+                        console.log('FAILED...', error);
+                    }
+                });
+                
+                addmedico();
+                alert('MEDICO AÑADIDO CORRECTAMENTE');
+                form.reset();
                 return false; // Previene la recarga de la pagina
             }
         }); 

@@ -20,7 +20,7 @@ class Paciente(models.Model):
         ('PARTICULAR','Particular'),
     ]
     nombrepa = models.CharField(max_length=80)
-    rut_paciente = models.CharField(max_length=11, primary_key=True, unique=True)
+    rut_paciente = models.CharField(max_length=11, primary_key=True)
     prevision = models.CharField(max_length=20, choices=PREVIS)
 
     def __str__(self):
@@ -38,8 +38,8 @@ class Reserva(models.Model):
     id_reserva = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) # DA UN ID ALEATORIO
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     medico = models.ForeignKey(Medico, on_delete=models.CASCADE)
-    fecha = models.DateField()
-    hora = models.TimeField()
+    fecha = models.CharField(max_length=20)
+    hora = models.CharField(max_length=20)
 
     def __str__(self):
         return f"ID RESERVA: {self.id_reserva} | PACIENTE: {self.paciente.nombrepa} | RUT PACIENTE: {self.paciente.rut_paciente} | PREVISION: {self.paciente.prevision} | MEDICO: {self.medico.nombrem} | RUT MEDICO: {self.medico.rut_medico} | ESPECIALIDAD MEDICO: {self.medico.especialidad} | FECHA Y HORA: {self.fecha} {self.hora}"

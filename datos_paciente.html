@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="css/datospac.css">
     <!-- BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+     <!-- JQUERY-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script> <!-- Validate -->
     <!-- JAVASCRIPT -->
     <script src="js/datospac.js"></script>
 </head>
@@ -57,23 +60,23 @@
                       <form action="formulario" class="w-100">
                           <div class="mb-3">
                               <label for="rut" class="form-label color-lbl">RUT</label>
-                              <input type="text" class="form-control" id="rutinput" aria-describedby="ruthelp">
+                              <input type="text" class="form-control" id="rutinput" aria-describedby="ruthelp" required>
                               <div id="rutError" class="error-message"></div>
                               <div id="ruthelp" class="form-text fw-bold">EJ: 12.123.421-K</div>
                           </div>
                           <div class="mb-3">
                               <label for="nombre" class="form-label color-lbl">NOMBRE COMPLETO</label>
-                              <input type="text" class="form-control" id="nombrecom" aria-describedby="nomhelp">
+                              <input type="text" class="form-control" id="nombrecom" aria-describedby="nomhelp" required>
                               <div id="nombreError" class="error-message"></div> 
                               <div id="nomhelp" class="form-text fw-bold">INGRESE NOMBRE COMPLETO DEL PACIENTE</div>
                           </div>
                           <div class="mb-3">
                               <label for="" class="form-label color-lbl">PREVISIÓN</label>
-                              <select class="form-select" id="prevision" aria-label="Default select example">
+                              <select class="form-select" id="prevision" aria-label="Default select example" required>
                                 <option selected>Seleccione su prevision</option>
-                                <option value="Fonasa">Fonasa</option>
-                                <option value="Isapre">Isapre</option>
-                                <option value="NO PREVISION">No tengo prevision</option>
+                                <option value="FONASA">Fonasa</option>
+                                <option value="ISAPRE">Isapre</option>
+                                <option value="PARTICULAR">No tengo prevision</option>
                               </select>
                               <div id="previsionError" class="error-message"></div> 
                               <div id="previhelp" class="form-text fw-bold">INGRESE PREVISIÓN</div>

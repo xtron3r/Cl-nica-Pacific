@@ -19,6 +19,7 @@
      <script src="js/seleccion_hora.js"></script>
 </head>
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="img/logoC.png" width="250px" alt=""></a>
@@ -44,6 +45,16 @@
     </div>
   </nav>
 <main class="container-fluid fondo-img ">
+  <div class="row text-center align-items-center">
+    <div class="col-12 mt-5">
+        <form id="seleccionMedico" class="text-center wrapper w-50 mx-auto">
+            <label for="medicosele" class="m-3 fw-bold fs-4">SELECCIONAR MEDICO</label>
+            <select id="medicosele" name="medicosele" class="form-control">
+                <!-- Aquí se generarán las opciones dinámicamente -->
+            </select>
+        </form>
+    </div>
+  </div>
   <div class="row justify-content-center"> <!-- Añadida clase justify-content-center -->
     <div class="col-md-5 mt-4"> <!-- Cambiado a col-md-5 -->
       <div class="wrapper p-3 h-100">
