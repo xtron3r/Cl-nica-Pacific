@@ -73,20 +73,38 @@ $(document).ready(function(){
 
             console.log(boton)
 
-            var parametros = {
-                formNombre: nombre,
-                formMotivo: motivo,
-                formEmail: email,
-                formTelefono: telefono,
-                formTextarea: textarea
+            var data = {
+                nombrec: nombre,
+                motivo: motivo,
+                telefono: telefono,
+                email: email,
+                mensaje: textarea
             };
 
-            emailjs.send('service_jthig8r', 'template_4iqdewa', parametros).then(
+            emailjs.send('service_jthig8r', 'template_4iqdewa', data).then(
                 (response) => {
                     boton.val("ENVIAR")
-                    alert('ENVIADO CORRECTAMENTE!');
+                    alert('ENVIADO CORRECTAMENTE!');               
                     addcontacto();
                     console.log('SUCCESS!', response.status, response.text);
+
+                    $.ajax({
+                        url: "http://localhost:8000/api/contacto/",
+                        type: "POST",
+                        data: data,
+                        dataType: "json",
+                        success: function(response) {
+                            boton.val("ENVIAR");
+                            alert('Datos enviados a la base de datos correctamente!');
+                            console.log('SUCCESS!', response);
+                            form.reset();
+                        },
+                        error: function(error) {
+                            boton.val("ENVIAR");
+                            alert('No se pudo enviar el formulario!');
+                            console.log('FAILED...', error);
+                        }
+                    });
                     form.reset();
                 },
                 (error) => {
@@ -115,9 +133,3 @@ function guardarLocalStorages(contacto){
     contactos.push(contacto);
     localStorage.setItem('contactos', JSON.stringify(contactos));
 }
-
-
-
-
-
-
