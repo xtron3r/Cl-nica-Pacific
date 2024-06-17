@@ -19,8 +19,9 @@ class Paciente(models.Model):
         ('ISAPRE','Isapre'),
         ('PARTICULAR','Particular'),
     ]
+    id = models.AutoField(primary_key=True)
     nombrepa = models.CharField(max_length=80)
-    rut_paciente = models.CharField(max_length=11, primary_key=True)
+    rut_paciente = models.CharField(max_length=11)
     prevision = models.CharField(max_length=20, choices=PREVIS)
 
     def __str__(self):

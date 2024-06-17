@@ -4,7 +4,6 @@ $(document).ready(function () {
   let day = now.getDate();
   let month = now.getMonth();
   let year = now.getFullYear();
-
    // Función para cargar los médicos desde la base de datos según la especialidad seleccionada
    function cargarMedicos() {
     var especialidadSeleccionada = localStorage.getItem("especialidadSeleccionada");
@@ -121,22 +120,13 @@ $(document).ready(function () {
   $('#guardar').click(function() {
     var fecha = $('#text_year').text() + '-' + (month + 1) + '-' + $('.calendar-day.active').text(); // Formatear fecha
     var hora = $('.hour-slot.active').text();
+    var especialidadSeleccionada = localStorage.getItem("especialidadSeleccionada");
     
-    // Crear el objeto paciente
-    var paciente = {
-        rut: localStorage.getItem("rut"),
-        nombre: localStorage.getItem("nombre"),
-        previsionpa: localStorage.getItem("prevision"),
-        especialidadSeleccionada: localStorage.getItem("especialidadSeleccionada"),
-        fecha: fecha,
-        hora: hora
-    };
-
     // Agregar el paciente a la lista de pacientes en bd
     var data = {
-        rut_paciente: localStorage.getItem("rut"),
-        nombrepa: localStorage.getItem("nombre"),
-        prevision: localStorage.getItem("prevision")
+      rut_paciente: localStorage.getItem("rut"),
+      nombrepa: localStorage.getItem("nombre"),
+      prevision: localStorage.getItem("prevision")
     }
 
     $.ajax({
@@ -147,6 +137,34 @@ $(document).ready(function () {
       success: function(response) {
           console.log('SUCCESS!', response);
           alert('Paciente guardado correctamente!');
+          
+          // Obtener el id del paciente creado
+        var pacienteId = response.id;
+
+        // Crear los datos para la reserva
+        var medicoId = $('#medicosele').val();
+        var reservaData = {
+          paciente: pacienteId,
+          medico: medicoId,
+          fecha: fecha,
+          hora: hora
+        };
+
+        // Enviar solicitud POST para la reserva
+        $.ajax({
+          url: "http://localhost:8000/api/reserva/",
+          type: "POST",
+          data: JSON.stringify(reservaData),
+          contentType: "application/json",
+          success: function(response) {
+            console.log('SUCCESS!', response);
+            alert('Reserva guardada correctamente!');
+          },
+          error: function(error) {
+            alert('No se pudo guardar la reserva!');
+            console.log('FAILED...', error);
+          }
+        });
       },
       error: function(error) {
           alert('No se pudo guardar paciente!');
@@ -154,31 +172,16 @@ $(document).ready(function () {
       }
     });
 
-    // Creamos la reserva para la base de datos
-
-      // Crear los datos para la reserva
-    var data1 = {
-      fecha: fecha,
-      hora: hora,
-      paciente: localStorage.getItem("rut") // Obtener el rut del paciente del localStorage
+      // Crear el objeto paciente
+      var paciente = {
+        rut: localStorage.getItem("rut"),
+        nombre: localStorage.getItem("nombre"),
+        prevision: localStorage.getItem("prevision"),
+        especialidadSeleccionada: especialidadSeleccionada,
+        fecha: fecha,
+        hora: hora
     };
-
-    // Enviar solicitud POST para la reserva
-    $.ajax({
-      url: "http://localhost:8000/api/reserva/",
-      type: "POST",
-      data: JSON.stringify(data1),
-      contentType: "application/json",
-      success: function(response) {
-          console.log('SUCCESS!', response);
-          alert('Reserva guardada correctamente!');
-      },
-      error: function(error) {
-          alert('No se pudo guardar la reserva!');
-          console.log('FAILED...', error);
-      }
-    });
-    
+  
     // Agregar el paciente a la lista de pacientes en localStorage
     agregarPaciente(paciente);
     
@@ -203,11 +206,7 @@ function agregarPaciente(nuevoPaciente) {
     localStorage.setItem('pacientes', JSON.stringify(pacientes));
 }
 
-// Función para cargar los pacientes y mostrarlos en la tabla al cargar la página
-$(document).ready(function() {
-    cargarPacientes();
-});
-
+cargarPacientes();
 // Función para cargar los pacientes y mostrarlos en la tabla
 function cargarPacientes() {
     $('#tableBody').empty();
@@ -218,7 +217,6 @@ function cargarPacientes() {
         });
     }
 }
-
 // Función para mostrar un paciente en la tabla
 function mostrarPaciente(paciente) {
     // Construir la fila con los datos del paciente y la fecha, hora y especialidad seleccionadas
