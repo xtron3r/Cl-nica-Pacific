@@ -193,9 +193,8 @@ function cargarContactos() {
         type: 'GET',
         dataType: 'json',
         success: function(response) {
-            // Filtrar médicos por especialidad seleccionada
             response.forEach(function(contacto) {
-                mostrarTabla(contacto.nombrec,contacto.motivo,contacto.email,contacto.telefono,contacto.mensaje)
+                mostrarTabla(contacto.id,contacto.nombrec,contacto.motivo,contacto.email,contacto.telefono,contacto.mensaje)
             });
         },
         error: function(error) {
@@ -206,11 +205,12 @@ function cargarContactos() {
 } 
 
 // MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL CONTACTO
-function mostrarTabla(nombre,motivo,email,telefono,textarea) {
+function mostrarTabla(id,nombre,motivo,email,telefono,textarea) {
     console.log(localStorage)
 
     $('#tablaContacto tbody').append(`
         <tr class="text-center">
+            <td>${id}</td>
             <td>${motivo}</td>
             <td>${nombre}</td>
             <td>${email}</td>
@@ -225,25 +225,22 @@ function mostrarTabla(nombre,motivo,email,telefono,textarea) {
 
 
 // ELIMINA DE LA TABLA DE CONTACTO
-function eliminarContacto(boton){
+function eliminarContacto(boton) {
     var row = $(boton).closest('tr');
-    var cols = row.children('td');
-    if(boton.textContent === 'Cancelar'){
-        $(cols[0]).text($cols[0]).find('input').val();
-        $(cols[1]).text($cols[1]).find('input').val();
-        $(boton).prev().text('Editar').removeClass('btn-warning').addClass('btn-info');
-        $(boton).text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
-    } else {
-        eliminaStorage(row.index());
-        row.remove();
-    }
-}
-
-//ELIMINA ELMINAR DEL LOCAL STORAGE DE CONTACTO
-function eliminaStorage(index){
-    var contactos = JSON.parse(localStorage.getItem('contactos'));
-    contactos.splice(index, 1);
-    localStorage.setItem('contactos', JSON.stringify(contactos));
+    var id = row.find('td:first').text();
+    $.ajax({
+        url: `http://localhost:8000/api/contacto/${id}/`, // URL DELETE con ID específico
+        type: 'DELETE',
+        dataType: 'json',
+        success: function() {
+            alert('CONTACTO ELIMINADO');
+            row.remove(); // Eliminar la fila de la tabla después de eliminar el contacto en el servidor
+        },
+        error: function(error) {
+            console.error('Error al eliminar contacto:', error);
+            alert('Error al eliminar el contacto. Consulta la consola para más detalles.');
+        }
+    });
 }
 
 
