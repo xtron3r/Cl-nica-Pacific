@@ -304,7 +304,7 @@ function guardarLocalmedico(medico){
 }
 
 // MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL MEDICOS
-function mostrarTablaMedico(rut,nombre,nombreE) {
+function mostrarTablaMedico(nombre,rut,nombreE) {
     console.log(localStorage)
 
     $('#tablaMedico tbody').append(`
@@ -321,26 +321,23 @@ function mostrarTablaMedico(rut,nombre,nombreE) {
 }
 
 
-// ELIMINA DE LA TABLA DE MEDICO
-function eliminarMedico(boton){
+function eliminarMedico(boton) {
     var row = $(boton).closest('tr');
-    var cols = row.children('td');
-    if(boton.textContent === 'Cancelar'){
-        $(cols[0]).text($cols[0]).find('input').val();
-        $(cols[1]).text($cols[1]).find('input').val();
-        $(boton).prev().text('Editar').removeClass('btn-warning').addClass('btn-info');
-        $(boton).text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
-    } else {
-        eliminaStorageMedico(row.index());
-        row.remove();
-    }
-}
+    var id = row.find('td:first').text(); // Obtener el ID del paciente desde la primera columna de la fila
 
-//ELIMINA ELMINAR DEL LOCAL STORAGE DE MEDICO
-function eliminaStorageMedico(index){
-    var medicos = JSON.parse(localStorage.getItem('medicos'));
-    medicos.splice(index, 1);
-    localStorage.setItem('medicos', JSON.stringify(medicos));
+    $.ajax({
+        url: `http://localhost:8000/api/medico/${id}/`, // URL DELETE con ID específico del paciente
+        type: 'DELETE',
+        dataType: 'json',
+        success: function() {
+            alert('MEDICO ELIMINADO');
+            row.remove(); // Eliminar la fila de la tabla después de eliminar el paciente en el servidor
+        },
+        error: function(error) {
+            console.error('Error al eliminar medico:', error);
+            alert('Error al eliminar el medico. Consulta la consola para más detalles.');
+        }
+    });
 }
 
 // EDITAR MEDICOS
@@ -389,6 +386,7 @@ function cargarPacientes() {
             // Filtrar médicos por especialidad seleccionada
             response.forEach(function(reserva) {
                 mostrarTablapaciente(
+                    reserva.paciente.id,
                     reserva.paciente.nombrepa,
                     reserva.paciente.rut_paciente,
                     reserva.paciente.prevision,
@@ -427,9 +425,10 @@ function buscarPacientePorRut(rut) {
 }
 
 // MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL PACIENTE
-function mostrarTablapaciente(nombre, rut, prevision, especialidad, fecha, hora) {
+function mostrarTablapaciente(id,nombre, rut, prevision, especialidad, fecha, hora) {
     $('#tablaPaciente tbody').append(`
         <tr class="text-center">
+            <td>${id}</td>
             <td>${nombre}</td>
             <td>${rut}</td>
             <td>${prevision}</td>
@@ -443,24 +442,22 @@ function mostrarTablapaciente(nombre, rut, prevision, especialidad, fecha, hora)
     `);
 }
 
-// ELIMINA DE LA TABLA DE PACIENTES
-function eliminarPaciente(boton){
+function eliminarPaciente(boton) {
     var row = $(boton).closest('tr');
-    var cols = row.children('td');
-    if(boton.textContent === 'Cancelar'){
-        $(cols[0]).text($cols[0]).find('input').val();
-        $(cols[1]).text($cols[1]).find('input').val();
-        $(boton).prev().text('Editar').removeClass('btn-warning').addClass('btn-info');
-        $(boton).text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
-    } else {
-        eliminaStoragepa(row.index());
-        row.remove();
-    }
+    var id = row.find('td:first').text(); // Obtener el ID del paciente desde la primera columna de la fila
+
+    $.ajax({
+        url: `http://localhost:8000/api/reserva/${id}/`, // URL DELETE con ID específico del paciente
+        type: 'DELETE',
+        dataType: 'json',
+        success: function() {
+            alert('PACIENTE ELIMINADO');
+            row.remove(); // Eliminar la fila de la tabla después de eliminar el paciente en el servidor
+        },
+        error: function(error) {
+            console.error('Error al eliminar paciente:', error);
+            alert('Error al eliminar el paciente. Consulta la consola para más detalles.');
+        }
+    });
 }
 
-//ELIMINA DEL LOCAL STORAGE DE PACIENTES
-function eliminaStoragepa(index){
-    var pacientes = JSON.parse(localStorage.getItem('pacientes'));
-    pacientes.splice(index, 1);
-    localStorage.setItem('pacientes', JSON.stringify(pacientes));
-}
