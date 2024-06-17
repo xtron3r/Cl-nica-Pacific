@@ -187,13 +187,23 @@ $(document).ready(function() {
 // CARGA LOS CONTACTOS DEL LOCAL STORAGE
 function cargarContactos() {
     $('#tablaContacto tbody').empty();
-    if(localStorage.getItem('contactos')){
-        var contactos = JSON.parse(localStorage.getItem('contactos'));
-        contactos.forEach(function(contacto){
-            mostrarTabla(contacto.nombre, contacto.motivo,contacto.email,contacto.telefono,contacto.textarea);
-        });
-    }
-}
+
+    $.ajax({
+        url: 'http://localhost:8000/api/contacto/', // URL de tu API para obtener médicos
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            // Filtrar médicos por especialidad seleccionada
+            response.forEach(function(contacto) {
+                mostrarTabla(contacto.nombrec,contacto.motivo,contacto.email,contacto.telefono,contacto.mensaje)
+            });
+        },
+        error: function(error) {
+            console.error('Error al cargar contactos:', error);
+        }
+    });
+    
+} 
 
 // MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL CONTACTO
 function mostrarTabla(nombre,motivo,email,telefono,textarea) {
@@ -253,7 +263,6 @@ function cargarMedicos() {
             // Filtrar médicos por especialidad seleccionada
             response.forEach(function(medico) {
                 mostrarTablaMedico(medico.rut_medico, medico.nombrem, medico.especialidad);
-                
             });
         },
         error: function(error) {
@@ -382,12 +391,19 @@ function cargarPacientes() {
         success: function(response) {
             // Filtrar médicos por especialidad seleccionada
             response.forEach(function(reserva) {
-                mostrarTablapaciente(reserva.paciente.nombrepa,reserva.paciente.rut_paciente,reserva.paciente.prevision,reserva.medico.especialidad,reserva.fecha,reserva.hora);
+                mostrarTablapaciente(
+                    reserva.paciente.nombrepa,
+                    reserva.paciente.rut_paciente,
+                    reserva.paciente.prevision,
+                    reserva.medico.especialidad,
+                    reserva.fecha,
+                    reserva.hora
+                );
                 
             });
         },
         error: function(error) {
-            console.error('Error al cargar médicos:', error);
+            console.error('Error al cargar reservas', error);
         }
     });
     
