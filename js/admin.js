@@ -244,12 +244,23 @@ function eliminaStorage(index){
 
 function cargarMedicos() {
     $('#tablaMedico tbody').empty();
-    if(localStorage.getItem('medicos')){
-        var medicos = JSON.parse(localStorage.getItem('medicos'));
-        medicos.forEach(function(medico){
-            mostrarTablaMedico(medico.rut,medico.nombre,medico.nombreE);
-        });
-    }
+
+    $.ajax({
+        url: 'http://localhost:8000/api/medico/', // URL de tu API para obtener médicos
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            // Filtrar médicos por especialidad seleccionada
+            response.forEach(function(medico) {
+                mostrarTablaMedico(medico.rut_medico, medico.nombrem, medico.especialidad);
+                
+            });
+        },
+        error: function(error) {
+            console.error('Error al cargar médicos:', error);
+        }
+    });
+    
 } 
 
 function buscarMedicoPorRut(rut) {
@@ -363,13 +374,24 @@ function actualizarMedico(index, newNombre, newRut, newEspe) {
 
 function cargarPacientes() {
     $('#tablaPaciente tbody').empty();
-    if(localStorage.getItem('pacientes')){
-        var pacientes = JSON.parse(localStorage.getItem('pacientes'));
-        pacientes.forEach(function(paciente){
-            mostrarTablapaciente(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
-        });
-    }
-}
+
+    $.ajax({
+        url: 'http://localhost:8000/api/reserva/', // URL de tu API para obtener médicos
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            // Filtrar médicos por especialidad seleccionada
+            response.forEach(function(reserva) {
+                mostrarTablapaciente(reserva.paciente.nombrepa,reserva.paciente.rut_paciente,reserva.paciente.prevision,reserva.medico.especialidad,reserva.fecha,reserva.hora);
+                
+            });
+        },
+        error: function(error) {
+            console.error('Error al cargar médicos:', error);
+        }
+    });
+    
+} 
 
 function buscarPacientePorRut(rut) {
     $('#tablaPaciente tbody').empty();
