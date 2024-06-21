@@ -270,24 +270,23 @@ function cargarMedicos() {
 } 
 
 function buscarMedicoPorRut(rut) {
-    $('#tablaMedico tbody').empty();
+    $('#tablaMedico tbody').empty(); 
     $('#mensajeError').hide(); 
 
-    if (localStorage.getItem('medicos')) {
-        var medicos = JSON.parse(localStorage.getItem('medicos'));
-        var medicosFiltrados = medicos.filter(function(medico) {
-            return medico.rut === rut;
-        });
-
-        if (medicosFiltrados.length === 0) {
-            $('#mensajeError').show();
-        } else {
-            medicosFiltrados.forEach(function(medico) {
-                mostrarTablaMedico(medico.rut, medico.nombre, medico.nombreE);
-            });
+    $.ajax({
+        url: `http://localhost:8000/api/medico/${rut}/`,
+        type: 'GET',
+        dataType: 'json',
+        success: function(medico) {
+            mostrarTablaMedico(medico.nombrem, medico.rut_medico, medico.especialidad);
+        },
+        error: function(error) {
+            console.error('Error al buscar medico:', error);
+            $('#mensajeError').show(); 
         }
-    }
+    });
 }
+
 
 function addmedico(){
     var rut = $('#rutinput').val();
@@ -450,23 +449,21 @@ function cargarPacientes() {
 } 
 
 function buscarPacientePorRut(rut) {
-    $('#tablaPaciente tbody').empty();
+    $('#tablaPaciente tbody').empty(); 
     $('#mensajeError').hide(); 
 
-    if (localStorage.getItem('pacientes')) {
-        var pacientes = JSON.parse(localStorage.getItem('pacientes'));
-        var pacientesFiltrados = pacientes.filter(function(paciente) {
-            return paciente.rut === rut;
-        });
-
-        if (pacientesFiltrados.length === 0) {
-            $('#mensajeError').show();
-        } else {
-            pacientesFiltrados.forEach(function(paciente) {
-                mostrarTablapaciente(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
-            });
+    $.ajax({
+        url: `http://localhost:8000/api/paciente/${rut}/`, // URL de tu API para buscar por RUT
+        type: 'GET',
+        dataType: 'json',
+        success: function(paciente) {
+            mostrarTablapaciente(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
+        },
+        error: function(error) {
+            console.error('Error al buscar paciente:', error);
+            $('#mensajeError').show(); 
         }
-    }
+    });
 }
 
 // MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL PACIENTE
