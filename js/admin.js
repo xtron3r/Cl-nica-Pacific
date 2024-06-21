@@ -259,7 +259,7 @@ function cargarMedicos() {
         success: function(response) {
             // Filtrar médicos por especialidad seleccionada
             response.forEach(function(medico) {
-                mostrarTablaMedico(medico.rut_medico, medico.nombrem, medico.especialidad);
+                mostrarTablaMedico(medico.nombrem, medico.rut_medico, medico.especialidad);
             });
         },
         error: function(error) {
@@ -321,56 +321,101 @@ function mostrarTablaMedico(nombre,rut,nombreE) {
 }
 
 
+// Función para eliminar un médico
 function eliminarMedico(boton) {
     var row = $(boton).closest('tr');
-    var id = row.find('td:first').text(); // Obtener el ID del paciente desde la primera columna de la fila
+    var rut = row.find('td:nth-child(2)').text();
 
     $.ajax({
-        url: `http://localhost:8000/api/medico/${id}/`, // URL DELETE con ID específico del paciente
+        url: `http://localhost:8000/api/medico/${rut}/`,
         type: 'DELETE',
         dataType: 'json',
         success: function() {
-            alert('MEDICO ELIMINADO');
-            row.remove(); // Eliminar la fila de la tabla después de eliminar el paciente en el servidor
+            console.log('Medico eliminado');
+            row.remove(); 
         },
         error: function(error) {
             console.error('Error al eliminar medico:', error);
-            alert('Error al eliminar el medico. Consulta la consola para más detalles.');
+            alert('Error al eliminar el medico');
         }
     });
 }
 
+
 // EDITAR MEDICOS
 
-function editarMedico(button){
+function editarMedico(button) {
     var row = $(button).closest('tr');
     var cols = row.children('td');
-    if(button.textContent == 'Editar'){
-        $(cols[0]).html(`<input type="text" class="form-control" value="${$(cols[0]).text()}">`);
-        $(cols[1]).html(`<input type="text" class="form-control" value="${$(cols[1]).text()}">`);
-        $(cols[2]).html(`<input type="text" class="form-control" value="${$(cols[2]).text()}">`);
+
+    if (button.textContent === 'Editar') {
+        // Guardar los valores originales en caso de cancelación
+        var originalValues = {
+            nombre: $(cols[0]).text(),
+            rut: $(cols[1]).text(),
+            especialidad: $(cols[2]).text()
+        };
+
+        // Reemplazar texto con campos de entrada para editar
+        $(cols[0]).html(`<input type="text" class="form-control" value="${originalValues.nombre}">`);
+        $(cols[1]).html(`<input type="text" class="form-control" value="${originalValues.rut}">`);
+        $(cols[2]).html(`<input type="text" class="form-control" value="${originalValues.especialidad}">`);
+
+        // Cambiar texto de los botones Editar y Eliminar a Guardar y Cancelar
         $(button).text('Guardar').removeClass('btn-info').addClass('btn-success');
         $(button).next().text('Cancelar').removeClass('btn-danger').addClass('btn-warning');
-    } else { // Guardar
+    } else { // Guardar cambios
         var newNombre = $(cols[0]).find('input').val();
         var newRut = $(cols[1]).find('input').val();
-        var newEspe = $(cols[2]).find('input').val();
+        var newEspecialidad = $(cols[2]).find('input').val();
+
+        // Actualizar la interfaz con los nuevos valores
         $(cols[0]).text(newNombre);
         $(cols[1]).text(newRut);
-        $(cols[2]).text(newEspe);
+        $(cols[2]).text(newEspecialidad);
+
+        // Cambiar botones de vuelta a Editar y Eliminar
         $(button).text('Editar').removeClass('btn-success').addClass('btn-info');
         $(button).next().text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
-        actualizarMedico(row.index(), newNombre, newRut, newEspe);
+
+        // Obtener el ID del médico desde la primera columna de la fila
+        var id = $(cols[1]).text(); // Suponiendo que el RUT del médico es único y se usa como ID
+
+        // Llamar a la función para actualizar el médico en el backend
+        actualizarMedico(id, newNombre, newRut, newEspecialidad);
     }
 }
 
-function actualizarMedico(index, newNombre, newRut, newEspe) {
-    var medicos = JSON.parse(localStorage.getItem('medicos'));
-    medicos[index].nombre = newNombre;
-    medicos[index].rut = newRut;
-    medicos[index].nombreE = newEspe;    
-    localStorage.setItem('medicos', JSON.stringify(medicos));
+function actualizarMedico(id, nombre, rut, especialidad) {
+        // Verificar que los campos no estén vacíos antes de enviar la solicitud
+    if (!nombre || !rut || !especialidad) {
+        console.error('Todos los campos son requeridos.');
+        return;
+    }
+
+    // Preparar los datos a enviar en formato JSON
+    var data= {
+        nombrem: nombre,
+        rut_medico: rut,
+        especialidad: especialidad
+    };
+
+    $.ajax({
+        url: `http://localhost:8000/api/medico/${id}/`,
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function(response) {
+            alert('Medico Actualizado');
+            
+        },
+        error: function(error) {
+            console.error('Error al actualizar medico:', error);
+            alert('Error al actualizar el medico.');
+        }
+    });
 }
+
 
 
 //PACIENTES
