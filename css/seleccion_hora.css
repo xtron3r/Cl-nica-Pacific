@@ -138,9 +138,22 @@ header .current-date {
   background-color: #018e97;
   border-color: #018e97;
   color: white;
+  border-color: white;
   width: 15rem;
 }
 .btn-back:hover{
+  background-color: white;
+  border-color: white;
+  color: #018e97;
+}
+.btn-back1{
+  background-color: #018e97;
+  border-color: #018e97;
+  color: white;
+  border-color: white;
+  width: 10rem;
+}
+.btn-back1:hover{
   background-color: white;
   border-color: white;
   color: #018e97;
@@ -175,4 +188,5 @@ header .current-date {
 .table td {
   font-size: 0.9rem;
 }
+
 

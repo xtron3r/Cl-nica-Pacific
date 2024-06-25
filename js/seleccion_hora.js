@@ -4,34 +4,46 @@ $(document).ready(function () {
   let day = now.getDate();
   let month = now.getMonth();
   let year = now.getFullYear();
-   // Función para cargar los médicos desde la base de datos según la especialidad seleccionada
-   function cargarMedicos() {
+  let medicoId;
+
+  function cargarMedicos() {
     var especialidadSeleccionada = localStorage.getItem("especialidadSeleccionada");
     $.ajax({
-        url: 'http://localhost:8000/api/medico/', // URL de tu API para obtener médicos
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            // Limpiar opciones anteriores
-            $('#medicosele').empty();
+      url: 'http://localhost:8000/api/medico/',
+      type: 'GET',
+      dataType: 'json',
+      success: function(response) {
+        var medicoContainer = $('#seleccionMedico').find('div');
+        medicoContainer.empty(); 
 
-            // Filtrar médicos por especialidad seleccionada
-            response.forEach(function(medico) {
-                if (medico.especialidad === especialidadSeleccionada) {
-                    $('#medicosele').append(`<option value="${medico.rut_medico}">NOMBRE: ${medico.nombrem} | ESPECIALIDAD: ${medico.especialidad}  </option>`);
-                }
-            });
-        },
-        error: function(error) {
-            console.error('Error al cargar médicos:', error);
-        }
+        response.forEach(function(medico) {
+          if (medico.especialidad === especialidadSeleccionada) {
+            var medicoCard = `
+              <div class="mb-3">
+                <div class="row g-0">
+                  <div class="col-md-10 mx-auto mt-3">
+                    <div class="card-body wrapper p-2">
+                      <h5 class="card-title"> <i class="bi bi-person-circle"></i> ${medico.nombrem}</h5>
+                      <p class="card-text mt-2 "> <i class="bi bi-heart-pulse"></i> ${medico.especialidad}</p>
+                       <input type="button" class="btn btn-back1 btn-primary fw-bold seleccionar-medico" data-rut="${medico.rut_medico}" value="SELECCIONAR">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            medicoContainer.append(medicoCard);
+          }
+        });
+      },
+      error: function(error) {
+        console.error('Error al cargar médicos:', error);
+      }
     });
   }
 
-  // Llamar a la función para cargar médicos según la especialidad almacenada en localStorage
+
   cargarMedicos();
 
-  // Función para actualizar el calendario
   function updateCalendar() {
     $("#text_month").text(monthName[month]);
     $("#text_year").text(year);
@@ -116,7 +128,21 @@ $(document).ready(function () {
     }
   });
 
-  // Al hacer clic en el botón "SOLICITAR", guardar la fecha y hora en localStorage
+  $(document).on("click", ".seleccionar-medico", function(event) {
+    var $button = $(this);
+    medicoId = $(this).data("rut");
+    $(".seleccionar-medico").each(function() {
+      $(this).val("SELECCIONAR");
+      $(this).prop("disabled", false);
+    });
+  
+    $button.val("SELECCIONADO");
+  
+    console.log("Medico seleccionado con Rut: " + medicoId);
+    alert("Medico seleccionado con Rut: " + medicoId);
+  });
+
+  
   $('#guardar').click(function() {
     var fecha = $('#text_year').text() + '-' + (month + 1) + '-' + $('.calendar-day.active').text(); // Formatear fecha
     var hora = $('.hour-slot.active').text();
@@ -135,20 +161,20 @@ $(document).ready(function () {
       data: JSON.stringify(data), 
       contentType: "application/json",
       success: function(response) {
-          console.log('SUCCESS!', response);
-          alert('Paciente guardado correctamente!');
+        console.log('SUCCESS!', response);
+        alert('Paciente guardado correctamente!');
           
           // Obtener el id del paciente creado
         var pacienteId = response.id;
 
-        // Crear los datos para la reserva
-        var medicoId = $('#medicosele').val();
         var reservaData = {
           paciente: pacienteId,
           medico: medicoId,
           fecha: fecha,
           hora: hora
         };
+
+        console.log(reservaData);
 
         // Enviar solicitud POST para la reserva
         $.ajax({
@@ -196,7 +222,6 @@ $(document).ready(function () {
     $(this).prop('disabled', true);
 });
 
-// Función para agregar un paciente a la lista de pacientes en localStorage
 function agregarPaciente(nuevoPaciente) {
     let pacientes = [];
     if(localStorage.getItem('pacientes')){
@@ -207,7 +232,7 @@ function agregarPaciente(nuevoPaciente) {
 }
 
 cargarPacientes();
-// Función para cargar los pacientes y mostrarlos en la tabla
+
 function cargarPacientes() {
     $('#tableBody').empty();
     if(localStorage.getItem('pacientes')){
@@ -217,9 +242,8 @@ function cargarPacientes() {
         });
     }
 }
-// Función para mostrar un paciente en la tabla
 function mostrarPaciente(paciente) {
-    // Construir la fila con los datos del paciente y la fecha, hora y especialidad seleccionadas
+   
     var newRow = `
       <tr>
         <td>${paciente.nombre}</td>
@@ -231,7 +255,7 @@ function mostrarPaciente(paciente) {
       </tr>
     `;
   
-    // Agregar la fila a la tabla
+   
     $('#tableBody').append(newRow);
 }
 });

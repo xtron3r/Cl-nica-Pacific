@@ -117,7 +117,6 @@ $(document).ready(function() {
                 });
                 
                 addmedico();
-                alert('MEDICO AÑADIDO CORRECTAMENTE');
                 form.reset();
                 return false; // Previene la recarga de la pagina
             }
@@ -378,7 +377,7 @@ function editarMedico(button) {
         $(button).next().text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
 
         // Obtener el ID del médico desde la primera columna de la fila
-        var id = $(cols[1]).text(); // Suponiendo que el RUT del médico es único y se usa como ID
+        var id = $(cols[1]).text();
 
         // Llamar a la función para actualizar el médico en el backend
         actualizarMedico(id, newNombre, newRut, newEspecialidad);
@@ -386,7 +385,7 @@ function editarMedico(button) {
 }
 
 function actualizarMedico(id, nombre, rut, especialidad) {
-        // Verificar que los campos no estén vacíos antes de enviar la solicitud
+    
     if (!nombre || !rut || !especialidad) {
         console.error('Todos los campos son requeridos.');
         return;
@@ -423,29 +422,55 @@ function cargarPacientes() {
     $('#tablaPaciente tbody').empty();
 
     $.ajax({
-        url: 'http://localhost:8000/api/reserva/', // URL de tu API para obtener médicos
+        url: 'http://localhost:8000/api/reserva/', // URL de tu API para obtener reservas
         type: 'GET',
         dataType: 'json',
         success: function(response) {
             response.forEach(function(reserva) {
-                mostrarTablapaciente(
-                    reserva.paciente.id,
-                    reserva.paciente.nombrepa,
-                    reserva.paciente.rut_paciente,
-                    reserva.paciente.prevision,
-                    reserva.medico.especialidad,
-                    reserva.fecha,
-                    reserva.hora
-                );
+                // Accede directamente a los datos del paciente y medico
+                var pacienteId = reserva.paciente;
+                var medicoId = reserva.medico;
+                var fecha = reserva.fecha;
+                var hora = reserva.hora;
+
                 
+                $.ajax({
+                    url: 'http://localhost:8000/api/paciente/' + pacienteId + '/', 
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(paciente) {
+                        
+                        $.ajax({
+                            url: 'http://localhost:8000/api/medico/' + medicoId + '/', 
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(medico) {
+                                mostrarTablapaciente(
+                                    paciente.id,
+                                    paciente.nombrepa,
+                                    paciente.rut_paciente,
+                                    paciente.prevision,
+                                    medico.especialidad,
+                                    fecha,
+                                    hora
+                                );
+                            },
+                            error: function(error) {
+                                console.error('Error al cargar detalles del médico', error);
+                            }
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error al cargar detalles del paciente', error);
+                    }
+                });
             });
         },
         error: function(error) {
             console.error('Error al cargar reservas', error);
         }
     });
-    
-} 
+}
 
 function buscarPacientePorRut(rut) {
     $('#tablaPaciente tbody').empty(); 

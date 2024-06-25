@@ -18,8 +18,7 @@ class PacienteSerializer(serializers.ModelSerializer):
         fields ="__all__"
 
 class ReservaSerializer(serializers.ModelSerializer):
-    paciente = PacienteSerializer() 
-    medico = MedicoSerializer()
+
     class Meta:
         model = Reserva
         fields = "__all__"
