@@ -259,7 +259,7 @@ function cargarMedicos() {
         success: function(response) {
             // Filtrar médicos por especialidad seleccionada
             response.forEach(function(medico) {
-                mostrarTablaMedico(medico.rut_medico, medico.nombrem, medico.especialidad);
+                mostrarTablaMedico(medico.nombrem, medico.rut_medico, medico.especialidad);
             });
         },
         error: function(error) {
@@ -270,24 +270,23 @@ function cargarMedicos() {
 } 
 
 function buscarMedicoPorRut(rut) {
-    $('#tablaMedico tbody').empty();
+    $('#tablaMedico tbody').empty(); 
     $('#mensajeError').hide(); 
 
-    if (localStorage.getItem('medicos')) {
-        var medicos = JSON.parse(localStorage.getItem('medicos'));
-        var medicosFiltrados = medicos.filter(function(medico) {
-            return medico.rut === rut;
-        });
-
-        if (medicosFiltrados.length === 0) {
-            $('#mensajeError').show();
-        } else {
-            medicosFiltrados.forEach(function(medico) {
-                mostrarTablaMedico(medico.rut, medico.nombre, medico.nombreE);
-            });
+    $.ajax({
+        url: `http://localhost:8000/api/medico/${rut}/`,
+        type: 'GET',
+        dataType: 'json',
+        success: function(medico) {
+            mostrarTablaMedico(medico.nombrem, medico.rut_medico, medico.especialidad);
+        },
+        error: function(error) {
+            console.error('Error al buscar medico:', error);
+            $('#mensajeError').show(); 
         }
-    }
+    });
 }
+
 
 function addmedico(){
     var rut = $('#rutinput').val();
@@ -304,7 +303,7 @@ function guardarLocalmedico(medico){
 }
 
 // MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL MEDICOS
-function mostrarTablaMedico(rut,nombre,nombreE) {
+function mostrarTablaMedico(nombre,rut,nombreE) {
     console.log(localStorage)
 
     $('#tablaMedico tbody').append(`
@@ -321,59 +320,101 @@ function mostrarTablaMedico(rut,nombre,nombreE) {
 }
 
 
-// ELIMINA DE LA TABLA DE MEDICO
-function eliminarMedico(boton){
+// Función para eliminar un médico
+function eliminarMedico(boton) {
     var row = $(boton).closest('tr');
-    var cols = row.children('td');
-    if(boton.textContent === 'Cancelar'){
-        $(cols[0]).text($cols[0]).find('input').val();
-        $(cols[1]).text($cols[1]).find('input').val();
-        $(boton).prev().text('Editar').removeClass('btn-warning').addClass('btn-info');
-        $(boton).text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
-    } else {
-        eliminaStorageMedico(row.index());
-        row.remove();
-    }
+    var rut = row.find('td:nth-child(2)').text();
+
+    $.ajax({
+        url: `http://localhost:8000/api/medico/${rut}/`,
+        type: 'DELETE',
+        dataType: 'json',
+        success: function() {
+            console.log('Medico eliminado');
+            row.remove(); 
+        },
+        error: function(error) {
+            console.error('Error al eliminar medico:', error);
+            alert('Error al eliminar el medico');
+        }
+    });
 }
 
-//ELIMINA ELMINAR DEL LOCAL STORAGE DE MEDICO
-function eliminaStorageMedico(index){
-    var medicos = JSON.parse(localStorage.getItem('medicos'));
-    medicos.splice(index, 1);
-    localStorage.setItem('medicos', JSON.stringify(medicos));
-}
 
 // EDITAR MEDICOS
 
-function editarMedico(button){
+function editarMedico(button) {
     var row = $(button).closest('tr');
     var cols = row.children('td');
-    if(button.textContent == 'Editar'){
-        $(cols[0]).html(`<input type="text" class="form-control" value="${$(cols[0]).text()}">`);
-        $(cols[1]).html(`<input type="text" class="form-control" value="${$(cols[1]).text()}">`);
-        $(cols[2]).html(`<input type="text" class="form-control" value="${$(cols[2]).text()}">`);
+
+    if (button.textContent === 'Editar') {
+        // Guardar los valores originales en caso de cancelación
+        var originalValues = {
+            nombre: $(cols[0]).text(),
+            rut: $(cols[1]).text(),
+            especialidad: $(cols[2]).text()
+        };
+
+        // Reemplazar texto con campos de entrada para editar
+        $(cols[0]).html(`<input type="text" class="form-control" value="${originalValues.nombre}">`);
+        $(cols[1]).html(`<input type="text" class="form-control" value="${originalValues.rut}">`);
+        $(cols[2]).html(`<input type="text" class="form-control" value="${originalValues.especialidad}">`);
+
+        // Cambiar texto de los botones Editar y Eliminar a Guardar y Cancelar
         $(button).text('Guardar').removeClass('btn-info').addClass('btn-success');
         $(button).next().text('Cancelar').removeClass('btn-danger').addClass('btn-warning');
-    } else { // Guardar
+    } else { // Guardar cambios
         var newNombre = $(cols[0]).find('input').val();
         var newRut = $(cols[1]).find('input').val();
-        var newEspe = $(cols[2]).find('input').val();
+        var newEspecialidad = $(cols[2]).find('input').val();
+
+        // Actualizar la interfaz con los nuevos valores
         $(cols[0]).text(newNombre);
         $(cols[1]).text(newRut);
-        $(cols[2]).text(newEspe);
+        $(cols[2]).text(newEspecialidad);
+
+        // Cambiar botones de vuelta a Editar y Eliminar
         $(button).text('Editar').removeClass('btn-success').addClass('btn-info');
         $(button).next().text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
-        actualizarMedico(row.index(), newNombre, newRut, newEspe);
+
+        // Obtener el ID del médico desde la primera columna de la fila
+        var id = $(cols[1]).text(); // Suponiendo que el RUT del médico es único y se usa como ID
+
+        // Llamar a la función para actualizar el médico en el backend
+        actualizarMedico(id, newNombre, newRut, newEspecialidad);
     }
 }
 
-function actualizarMedico(index, newNombre, newRut, newEspe) {
-    var medicos = JSON.parse(localStorage.getItem('medicos'));
-    medicos[index].nombre = newNombre;
-    medicos[index].rut = newRut;
-    medicos[index].nombreE = newEspe;    
-    localStorage.setItem('medicos', JSON.stringify(medicos));
+function actualizarMedico(id, nombre, rut, especialidad) {
+        // Verificar que los campos no estén vacíos antes de enviar la solicitud
+    if (!nombre || !rut || !especialidad) {
+        console.error('Todos los campos son requeridos.');
+        return;
+    }
+
+    // Preparar los datos a enviar en formato JSON
+    var data= {
+        nombrem: nombre,
+        rut_medico: rut,
+        especialidad: especialidad
+    };
+
+    $.ajax({
+        url: `http://localhost:8000/api/medico/${id}/`,
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function(response) {
+            alert('Medico Actualizado');
+            
+        },
+        error: function(error) {
+            console.error('Error al actualizar medico:', error);
+            alert('Error al actualizar el medico.');
+        }
+    });
 }
+
 
 
 //PACIENTES
@@ -388,6 +429,7 @@ function cargarPacientes() {
         success: function(response) {
             response.forEach(function(reserva) {
                 mostrarTablapaciente(
+                    reserva.paciente.id,
                     reserva.paciente.nombrepa,
                     reserva.paciente.rut_paciente,
                     reserva.paciente.prevision,
@@ -406,29 +448,28 @@ function cargarPacientes() {
 } 
 
 function buscarPacientePorRut(rut) {
-    $('#tablaPaciente tbody').empty();
+    $('#tablaPaciente tbody').empty(); 
     $('#mensajeError').hide(); 
 
-    if (localStorage.getItem('pacientes')) {
-        var pacientes = JSON.parse(localStorage.getItem('pacientes'));
-        var pacientesFiltrados = pacientes.filter(function(paciente) {
-            return paciente.rut === rut;
-        });
-
-        if (pacientesFiltrados.length === 0) {
-            $('#mensajeError').show();
-        } else {
-            pacientesFiltrados.forEach(function(paciente) {
-                mostrarTablapaciente(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
-            });
+    $.ajax({
+        url: `http://localhost:8000/api/paciente/${rut}/`, // URL de tu API para buscar por RUT
+        type: 'GET',
+        dataType: 'json',
+        success: function(paciente) {
+            mostrarTablapaciente(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
+        },
+        error: function(error) {
+            console.error('Error al buscar paciente:', error);
+            $('#mensajeError').show(); 
         }
-    }
+    });
 }
 
 // MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL PACIENTE
-function mostrarTablapaciente(nombre, rut, prevision, especialidad, fecha, hora) {
+function mostrarTablapaciente(id,nombre, rut, prevision, especialidad, fecha, hora) {
     $('#tablaPaciente tbody').append(`
         <tr class="text-center">
+            <td>${id}</td>
             <td>${nombre}</td>
             <td>${rut}</td>
             <td>${prevision}</td>
@@ -442,24 +483,22 @@ function mostrarTablapaciente(nombre, rut, prevision, especialidad, fecha, hora)
     `);
 }
 
-// ELIMINA DE LA TABLA DE PACIENTES
-function eliminarPaciente(boton){
+function eliminarPaciente(boton) {
     var row = $(boton).closest('tr');
-    var cols = row.children('td');
-    if(boton.textContent === 'Cancelar'){
-        $(cols[0]).text($cols[0]).find('input').val();
-        $(cols[1]).text($cols[1]).find('input').val();
-        $(boton).prev().text('Editar').removeClass('btn-warning').addClass('btn-info');
-        $(boton).text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
-    } else {
-        eliminaStoragepa(row.index());
-        row.remove();
-    }
+    var id = row.find('td:first').text(); // Obtener el ID del paciente desde la primera columna de la fila
+
+    $.ajax({
+        url: `http://localhost:8000/api/reserva/${id}/`, // URL DELETE con ID específico del paciente
+        type: 'DELETE',
+        dataType: 'json',
+        success: function() {
+            alert('PACIENTE ELIMINADO');
+            row.remove(); // Eliminar la fila de la tabla después de eliminar el paciente en el servidor
+        },
+        error: function(error) {
+            console.error('Error al eliminar paciente:', error);
+            alert('Error al eliminar el paciente. Consulta la consola para más detalles.');
+        }
+    });
 }
 
-//ELIMINA DEL LOCAL STORAGE DE PACIENTES
-function eliminaStoragepa(index){
-    var pacientes = JSON.parse(localStorage.getItem('pacientes'));
-    pacientes.splice(index, 1);
-    localStorage.setItem('pacientes', JSON.stringify(pacientes));
-}
