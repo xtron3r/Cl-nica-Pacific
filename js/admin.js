@@ -386,7 +386,6 @@ function cargarPacientes() {
         type: 'GET',
         dataType: 'json',
         success: function(response) {
-            // Filtrar médicos por especialidad seleccionada
             response.forEach(function(reserva) {
                 mostrarTablapaciente(
                     reserva.paciente.nombrepa,
