@@ -54,9 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
   
-    function agregarFila(nombrep, rutpa, prevision, especialidad, fecha, hora) {
+    function agregarFila(id, nombrep, rutpa, prevision, especialidad, fecha, hora) {
         var newRow = document.createElement("tr");
         newRow.innerHTML = `
+            <td>${id}</td>
             <td>${nombrep}</td>
             <td>${rutpa}</td>
             <td>${prevision}</td>
@@ -79,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
         tableBody.appendChild(newRow);
     }
-    
 
     function limpiarTabla() {
         var tableBody = document.getElementById("tableBody");
@@ -90,15 +90,69 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function cargarPacientesPorRut(rut) {
         limpiarTabla();
-        var pacientes = JSON.parse(localStorage.getItem('pacientes'));
-        if (pacientes) {
-            var pacientesFiltrados = pacientes.filter(function (paciente) {
-                return paciente.rut === rut;
-            });
-            pacientesFiltrados.forEach(function (paciente) {
-                agregarFila(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
-            });
-        }
+
+        $.ajax({
+            url: 'http://localhost:8000/api/reserva/',
+            type: 'GET',
+            dataType: 'json',
+            success: function(reservas) {
+                var reservasFiltradas = [];
+                
+                reservas.forEach(function(reserva) {
+                    var pacienteId = reserva.paciente;
+                    $.ajax({
+                        url: `http://localhost:8000/api/paciente/${pacienteId}/`,
+                        type: 'GET',
+                        dataType: 'json',
+                        async: false,
+                        success: function(paciente) {
+                            if (paciente.rut_paciente === rut) {
+                                reserva.pacienteData = paciente;
+                                reservasFiltradas.push(reserva);
+                            }
+                        },
+                        error: function(error) {
+                            console.error('Error al cargar detalles del paciente', error);
+                        }
+                    });
+                });
+
+                if (reservasFiltradas.length === 0) {
+                    mensajeError('No se encontraron pacientes con el RUT ingresado.');
+                } else {
+                    reservasFiltradas.forEach(function(reserva) {
+                        var paciente = reserva.pacienteData;
+                        var medicoId = reserva.medico;
+                        var fecha = reserva.fecha;
+                        var hora = reserva.hora;
+
+                        $.ajax({
+                            url: `http://localhost:8000/api/medico/${medicoId}/`,
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(medico) {
+                                agregarFila(
+                                    reserva.id_reserva,
+                                    paciente.nombrepa,
+                                    paciente.rut_paciente,
+                                    paciente.prevision,
+                                    medico.especialidad,
+                                    fecha,
+                                    hora
+                                );
+                            },
+                            error: function(error) {
+                                console.error('Error al cargar detalles del médico', error);
+                            }
+                        });
+                    });
+                }
+            },
+            error: function(error) {
+                console.error('Error al cargar reservas', error);
+                mensajeError('Error al cargar reservas. Consulte la consola para más detalles.');
+            }
+        });
     }
   
     document.getElementById('btnvalida').addEventListener('click', function(event) {
@@ -107,23 +161,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-function eliminarPaciente(boton){
-    var row = $(boton).closest('tr');
-    var cols = row.children('td');
-    if(boton.textContent === 'Cancelar'){
-        $(cols[0]).text($cols[0]).find('input').val();
-        $(cols[1]).text($cols[1]).find('input').val();
-        $(boton).prev().text('Editar').removeClass('btn-warning').addClass('btn-info');
-        $(boton).text('Eliminar').removeClass('btn-warning').addClass('btn-danger');
-    } else {
-        eliminaStoragepa(row.index());
-        row.remove();
-    }
-}
 
-//ELIMINA DEL LOCAL STORAGE DE PACIENTES
-function eliminaStoragepa(index){
-    var pacientes = JSON.parse(localStorage.getItem('pacientes'));
-    pacientes.splice(index, 1);
-    localStorage.setItem('pacientes', JSON.stringify(pacientes));
+
+
+
+
+
+function eliminarPaciente(boton) {
+    var row = $(boton).closest('tr');
+    var id = row.find('td:first').text();
+
+    $.ajax({
+        url: `http://localhost:8000/api/reserva/${id}/`,
+        type: 'DELETE',
+        dataType: 'json',
+        success: function() {
+            alert('RESERVA ELIMINADA');
+            row.remove();
+        },
+        error: function(error) {
+            console.error('Error al eliminar reserva:', error);
+            alert('Error al eliminar la reserva. Consulta la consola para más detalles.');
+        }
+    });
 }
