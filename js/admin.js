@@ -473,25 +473,77 @@ function cargarPacientes() {
 }
 
 function buscarPacientePorRut(rut) {
-    $('#tablaPaciente tbody').empty(); 
+    $('#tablaPaciente tbody').empty();
     $('#mensajeError').hide(); 
 
+    console.log("Buscando paciente con RUT:", rut);
+
     $.ajax({
-        url: `http://localhost:8000/api/paciente/${rut}/`, // URL de tu API para buscar por RUT
+        url: 'http://localhost:8000/api/reserva/',
         type: 'GET',
         dataType: 'json',
-        success: function(paciente) {
-            mostrarTablapaciente(paciente.nombre, paciente.rut, paciente.prevision, paciente.especialidadSeleccionada, paciente.fecha, paciente.hora);
+        success: function(reservas) {
+            console.log("Reservas obtenidas:", reservas);
+
+            var reservasFiltradas = [];
+
+            reservas.forEach(function(reserva) {
+                var pacienteId = reserva.paciente;
+                $.ajax({
+                    url: `http://localhost:8000/api/paciente/${pacienteId}/`, 
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function(paciente) {
+                        if (paciente.rut_paciente === rut) {
+                            reserva.pacienteData = paciente;
+                            reservasFiltradas.push(reserva);
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Error al cargar detalles del paciente', error);
+                    }
+                });
+            });
+
+            if (reservasFiltradas.length === 0) {
+                $('#mensajeError').show();
+            } else {
+                reservasFiltradas.forEach(function(reserva) {
+                    var paciente = reserva.pacienteData;
+                    var medicoId = reserva.medico;
+                    var fecha = reserva.fecha;
+                    var hora = reserva.hora;
+
+                    $.ajax({
+                        url: `http://localhost:8000/api/medico/${medicoId}/`, 
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(medico) {
+                            mostrarTablapaciente(
+                                reserva.id_reserva,
+                                paciente.nombrepa,
+                                paciente.rut_paciente,
+                                paciente.prevision,
+                                medico.especialidad,
+                                fecha,
+                                hora
+                            );
+                        },
+                        error: function(error) {
+                            console.error('Error al cargar detalles del médico', error);
+                        }
+                    });
+                });
+            }
         },
         error: function(error) {
-            console.error('Error al buscar paciente:', error);
-            $('#mensajeError').show(); 
+            console.error('Error al cargar reservas', error);
         }
     });
 }
 
-// MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL PACIENTE
-function mostrarTablapaciente(id,nombre, rut, prevision, especialidad, fecha, hora) {
+function mostrarTablapaciente(id, nombre, rut, prevision, especialidad, fecha, hora) {
     $('#tablaPaciente tbody').append(`
         <tr class="text-center">
             <td>${id}</td>
@@ -502,7 +554,7 @@ function mostrarTablapaciente(id,nombre, rut, prevision, especialidad, fecha, ho
             <td>${fecha}</td>
             <td>${hora}</td>
             <td>
-                <button class="btn btn-danger " onclick="eliminarPaciente(this)">Eliminar</button>
+                <button class="btn btn-danger" onclick="eliminarPaciente(this)">Eliminar</button>
             </td>
         </tr>
     `);
@@ -510,20 +562,23 @@ function mostrarTablapaciente(id,nombre, rut, prevision, especialidad, fecha, ho
 
 function eliminarPaciente(boton) {
     var row = $(boton).closest('tr');
-    var id = row.find('td:first').text(); // Obtener el ID del paciente desde la primera columna de la fila
+    var id = row.find('td:first').text();
+
+    console.log("Eliminando reserva con ID:", id);
 
     $.ajax({
-        url: `http://localhost:8000/api/reserva/${id}/`, // URL DELETE con ID específico del paciente
+        url: `http://localhost:8000/api/reserva/${id}/`, 
         type: 'DELETE',
         dataType: 'json',
         success: function() {
-            alert('PACIENTE ELIMINADO');
-            row.remove(); // Eliminar la fila de la tabla después de eliminar el paciente en el servidor
+            alert('RESERVA ELIMINADA');
+            row.remove(); 
         },
         error: function(error) {
-            console.error('Error al eliminar paciente:', error);
-            alert('Error al eliminar el paciente. Consulta la consola para más detalles.');
+            console.error('Error al eliminar reserva:', error);
+            alert('Error al eliminar la reserva. Consulta la consola para más detalles.');
         }
     });
 }
+
 
