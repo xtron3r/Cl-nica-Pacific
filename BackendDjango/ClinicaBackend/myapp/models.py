@@ -44,5 +44,4 @@ class Reserva(models.Model):
 
     def __str__(self):
         return f"ID RESERVA: {self.id_reserva} | PACIENTE: {self.paciente.nombrepa} | RUT PACIENTE: {self.paciente.rut_paciente} | PREVISION: {self.paciente.prevision} | MEDICO: {self.medico.nombrem} | RUT MEDICO: {self.medico.rut_medico} | ESPECIALIDAD MEDICO: {self.medico.especialidad} | FECHA Y HORA: {self.fecha} {self.hora}"
-
-
+    

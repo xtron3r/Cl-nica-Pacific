@@ -1,7 +1,13 @@
 from rest_framework import viewsets
 from .models import Contacto,Medico,Paciente,Reserva
 from django.contrib.auth.models import User
-from .serializers import ContactoSerializer, MedicoSerializer,PacienteSerializer,ReservaSerializer
+from .serializers import ContactoSerializer, MedicoSerializer,PacienteSerializer,ReservaSerializer, UserSerializer
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth import authenticate
+
 
 # Create your views here.
 class ContactoViewSet(viewsets.ModelViewSet):
@@ -19,3 +25,18 @@ class PacienteViewSet(viewsets.ModelViewSet):
 class ReservaViewSet(viewsets.ModelViewSet):
     queryset = Reserva.objects.all()
     serializer_class = ReservaSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class LoginAPIView(APIView):
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user:
+            return Response({'detail': 'Inicio de sesión exitoso'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)

@@ -351,21 +351,39 @@ function editarMedico(button) {
         var originalValues = {
             nombre: $(cols[0]).text(),
             rut: $(cols[1]).text(),
-            especialidad: $(cols[2]).text()
+            especialidad: $(cols[2]).text() // Asegúrate de eliminar espacios en blanco
         };
 
-        // Reemplazar texto con campos de entrada para editar
-        $(cols[0]).html(`<input type="text" class="form-control" value="${originalValues.nombre}">`);
-        $(cols[1]).html(`<input type="text" class="form-control" value="${originalValues.rut}">`);
-        $(cols[2]).html(`<input type="text" class="form-control" value="${originalValues.especialidad}">`);
+        // Crear el select con las opciones de especialidad
+        var selectOptions = `
+            <select class="form-select form-rut mx-auto" id="nombreEspecialidad" name="nombreEspecialidad" required>
+                <option value="" disabled>Selecciona una especialidad</option>
+                <option value="Telemedicina">TELEMEDICINA</option>
+                <option value="Medicina General">MEDICINA GENERAL</option>
+                <option value="Mamografia">MAMOGRAFIA</option>
+                <option value="Odontologia">ODONTOLOGIA</option>
+                <option value="Kinesiologia">KINESIOLOGIA</option>
+                <option value="Oftalmologia">OFTALMOLOGIA</option>
+                <option value="Toma de muestras">TOMA DE MUESTRAS</option>
+                <option value="Radiografias">RADIOGRAFIAS</option>
+                <option value="Ginecologia y obstetricia">GINECOLOGIA Y OBTRETICIA</option>
+                <option value="Pediatria">PEDIATRIA</option>
+                <option value="Traumatologia">TRAUMATOLOGIA</option>
+                <option value="Dermatologia">DERMATOLOGIA</option>
+            </select>
+        `;
+        
+        // Reemplazar texto con select para editar
+        $(cols[2]).html(selectOptions);
+        $(cols[2]).find('option[value="' + originalValues.especialidad + '"]').prop('selected', true);
 
         // Cambiar texto de los botones Editar y Eliminar a Guardar y Cancelar
         $(button).text('Guardar').removeClass('btn-info').addClass('btn-success');
         $(button).next().text('Cancelar').removeClass('btn-danger').addClass('btn-warning');
     } else { // Guardar cambios
-        var newNombre = $(cols[0]).find('input').val();
-        var newRut = $(cols[1]).find('input').val();
-        var newEspecialidad = $(cols[2]).find('input').val();
+        var newNombre = $(cols[0]).text();
+        var newRut = $(cols[1]).text();
+        var newEspecialidad = $(cols[2]).find('select').val();
 
         // Actualizar la interfaz con los nuevos valores
         $(cols[0]).text(newNombre);
