@@ -54,13 +54,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
   
-    function agregarFila(id, nombrep, rutpa, prevision, especialidad, fecha, hora) {
+    function agregarFila(id, nombrep, rutpa, prevision, nombrem,especialidad, fecha, hora) {
         var newRow = document.createElement("tr");
         newRow.innerHTML = `
             <td>${id}</td>
             <td>${nombrep}</td>
             <td>${rutpa}</td>
             <td>${prevision}</td>
+            <td>${nombrem}</td>
             <td>${especialidad}</td>
             <td>${fecha}</td>
             <td>${hora}</td>
@@ -136,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     paciente.nombrepa,
                                     paciente.rut_paciente,
                                     paciente.prevision,
+                                    medico.nombrem,
                                     medico.especialidad,
                                     fecha,
                                     hora
@@ -169,15 +171,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function eliminarPaciente(boton) {
     var row = $(boton).closest('tr');
-    var id = row.find('td:first').text();
+    var idReserva = row.find('td:first').text();
+    var rutPaciente = row.find('td:nth-child(3)').text(); 
 
+    // Eliminar la reserva
     $.ajax({
-        url: `http://localhost:8000/api/reserva/${id}/`,
+        url: `http://localhost:8000/api/reserva/${idReserva}/`, 
         type: 'DELETE',
         dataType: 'json',
         success: function() {
-            alert('RESERVA ELIMINADA');
-            row.remove();
+            // Obtener la lista completa de pacientes y filtrar por RUT
+            $.ajax({
+                url: 'http://localhost:8000/api/paciente/', 
+                type: 'GET',
+                dataType: 'json',
+                success: function(pacientes) {
+                    var paciente = pacientes.find(p => p.rut_paciente === rutPaciente);
+
+                    if (paciente) {
+                        var idPaciente = paciente.id;
+
+                        // Eliminar el paciente
+                        $.ajax({
+                            url: `http://localhost:8000/api/paciente/${idPaciente}/`,
+                            type: 'DELETE',
+                            dataType: 'json',
+                            success: function() {
+                                alert('Reserva eliminada');
+                                row.remove(); 
+                            },
+                            error: function(error) {
+                                console.error('Error al eliminar paciente:', error);
+                                alert('Error al eliminar el paciente. Consulta la consola para más detalles.');
+                            }
+                        });
+                    } else {
+                        console.error('No se encontró un paciente con el RUT proporcionado');
+                        alert('No se encontró un paciente con el RUT proporcionado. Consulta la consola para más detalles.');
+                    }
+                },
+                error: function(error) {
+                    console.error('Error al obtener la lista de pacientes:', error);
+                    alert('Error al obtener la lista de pacientes. Consulta la consola para más detalles.');
+                }
+            });
         },
         error: function(error) {
             console.error('Error al eliminar reserva:', error);
