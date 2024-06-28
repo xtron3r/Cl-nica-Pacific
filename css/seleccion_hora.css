@@ -188,5 +188,11 @@ header .current-date {
 .table td {
   font-size: 0.9rem;
 }
+.inactive {
+  background-color: #d3d3d3; /* Cambia el color de fondo para que se vea como inactiva */
+  color: #a9a9a9; /* Cambia el color del texto */
+  border-radius: 10px;
+  cursor: not-allowed; /* Cambia el cursor para que no se pueda hacer clic */
+}
 
 

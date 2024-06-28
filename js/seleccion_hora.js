@@ -16,7 +16,7 @@ $(document).ready(function () {
       success: function(response) {
         var medicoContainer = $('#seleccionMedico').find('div');
         medicoContainer.empty();
-  
+
         response.forEach(function(medico) {
           if (medico.especialidad === especialidadSeleccionada && medico.disponibilidad === 'DISPONIBLE') {
             var medicoCard = `
@@ -41,7 +41,7 @@ $(document).ready(function () {
       }
     });
   }
-  
+
   cargarMedicos();
 
   function updateCalendar() {
