@@ -5,7 +5,7 @@ $(document).ready(function () {
   let month = now.getMonth();
   let year = now.getFullYear();
   let medicoId;
-  let reservas = [];
+  let reservasMedicoActual = [];
 
   function cargarMedicos() {
     var especialidadSeleccionada = localStorage.getItem("especialidadSeleccionada");
@@ -16,9 +16,9 @@ $(document).ready(function () {
       success: function(response) {
         var medicoContainer = $('#seleccionMedico').find('div');
         medicoContainer.empty();
-
+  
         response.forEach(function(medico) {
-          if (medico.especialidad === especialidadSeleccionada) {
+          if (medico.especialidad === especialidadSeleccionada && medico.disponibilidad === 'DISPONIBLE') {
             var medicoCard = `
               <div class="mb-3">
                 <div class="row g-0">
@@ -41,7 +41,7 @@ $(document).ready(function () {
       }
     });
   }
-
+  
   cargarMedicos();
 
   function updateCalendar() {
@@ -60,9 +60,6 @@ $(document).ready(function () {
       $(".days").append($day);
     }
   }
-
-  // Inicializar calendario
-  updateCalendar();
 
   // Botón mes siguiente
   $("#next").click(function () {
@@ -86,73 +83,35 @@ $(document).ready(function () {
     updateCalendar();
   });
 
-  // Función para generar las horas disponibles
   function generateHourSlots() {
     const $hoursContainer = $(".hours");
-    $hoursContainer.empty(); // Limpiar cualquier hora existente
+    $hoursContainer.empty();
 
-    for (let i = 8; i <= 19; i++) { // De 8:00 AM a 7:00 PM
-      for (let j = 0; j < 2; j++) { // Dos intervalos por hora
+    for (let i = 8; i <= 19; i++) {
+      for (let j = 0; j < 2; j++) {
         const period = i < 12 ? 'AM' : 'PM';
         const hourText = i <= 12 ? i : i - 12;
         const minuteText = j === 0 ? '00' : '30';
         const $hourSlot = $("<div></div>")
-          .addClass("hour-slot inactive") // Inicialmente inactivo
+          .addClass("hour-slot")
           .text(`${hourText}:${minuteText} ${period}`);
         $hoursContainer.append($hourSlot);
       }
     }
   }
 
-  // Generar las horas disponibles cuando se carga la página
-  generateHourSlots();
-
-  // Selección de hora
-  $(document).on("click", ".hour-slot", function () {
-    if (!$(this).hasClass("inactive")) {
-      $(".hour-slot").removeClass("active");
-      $(this).addClass("active");
-    }
-  });
-
-  $(document).on("click", ".calendar-day", function () {
-    if (!$(this).hasClass("inactive")) {
-      if ($(this).hasClass("active")) {
-        $(this).removeClass("active");
-        $(".hour-slot").addClass("inactive").removeClass("active");
-      } else {
-        $(".calendar-day").removeClass("active");
-        $(this).addClass("active");
-        $(".hour-slot").removeClass("inactive");
-        deshabilitarHorasReservadas($(this).text());
-      }
-    }
-  });
-
-  $(document).on("click", ".seleccionar-medico", function(event) {
-    var $button = $(this);
-    medicoId = $(this).data("rut");
-    $(".seleccionar-medico").each(function() {
-      $(this).val("SELECCIONAR");
-      $(this).prop("disabled", false);
-    });
-
-    $button.val("SELECCIONADO");
-
-    console.log("Medico seleccionado con Rut: " + medicoId);
-    alert("Medico seleccionado con Rut: " + medicoId);
-
-    cargarReservasMedico(medicoId);
-  });
-
   function cargarReservasMedico(medicoId) {
     $.ajax({
-      url: `http://localhost:8000/api/reserva/?medico=${medicoId}`,
+      url: 'http://localhost:8000/api/reserva/',
       type: 'GET',
       dataType: 'json',
-      success: function(response) {
-        reservas = response;
-        console.log("Reservas cargadas:", reservas);
+      data: {
+        medico: medicoId  // Envía el ID del médico como parámetro en la solicitud GET
+      },
+      success: function(reservas) {
+        reservasMedicoActual = reservas;
+        updateCalendar();
+        deshabilitarHorasReservadas($('.calendar-day.active').text());
       },
       error: function(error) {
         console.error('Error al cargar reservas:', error);
@@ -164,7 +123,7 @@ $(document).ready(function () {
     const $hourSlots = $(".hour-slot");
     $hourSlots.removeClass("inactive");
 
-    reservas.forEach(function(reserva) {
+    reservasMedicoActual.forEach(function(reserva) {
       let fechaReserva = new Date(reserva.fecha);
       let diaReserva = fechaReserva.getDate();
       let mesReserva = fechaReserva.getMonth();
@@ -180,12 +139,51 @@ $(document).ready(function () {
     });
   }
 
+  $(document).on("click", ".seleccionar-medico", function(event) {
+    var $button = $(this);
+    medicoId = $(this).data("rut");
+
+    // Limpiar las reservas actuales al seleccionar un nuevo médico
+    reservasMedicoActual = [];
+
+    $(".seleccionar-medico").each(function() {
+      $(this).val("SELECCIONAR");
+      $(this).prop("disabled", false);
+    });
+
+    $button.val("SELECCIONADO");
+
+    console.log("Medico seleccionado con Rut: " + medicoId);
+    alert("Medico seleccionado con Rut: " + medicoId);
+
+    cargarReservasMedico(medicoId);
+    $(".calendar-container").show();
+    $(".days").empty();
+    $(".hours").empty();
+  });
+
+  $(document).on("click", ".calendar-day", function () {
+    if (!$(this).hasClass("inactive")) {
+      $(".calendar-day").removeClass("active");
+      $(this).addClass("active");
+      $(".hours").show(); // Asegurarse de mostrar el contenedor de horas
+      generateHourSlots();
+      deshabilitarHorasReservadas($(this).text());
+    }
+  });
+
+  $(document).on("click", ".hour-slot", function () {
+    if (!$(this).hasClass("inactive")) {
+      $(".hour-slot").removeClass("active");
+      $(this).addClass("active");
+    }
+  });
+
   $('#guardar').click(function() {
-    var fecha = $('#text_year').text() + '-' + (month + 1) + '-' + $('.calendar-day.active').text(); // Formatear fecha
+    var fecha = $('#text_year').text() + '-' + (month + 1) + '-' + $('.calendar-day.active').text();
     var hora = $('.hour-slot.active').text();
     var especialidadSeleccionada = localStorage.getItem("especialidadSeleccionada");
 
-    // Agregar el paciente a la lista de pacientes en bd
     var data = {
       rut_paciente: localStorage.getItem("rut"),
       nombrepa: localStorage.getItem("nombre"),
@@ -201,7 +199,6 @@ $(document).ready(function () {
         console.log('SUCCESS!', response);
         alert('Paciente guardado correctamente!');
 
-        // Obtener el id del paciente creado
         var pacienteId = response.id;
 
         var reservaData = {
@@ -213,7 +210,6 @@ $(document).ready(function () {
 
         console.log(reservaData);
 
-        // Enviar solicitud POST para la reserva
         $.ajax({
           url: "http://localhost:8000/api/reserva/",
           type: "POST",
@@ -222,6 +218,7 @@ $(document).ready(function () {
           success: function(response) {
             console.log('SUCCESS!', response);
             alert('Reserva guardada correctamente!');
+            cargarReservasMedico(medicoId); // Volver a cargar reservas para actualizar el calendario
           },
           error: function(error) {
             alert('No se pudo guardar la reserva!');
@@ -235,7 +232,6 @@ $(document).ready(function () {
       }
     });
 
-    // Crear el objeto paciente
     var paciente = {
       rut: localStorage.getItem("rut"),
       nombre: localStorage.getItem("nombre"),
@@ -245,17 +241,11 @@ $(document).ready(function () {
       hora: hora
     };
 
-    // Agregar el paciente a la lista de pacientes en localStorage
     agregarPaciente(paciente);
-
-    // Mostrar la hora seleccionada en la tabla
     cargarPacientes();
     alert("Fecha y hora guardadas correctamente.");
 
-    // Desactivar todas las horas
     $('.hour-slot').addClass('inactive').removeClass('active');
-
-    // Desactivar el botón "SOLICITAR"
     $(this).prop('disabled', true);
   });
 
@@ -294,4 +284,7 @@ $(document).ready(function () {
 
     $('#tableBody').append(newRow);
   }
+
+  $(".calendar-container").hide();
+  $(".hours").hide();
 });

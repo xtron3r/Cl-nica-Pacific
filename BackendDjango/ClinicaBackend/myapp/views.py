@@ -26,6 +26,13 @@ class ReservaViewSet(viewsets.ModelViewSet):
     queryset = Reserva.objects.all()
     serializer_class = ReservaSerializer
 
+    def get_queryset(self):
+        queryset = Reserva.objects.all()
+        medico_id = self.request.query_params.get('medico', None)
+        if medico_id:
+            queryset = queryset.filter(medico__rut_medico=medico_id)
+        return queryset
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
