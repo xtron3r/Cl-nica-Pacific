@@ -28,12 +28,16 @@ class Paciente(models.Model):
         return f"NOMBRE PACIENTE: {self.nombrepa} | RUT: {self.rut_paciente} | PREVISION: {self.prevision}"
 
 class Medico(models.Model):
+    DISPO = [
+        ('DISPONIBLE','Disponible'),
+        ('NODISPONIBLE','Nodisponible'),]
     nombrem = models.CharField(max_length=100)
     rut_medico = models.CharField(max_length=11, primary_key=True, unique=True)
     especialidad = models.CharField(max_length=100)
+    disponibilidad = models.CharField(max_length=20, choices=DISPO)
 
     def __str__(self):
-        return f"NOMBRE MEDICO: {self.nombrem} | RUT: {self.rut_medico} | ESPECIALIDAD: {self.especialidad}"
+        return f"NOMBRE MEDICO: {self.nombrem} | RUT: {self.rut_medico} | ESPECIALIDAD: {self.especialidad} | DISPONIBILIDAD:{self.disponibilidad}"
     
 class Reserva(models.Model):
     id_reserva = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) # DA UN ID ALEATORIO
