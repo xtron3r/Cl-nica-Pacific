@@ -138,6 +138,7 @@
                                   <th>Nombre Medico</th> 
                                   <th>Rut</th>
                                   <th>Especialidad</th>
+                                  <th>Disponible</th>
                                   <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -177,6 +178,14 @@
                                 <option value="Pediatria">PEDIATRIA</option>
                                 <option value="Traumatologia">TRAUMATOLOGIA</option>
                                 <option value="Dermatologia">DERMATOLOGIA</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <label for="formDisponibilidad" class="form-label fw-bold">Disponibilidad</label>
+                            <select class="form-select form-dispo form-rut mx-auto" id="Disponibilidad" name="Disponibilidad" required>
+                                <option value="" selected disabled>Selecciona disponibilidad</option>
+                                <option value="DISPONIBLE">DISPONIBLE</option>
+                                <option value="NODISPONIBLE">NO DISPONIBLE</option>
                             </select>
                         </div>
                         <div class="d-flex justify-content-center">

@@ -96,8 +96,8 @@ $(document).ready(function() {
                 var data = {
                     rut_medico : $('#rutinput').val(),
                     nombrem : $('#nombreMedico').val(),
-                    especialidad : $('#nombreEspecialidad').val()
-
+                    especialidad : $('#nombreEspecialidad').val(),
+                    disponibilidad : $('#Disponibilidad').val(),
                 };
 
                 $.ajax({
@@ -258,7 +258,7 @@ function cargarMedicos() {
         success: function(response) {
             // Filtrar médicos por especialidad seleccionada
             response.forEach(function(medico) {
-                mostrarTablaMedico(medico.nombrem, medico.rut_medico, medico.especialidad);
+                mostrarTablaMedico(medico.nombrem, medico.rut_medico, medico.especialidad,medico.disponibilidad);
             });
         },
         error: function(error) {
@@ -277,7 +277,7 @@ function buscarMedicoPorRut(rut) {
         type: 'GET',
         dataType: 'json',
         success: function(medico) {
-            mostrarTablaMedico(medico.nombrem, medico.rut_medico, medico.especialidad);
+            mostrarTablaMedico(medico.nombrem, medico.rut_medico, medico.especialidad,medico.disponibilidad);
         },
         error: function(error) {
             console.error('Error al buscar medico:', error);
@@ -302,7 +302,7 @@ function guardarLocalmedico(medico){
 }
 
 // MUESTRA EN LA TABLA DEL LOCAL STORAGE DEL MEDICOS
-function mostrarTablaMedico(nombre,rut,nombreE) {
+function mostrarTablaMedico(nombre,rut,nombreE,disponibilidad) {
     console.log(localStorage)
 
     $('#tablaMedico tbody').append(`
@@ -310,6 +310,7 @@ function mostrarTablaMedico(nombre,rut,nombreE) {
             <td>${nombre}</td>
             <td>${rut}</td>
             <td>${nombreE}</td>
+            <td>${disponibilidad}</td>
             <td>
                 <button class="btn btn-danger " onclick="eliminarMedico(this)">Eliminar</button>
                 <button class="btn btn-info " onclick="editarMedico(this)">Editar </button>
@@ -329,6 +330,7 @@ function eliminarMedico(boton) {
         type: 'DELETE',
         dataType: 'json',
         success: function() {
+            alert('Medico eliminado');
             console.log('Medico eliminado');
             row.remove(); 
         },
@@ -351,11 +353,15 @@ function editarMedico(button) {
         var originalValues = {
             nombre: $(cols[0]).text(),
             rut: $(cols[1]).text(),
-            especialidad: $(cols[2]).text() // Asegúrate de eliminar espacios en blanco
+            especialidad: $(cols[2]).text(),
+            disponibilidad: $(cols[3]).text()
         };
 
+        // Crear el campo de entrada para el nombre
+        var inputNombre = `<input type="text" class="form-control" value="${originalValues.nombre}" required>`;
+
         // Crear el select con las opciones de especialidad
-        var selectOptions = `
+        var selectEspecialidad = `
             <select class="form-select form-rut mx-auto" id="nombreEspecialidad" name="nombreEspecialidad" required>
                 <option value="" disabled>Selecciona una especialidad</option>
                 <option value="Telemedicina">TELEMEDICINA</option>
@@ -372,23 +378,39 @@ function editarMedico(button) {
                 <option value="Dermatologia">DERMATOLOGIA</option>
             </select>
         `;
-        
-        // Reemplazar texto con select para editar
-        $(cols[2]).html(selectOptions);
+
+        // Crear el select con las opciones de disponibilidad
+        var selectDisponibilidad = `
+            <select class="form-select form-rut mx-auto" id="Disponibilidad" name="disponibilidad" required>
+                <option value="DISPONIBLE">DISPONIBLE</option>
+                <option value="NODISPONIBLE">NO DISPONIBLE</option>
+            </select>
+        `;
+
+        // Reemplazar texto con input para editar nombre y select para especialidad y disponibilidad
+        $(cols[0]).html(inputNombre);
+        $(cols[2]).html(selectEspecialidad);
         $(cols[2]).find('option[value="' + originalValues.especialidad + '"]').prop('selected', true);
+        $(cols[3]).html(selectDisponibilidad);
+        $(cols[3]).find('option[value="' + originalValues.disponibilidad + '"]').prop('selected', true);
 
         // Cambiar texto de los botones Editar y Eliminar a Guardar y Cancelar
         $(button).text('Guardar').removeClass('btn-info').addClass('btn-success');
         $(button).next().text('Cancelar').removeClass('btn-danger').addClass('btn-warning');
+
+        // Guardar los valores originales en el botón para usarlos si se cancela la edición
+        $(button).data('originalValues', originalValues);
     } else { // Guardar cambios
-        var newNombre = $(cols[0]).text();
+        var newNombre = $(cols[0]).find('input').val();
         var newRut = $(cols[1]).text();
         var newEspecialidad = $(cols[2]).find('select').val();
+        var newDisponibilidad = $(cols[3]).find('select').val();
 
         // Actualizar la interfaz con los nuevos valores
         $(cols[0]).text(newNombre);
         $(cols[1]).text(newRut);
         $(cols[2]).text(newEspecialidad);
+        $(cols[3]).text(newDisponibilidad);
 
         // Cambiar botones de vuelta a Editar y Eliminar
         $(button).text('Editar').removeClass('btn-success').addClass('btn-info');
@@ -398,13 +420,13 @@ function editarMedico(button) {
         var id = $(cols[1]).text();
 
         // Llamar a la función para actualizar el médico en el backend
-        actualizarMedico(id, newNombre, newRut, newEspecialidad);
+        actualizarMedico(id, newNombre, newRut, newEspecialidad, newDisponibilidad);
     }
 }
 
-function actualizarMedico(id, nombre, rut, especialidad) {
+function actualizarMedico(id, nombre, rut, especialidad,disponibilidad) {
     
-    if (!nombre || !rut || !especialidad) {
+    if (!nombre || !rut || !especialidad || !disponibilidad) {
         console.error('Todos los campos son requeridos.');
         return;
     }
@@ -413,7 +435,8 @@ function actualizarMedico(id, nombre, rut, especialidad) {
     var data= {
         nombrem: nombre,
         rut_medico: rut,
-        especialidad: especialidad
+        especialidad: especialidad,
+        disponibilidad: disponibilidad,
     };
 
     $.ajax({
