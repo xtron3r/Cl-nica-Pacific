@@ -184,6 +184,12 @@ $(document).ready(function () {
     var hora = $('.hour-slot.active').text();
     var especialidadSeleccionada = localStorage.getItem("especialidadSeleccionada");
 
+    // Redirigir si la especialidad es "telemedicina"
+    if (especialidadSeleccionada === 'Telemedicina') {
+      window.location.href = 'pago.html';
+      return;
+    }
+
     var data = {
       rut_paciente: localStorage.getItem("rut"),
       nombrepa: localStorage.getItem("nombre"),

@@ -18,4 +18,6 @@ $(document).ready(function() {
             $input.next('.invalid-feedback').show();
         }
     });
+
+    
 });
