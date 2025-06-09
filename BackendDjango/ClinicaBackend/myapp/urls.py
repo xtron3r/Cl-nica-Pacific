@@ -15,7 +15,7 @@ urlpatterns = [
 
     # Medico
     path('medico/', MedicoListCreateAPIView.as_view(), name='medico-list-create'),
-    path('medico/<int:pk>/', MedicoDetailAPIView.as_view(), name='medico-detail'),
+    path('medico/<str:pk>/', MedicoDetailAPIView.as_view(), name='medico-detail'),
 
     # Paciente
     path('paciente/', PacienteListCreateAPIView.as_view(), name='paciente-list-create'),
